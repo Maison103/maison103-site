@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #0A0A0A;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC 103 — Federal Contracting | Maison 103</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #10B981;
+    --green-light: #A7F3D0;
+    --green-dim: rgba(16,185,129,0.08);
+    --green-glow: rgba(16,185,129,0.15);
+    --obsidian: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --smoke: #2A2A2A;
+    --slate: #141F1A;
+    --silver: #B0B0B0;
+    --cream: #F5F0E8;
+    --white: #FAFAFA;
+    --gold: #C9A96E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #0A0A0A !important;
+    color: #FAFAFA;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(16,185,129,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #10B981;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    font-weight: 300;
+    color: #B0B0B0;
+    margin-left: 6px;
+  }
+
+  .nav-back {
+    font-size: 13px;
+    color: #B0B0B0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-back:hover { color: #10B981; }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #B0B0B0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: #10B981; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 48px 80px;
+    position: relative;
+    background: linear-gradient(170deg, #141F1A 0%, #0A0A0A 60%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 40%, rgba(16,185,129,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-prefix {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 300;
+    color: #A7F3D0;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: #B0B0B0;
+    max-width: 640px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .badge {
+    padding: 8px 20px;
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #10B981;
+    background: rgba(16,185,129,0.05);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 100px 48px;
+    position: relative;
+  }
+
+  .section-alt {
+    background: #1A1A1A !important;
+  }
+
+  .section-header {
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 500;
+    color: #FFFFFF !important;
+  }
+
+  /* ===== IDENTIFIERS GRID ===== */
+  .id-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .id-card {
+    background: #2A2A2A;
+    padding: 36px;
+    border-left: 2px solid rgba(16,185,129,0.3);
+    transition: border-color 0.3s;
+  }
+
+  .id-card:hover {
+    border-left-color: #10B981;
+  }
+
+  .id-card-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B0B0B0;
+    margin-bottom: 8px;
+  }
+
+  .id-card-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    color: #A7F3D0;
+  }
+
+  /* ===== NAICS ===== */
+  .naics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .naics-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    background: rgba(16,185,129,0.04);
+    border: 1px solid rgba(16,185,129,0.08);
+    border-radius: 2px;
+  }
+
+  .naics-code {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: #10B981;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  .naics-desc {
+    font-size: 14px;
+    color: #B0B0B0;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .naics-primary {
+    border-color: rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+  }
+
+  .naics-primary .naics-desc {
+    color: #F5F0E8;
+  }
+
+  .naics-primary-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #10B981;
+    background: rgba(16,185,129,0.15);
+    padding: 2px 8px;
+    border-radius: 1px;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  /* ===== CAPABILITIES ===== */
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+  }
+
+  .cap-item {
+    padding: 40px;
+    background: #2A2A2A;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .cap-item:hover {
+    background: rgba(16,185,129,0.06);
+  }
+
+  .cap-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(16,185,129,0.7);
+    margin-bottom: 16px;
+  }
+
+  .cap-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+
+  .cap-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  /* ===== AGENCY & PORTALS ===== */
+  .list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+  }
+
+  .list-column h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(16,185,129,0.15);
+  }
+
+  .list-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .list-column li {
+    font-size: 14px;
+    font-weight: 400;
+    color: #B0B0B0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .list-column li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    background: #10B981;
+    border-radius: 50%;
+  }
+
+  /* ===== CAPABILITY NARRATIVE ===== */
+  .narrative {
+    max-width: 800px;
+  }
+
+  .narrative p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 2;
+    margin-bottom: 24px;
+  }
+
+  .narrative strong {
+    color: #F5F0E8;
+    font-weight: 500;
+  }
+
+  /* ===== CAPABILITY STATEMENT ===== */
+  .statement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .statement-block {
+    padding: 32px;
+    background: #2A2A2A;
+    border-top: 2px solid rgba(16,185,129,0.2);
+  }
+
+  .statement-block h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #A7F3D0;
+    margin-bottom: 16px;
+  }
+
+  .statement-block p,
+  .statement-block li {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  .statement-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .statement-block li::before {
+    content: '— ';
+    color: #10B981;
+  }
+
+  /* ===== TEAMING ===== */
+  .teaming-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .teaming-tag {
+    padding: 10px 24px;
+    border: 1px solid rgba(16,185,129,0.2);
+    font-size: 13px;
+    font-weight: 400;
+    color: #F5F0E8;
+    background: rgba(16,185,129,0.04);
+    border-radius: 2px;
+  }
+
+  /* ===== CONTACT ===== */
+  .fc-contact {
+    text-align: center;
+    padding: 100px 48px;
+    border-top: 1px solid rgba(16,185,129,0.1);
+  }
+
+  .fc-contact-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .fc-contact-title {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 32px;
+  }
+
+  .fc-contact-grid {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .fc-contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .fc-contact-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B0B0B0;
+  }
+
+  .fc-contact-value {
+    font-size: 15px;
+    font-weight: 400;
+    color: #F5F0E8;
+  }
+
+  .fc-contact-value a {
+    color: #F5F0E8;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .fc-contact-value a:hover { color: #10B981; }
+
+  .fc-ids {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .fc-id {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #B0B0B0;
+  }
+
+  .fc-id strong {
+    color: #10B981;
+    font-weight: 400;
+  }
+
+  .footer-line {
+    width: 60px;
+    height: 1px;
+    background: #10B981;
+    margin: 40px auto 16px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #B0B0B0;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .section { padding: 60px 24px; }
+    .fc-contact { padding: 60px 24px; }
+    .fc-ids { flex-direction: column; align-items: center; gap: 12px; }
+  }
+</style>
+</head>
+<body style="background-color: #0A0A0A; color: #FAFAFA;">
+
+<!-- NAV -->
+<nav style="background-color: #0A0A0A;">
+  <a href="/" class="nav-logo">FC<span>103</span></a>
+  <ul class="nav-links">
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#narrative">Narrative</a></li>
+    <li><a href="#statement">Statement</a></li>
+    <li><a href="#teaming">Teaming</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="/">← Maison 103</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="background-color: #0A0A0A;">
+  <div class="hero-prefix">FC 103 — Federal Contracting</div>
+  <h1 class="hero-title">Small Disadvantaged<br>Business</h1>
+  <p class="hero-desc">Maison 103 LLC delivers analytics, management consulting, and program support services to federal and state agencies nationwide.</p>
+  <div class="hero-badges">
+    <div class="badge">SDB Self-Certified</div>
+    <div class="badge">SAM Registered</div>
+    <div class="badge">Florida MBE — Submitted</div>
+  </div>
+</section>
+
+<!-- FEDERAL IDENTIFIERS -->
+<div class="section">
+  <div class="section-header reveal">
+    <div class="section-label">Federal Identifiers</div>
+    <div class="section-title">Registered & Ready</div>
+  </div>
+  <div class="id-grid reveal">
+    <div class="id-card">
+      <div class="id-card-label">UEI</div>
+      <div class="id-card-value">J18TZDRH5FK7</div>
+    </div>
+    <div class="id-card">
+      <div class="id-card-label">CAGE Code</div>
+      <div class="id-card-value">16DD3</div>
+    </div>
+    <div class="id-card">
+      <div class="id-card-label">Primary NAICS</div>
+      <div class="id-card-value">541611</div>
+    </div>
+    <div class="id-card">
+      <div class="id-card-label">Certification</div>
+      <div class="id-card-value">SDB — Self-Certified</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAICS CODES -->
+<div class="section section-alt" style="background-color: #1A1A1A;">
+  <div class="section-header reveal">
+    <div class="section-label">NAICS Codes</div>
+    <div class="section-title">Service Classifications</div>
+  </div>
+  <div class="naics-grid reveal">
+    <div class="naics-item naics-primary">
+      <div class="naics-code">541611</div>
+      <div>
+        <div class="naics-desc">Administrative & General Management Consulting</div>
+        <div class="naics-primary-tag">Primary</div>
+      </div>
+    </div>
+    <div class="naics-item">
+      <div class="naics-code">541618</div>
+      <div class="naics-desc">Other Management Consulting</div>
+    </div>
+    <div class="naics-item">
+      <div class="naics-code">541511</div>
+      <div class="naics-desc">Custom Computer Programming</div>
+    </div>
+    <div class="naics-item">
+      <div class="naics-code">541519</div>
+      <div class="naics-desc">Other Computer Related Services</div>
+    </div>
+    <div class="naics-item">
+      <div class="naics-code">518210</div>
+      <div class="naics-desc">Data Processing, Hosting & Related Services</div>
+    </div>
+  </div>
+</div>
+
+<!-- CORE CAPABILITIES -->
+<div class="section" id="capabilities">
+  <div class="section-header reveal">
+    <div class="section-label">Core Capabilities</div>
+    <div class="section-title">What We Deliver</div>
+  </div>
+  <div class="cap-grid reveal">
+    <div class="cap-item">
+      <div class="cap-number">01</div>
+      <div class="cap-name">Program & Project Management</div>
+      <div class="cap-desc">End-to-end program support, milestone tracking, and delivery assurance for federal initiatives.</div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">02</div>
+      <div class="cap-name">Data Analytics & Reporting</div>
+      <div class="cap-desc">Performance analytics, KPI dashboards, and data-driven insights for operational decision-making.</div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">03</div>
+      <div class="cap-name">Business Intelligence</div>
+      <div class="cap-desc">Dashboard development and BI solutions that transform raw data into actionable intelligence.</div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">04</div>
+      <div class="cap-name">Process Improvement</div>
+      <div class="cap-desc">Workflow optimization, efficiency analysis, and operational streamlining across agency programs.</div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">05</div>
+      <div class="cap-name">Strategic Planning</div>
+      <div class="cap-desc">Operational consulting, strategic roadmap development, and organizational transformation support.</div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">06</div>
+      <div class="cap-name">Administrative Support</div>
+      <div class="cap-desc">Comprehensive program support services including documentation, coordination, and compliance management.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPABILITY NARRATIVE -->
+<div class="section section-alt" style="background-color: #1A1A1A;" id="narrative">
+  <div class="section-header reveal">
+    <div class="section-label">Capability Narrative</div>
+    <div class="section-title">Our Approach</div>
+  </div>
+  <div class="narrative reveal">
+    <p><strong>Maison 103 LLC</strong> is a Small Disadvantaged Business (SDB) headquartered in Miramar, Florida, specializing in analytics, management consulting, and program support services for federal and state government agencies.</p>
+    <p>Our team brings deep expertise in <strong>data analytics, performance reporting, business intelligence, and process improvement</strong> — translating complex operational data into clear, actionable insights that drive mission outcomes.</p>
+    <p>We support agencies across the federal landscape including the <strong>Department of Veterans Affairs, Department of Health and Human Services, Department of Defense, Department of Homeland Security, and the Department of the Treasury</strong> — delivering scalable solutions that adapt to each agency's unique requirements and compliance frameworks.</p>
+    <p>Maison 103 operates with a commitment to <strong>precision, accountability, and measurable results</strong>. Whether deployed as a prime contractor or subcontractor, we integrate seamlessly with existing teams to accelerate program delivery and enhance operational performance.</p>
+  </div>
+</div>
+
+<!-- CAPABILITY STATEMENT -->
+<div class="section" id="statement">
+  <div class="section-header reveal">
+    <div class="section-label">Capability Statement</div>
+    <div class="section-title">At a Glance</div>
+  </div>
+  <div class="statement-grid reveal">
+    <div class="statement-block">
+      <h4>Company Overview</h4>
+      <ul>
+        <li>Small Disadvantaged Business (SDB)</li>
+        <li>Headquartered in Miramar, FL</li>
+        <li>UEI: J18TZDRH5FK7</li>
+        <li>CAGE Code: 16DD3</li>
+        <li>Florida MBE — Application Submitted</li>
+      </ul>
+    </div>
+    <div class="statement-block">
+      <h4>Core Competencies</h4>
+      <ul>
+        <li>Program & Project Management Support</li>
+        <li>Data Analytics & Performance Reporting</li>
+        <li>Business Intelligence & Dashboard Development</li>
+        <li>Process Improvement & Workflow Optimization</li>
+        <li>Strategic Planning & Operational Consulting</li>
+        <li>Administrative & Program Support Services</li>
+      </ul>
+    </div>
+    <div class="statement-block">
+      <h4>Differentiators</h4>
+      <ul>
+        <li>Cross-domain analytical expertise</li>
+        <li>Rapid deployment and integration capability</li>
+        <li>Scalable support model — prime or sub</li>
+        <li>Mission-first approach to every engagement</li>
+      </ul>
+    </div>
+    <div class="statement-block">
+      <h4>Agency Experience</h4>
+      <ul>
+        <li>Department of Veterans Affairs (VA)</li>
+        <li>Department of Health & Human Services (HHS)</li>
+        <li>Department of Defense (DoD)</li>
+        <li>Department of Homeland Security (DHS)</li>
+        <li>Department of the Treasury</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- AGENCY FOCUS & SUPPLIER PORTALS -->
+<div class="section section-alt" style="background-color: #1A1A1A;">
+  <div class="list-grid reveal">
+    <div class="list-column">
+      <h3>Agency Focus Areas</h3>
+      <ul>
+        <li>Department of Veterans Affairs (VA)</li>
+        <li>Department of Health and Human Services (HHS)</li>
+        <li>Department of Defense (DoD)</li>
+        <li>Department of Homeland Security (DHS)</li>
+        <li>Department of the Treasury</li>
+      </ul>
+    </div>
+    <div class="list-column">
+      <h3>Registered Supplier Portals</h3>
+      <ul>
+        <li>Leidos</li>
+        <li>SAIC</li>
+        <li>Booz Allen Hamilton</li>
+        <li>CACI International</li>
+        <li>Lockheed Martin</li>
+      </ul>
+    </div>
+    <div class="list-column">
+      <h3>Past Performance</h3>
+      <ul>
+        <li>Analytics and strategy support with private-sector partners</li>
+        <li>Workflow optimization engagements</li>
+        <li>Actively pursuing federal contract opportunities</li>
+        <li>Building government-aligned project portfolio</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TEAMING -->
+<div class="section" id="teaming">
+  <div class="section-header reveal">
+    <div class="section-label">Teaming & Partnerships</div>
+    <div class="section-title">Let's Work Together</div>
+  </div>
+  <p class="reveal" style="font-size: 15px; font-weight: 600; color: #B0B0B0; line-height: 2; max-width: 700px; margin-bottom: 32px;">Maison 103 LLC welcomes teaming and subcontracting opportunities with federal agencies and large integrators.</p>
+  <div class="teaming-list reveal">
+    <div class="teaming-tag">Subcontracting</div>
+    <div class="teaming-tag">Teaming Agreements</div>
+    <div class="teaming-tag">IDIQ / MAC Support</div>
+    <div class="teaming-tag">BPA Call Support</div>
+    <div class="teaming-tag">Program & Analytics Augmentation</div>
+    <div class="teaming-tag">Task Order Support</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="fc-contact" id="contact">
+  <div class="fc-contact-name reveal">Marlon Carter</div>
+  <div class="fc-contact-title reveal">Managing Director</div>
+  <div class="fc-contact-grid reveal">
+    <div class="fc-contact-item">
+      <div class="fc-contact-label">Email</div>
+      <div class="fc-contact-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div>
+    </div>
+    <div class="fc-contact-item">
+      <div class="fc-contact-label">Phone</div>
+      <div class="fc-contact-value"><a href="tel:3056101014">305.610.1014</a></div>
+    </div>
+    <div class="fc-contact-item">
+      <div class="fc-contact-label">Location</div>
+      <div class="fc-contact-value">Miramar, FL</div>
+    </div>
+  </div>
+  <div class="fc-ids reveal">
+    <div class="fc-id"><strong>CAGE:</strong> 16DD3</div>
+    <div class="fc-id"><strong>UEI:</strong> J18TZDRH5FK7</div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">Maison 103 LLC © 2025 — Serving federal and state agencies nationwide</div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #0A0A0A;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL 103 — SoundLab 103 | Maison 103</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #8B5CF6;
+    --purple-light: #E0D4F5;
+    --purple-bright: #A78BFA;
+    --purple-dim: rgba(139,92,246,0.08);
+    --purple-glow: rgba(139,92,246,0.12);
+    --obsidian: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --smoke: #2A2A2A;
+    --slate: #1A1520;
+    --silver: #B0B0B0;
+    --cream: #F5F0E8;
+    --white: #FAFAFA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #0A0A0A !important;
+    color: #FAFAFA;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(139,92,246,0.12);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    font-weight: 300;
+    color: #B0B0B0;
+    margin-left: 6px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #B0B0B0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: #8B5CF6; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 140px 48px 80px;
+    position: relative;
+    background: linear-gradient(170deg, #1A1520 0%, #0A0A0A 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 35%, rgba(139,92,246,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 70%, rgba(139,92,246,0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 60%, rgba(139,92,246,0.04) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .hero-prefix {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 9vw, 110px);
+    font-weight: 300;
+    color: #E0D4F5;
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: #A78BFA;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: #B0B0B0;
+    max-width: 520px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-location {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-location-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(139,92,246,0.6);
+  }
+
+  .hero-location-value {
+    font-size: 15px;
+    font-weight: 400;
+    color: #F5F0E8;
+    letter-spacing: 1px;
+  }
+
+  .hero-opening {
+    margin-top: 16px;
+    padding: 10px 28px;
+    border: 1px solid rgba(139,92,246,0.3);
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    background: rgba(139,92,246,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opening-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8B5CF6;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 100px 48px;
+    position: relative;
+  }
+
+  .section-alt {
+    background: #1A1A1A !important;
+  }
+
+  .section-header {
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 500;
+    color: #FFFFFF !important;
+  }
+
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: #2A2A2A;
+    padding: 48px;
+    border-left: 2px solid rgba(139,92,246,0.2);
+    transition: all 0.3s;
+  }
+
+  .service-card:hover {
+    border-left-color: #8B5CF6;
+    background: rgba(139,92,246,0.04);
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .service-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  /* ===== STUDIO VISION ===== */
+  .vision-block {
+    max-width: 750px;
+  }
+
+  .vision-block p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 2;
+    margin-bottom: 24px;
+  }
+
+  .vision-block strong {
+    color: #F5F0E8;
+    font-weight: 500;
+  }
+
+  /* ===== GEAR PREVIEW ===== */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .gear-item {
+    padding: 32px;
+    background: rgba(139,92,246,0.04);
+    border: 1px solid rgba(139,92,246,0.1);
+    border-radius: 2px;
+  }
+
+  .gear-category {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    margin-bottom: 12px;
+  }
+
+  .gear-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gear-list li {
+    font-size: 14px;
+    font-weight: 400;
+    color: #F5F0E8;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .gear-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    background: #A78BFA;
+    border-radius: 50%;
+  }
+
+  /* ===== FOR WHO ===== */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+  }
+
+  .audience-card {
+    background: #2A2A2A;
+    padding: 40px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .audience-card:hover {
+    background: rgba(139,92,246,0.06);
+  }
+
+  .audience-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .audience-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .audience-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.7;
+  }
+
+  /* ===== CTA ===== */
+  .cta-block {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-statement {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(24px, 3.5vw, 40px);
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .cta-statement em {
+    color: #A78BFA;
+    font-style: italic;
+  }
+
+  .cta-sub {
+    font-size: 14px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  /* ===== CONTACT ===== */
+  .sl-contact {
+    text-align: center;
+    padding: 100px 48px;
+    border-top: 1px solid rgba(139,92,246,0.1);
+  }
+
+  .sl-contact-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    margin-bottom: 16px;
+  }
+
+  .sl-contact-desc {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0B0B0;
+    margin-bottom: 40px;
+  }
+
+  .sl-contact-grid {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .sl-contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sl-contact-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B0B0B0;
+  }
+
+  .sl-contact-value {
+    font-size: 15px;
+    font-weight: 400;
+    color: #F5F0E8;
+  }
+
+  .sl-contact-value a {
+    color: #F5F0E8;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .sl-contact-value a:hover { color: #8B5CF6; }
+
+  .footer-line {
+    width: 60px;
+    height: 1px;
+    background: #8B5CF6;
+    margin: 40px auto 16px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #B0B0B0;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .section { padding: 60px 24px; }
+    .sl-contact { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body style="background-color: #0A0A0A; color: #FAFAFA;">
+
+<!-- NAV -->
+<nav style="background-color: #0A0A0A;">
+  <a href="/" class="nav-logo">SL<span>103</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gear">The Setup</a></li>
+    <li><a href="#clients">Who It's For</a></li>
+    <li><a href="#contact">Book</a></li>
+    <li><a href="/">← Maison 103</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="background-color: #0A0A0A;">
+  <div class="hero-prefix">SL 103 — A Maison 103 Studio</div>
+  <h1 class="hero-title">SoundLab 103</h1>
+  <div class="hero-subtitle">Full-Service Creative Studio</div>
+  <p class="hero-desc">Recording, mixing, mastering, photography, and film production under one roof. A professional media studio built for artists, creators, and businesses.</p>
+  <div class="hero-location">
+    <div class="hero-location-label">Location</div>
+    <div class="hero-location-value">West Broward County, FL</div>
+  </div>
+  <div class="hero-opening">
+    <span class="opening-dot"></span>
+    Opening Late 2026
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="section" id="services">
+  <div class="section-header reveal">
+    <div class="section-label">Services</div>
+    <div class="section-title">What We Offer</div>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">🎙</div>
+      <div class="service-name">Recording</div>
+      <div class="service-desc">Professional vocal tracking and instrument recording. Acoustically treated rooms, high-end microphones, and hardware signal chains for release-ready takes.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎛</div>
+      <div class="service-name">Mixing</div>
+      <div class="service-desc">Full mix sessions blending analog warmth with digital precision. EQ, compression, spatial effects, and automation crafted to make every track translate across all playback systems.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">💿</div>
+      <div class="service-name">Mastering</div>
+      <div class="service-desc">Final polish for streaming, vinyl, or broadcast. Loudness optimization, stereo enhancement, and true peak limiting to industry standards.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📸</div>
+      <div class="service-name">Photography</div>
+      <div class="service-desc">Studio photography for artists, brands, and content creators. Album covers, press photos, product shots, and promotional imagery.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎬</div>
+      <div class="service-name">Film & Video</div>
+      <div class="service-desc">Music videos, short-form content, interviews, and creative visual projects. From concept through post-production.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎧</div>
+      <div class="service-name">Studio Time</div>
+      <div class="service-desc">Book the room with or without an engineer. Bring your own session or work with our team. Flexible scheduling for any project size.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VISION -->
+<div class="section section-alt" style="background-color: #1A1A1A;">
+  <div class="section-header reveal">
+    <div class="section-label">The Vision</div>
+    <div class="section-title">Why SoundLab 103</div>
+  </div>
+  <div class="vision-block reveal">
+    <p>SoundLab 103 isn't just a recording studio — it's a <strong>full creative media facility</strong>. A space where an artist can record a song, shoot the cover art, film the music video, and master the final product without leaving the building.</p>
+    <p>Every piece of gear is selected with purpose. Every room is designed for the work. The goal is simple: <strong>walk in with an idea, walk out with a finished product</strong> ready for the world.</p>
+    <p>Built by a musician, producer, and engineer who understands both sides of the glass — the creative process and the technical execution. SoundLab 103 is where those two things meet.</p>
+  </div>
+</div>
+
+<!-- GEAR -->
+<div class="section" id="gear">
+  <div class="section-header reveal">
+    <div class="section-label">The Setup</div>
+    <div class="section-title">Professional Grade</div>
+  </div>
+  <div class="gear-grid reveal">
+    <div class="gear-item">
+      <div class="gear-category">Microphones</div>
+      <ul class="gear-list">
+        <li>Warm Audio WA-67 Tube Condenser</li>
+        <li>Additional mics TBA</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Preamps & EQ</div>
+      <ul class="gear-list">
+        <li>Warm Audio WA73-EQ</li>
+        <li>Warm Audio EQP-WA (Pultec)</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Compression</div>
+      <ul class="gear-list">
+        <li>Warm Audio WA-2A (Opto)</li>
+        <li>Additional outboard TBA</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Interface & DAW</div>
+      <ul class="gear-list">
+        <li>SSL 2+ MK II</li>
+        <li>Logic Pro</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Plugins</div>
+      <ul class="gear-list">
+        <li>FabFilter Pro-Q 4 / Pro-L 2</li>
+        <li>Soundtoys EchoBoy / Decapitator</li>
+        <li>Valhalla VintageVerb</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Monitoring</div>
+      <ul class="gear-list">
+        <li>Studio monitors TBA</li>
+        <li>Audio-Technica ATH-M50x</li>
+        <li>sE Reflexion Filter</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<div class="section section-alt" style="background-color: #1A1A1A;" id="clients">
+  <div class="section-header reveal">
+    <div class="section-label">Who It's For</div>
+    <div class="section-title">Your Studio</div>
+  </div>
+  <div class="audience-grid reveal">
+    <div class="audience-card">
+      <div class="audience-icon">🎤</div>
+      <div class="audience-name">Artists</div>
+      <div class="audience-desc">Rappers, singers, and vocalists looking for professional recording and mixing.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">🎵</div>
+      <div class="audience-name">Producers</div>
+      <div class="audience-desc">Beatmakers and producers who need a professional environment to create and collaborate.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">📷</div>
+      <div class="audience-name">Content Creators</div>
+      <div class="audience-desc">Podcasters, YouTubers, and brands needing photo, video, and audio content.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">💼</div>
+      <div class="audience-name">Businesses</div>
+      <div class="audience-desc">Companies needing commercial audio, promotional video, or professional media assets.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section">
+  <div class="cta-block reveal">
+    <p class="cta-statement">Walk in with an idea.<br>Walk out with a <em>finished product</em>.</p>
+    <p class="cta-sub">SoundLab 103 is currently in development. Booking opens late 2026.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sl-contact" id="contact">
+  <div class="sl-contact-title reveal">Get on the List</div>
+  <div class="sl-contact-desc reveal">Be the first to book when SoundLab 103 opens.</div>
+  <div class="sl-contact-grid reveal">
+    <div class="sl-contact-item">
+      <div class="sl-contact-label">Email</div>
+      <div class="sl-contact-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div>
+    </div>
+    <div class="sl-contact-item">
+      <div class="sl-contact-label">Phone</div>
+      <div class="sl-contact-value"><a href="tel:3056101014">305.610.1014</a></div>
+    </div>
+    <div class="sl-contact-item">
+      <div class="sl-contact-label">Location</div>
+      <div class="sl-contact-value">West Broward County, FL</div>
+    </div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">SoundLab 103 — A Maison 103 Studio © 2025</div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

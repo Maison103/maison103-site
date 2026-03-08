@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #0A0A0A;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison 103 — The Dynasty</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5A8;
+    --obsidian: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --smoke: #2A2A2A;
+    --silver: #8A8A8A;
+    --cream: #F5F0E8;
+    --white: #FAFAFA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #0A0A0A !important;
+    color: #FAFAFA;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C9A96E;
+  }
+
+  .nav-logo span {
+    font-weight: 300;
+    color: #8A8A8A;
+    margin-left: 8px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #8A8A8A;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #C9A96E;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: #0A0A0A !important;
+    flex-direction: column;
+    text-align: center;
+    padding: 120px 48px 80px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-103 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(120px, 20vw, 280px);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,169,110,0.3);
+    line-height: 0.85;
+    margin-bottom: 24px;
+    animation: fadeUp 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 300;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 32px;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8A8A8A;
+    max-width: 600px;
+    line-height: 2;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+    opacity: 0;
+  }
+
+  .hero-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, #C9A96E, transparent);
+    margin-top: 60px;
+    animation: fadeUp 1.2s ease 0.9s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== DIVISIONS GRID ===== */
+  .divisions {
+    flex-direction: column;
+    padding: 120px 48px 80px;
+    gap: 24px;
+    min-height: auto;
+    scroll-snap-align: none;
+  }
+
+  .divisions-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .divisions-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 16px;
+  }
+
+  .divisions-header p {
+    font-size: 13px;
+    color: #8A8A8A;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  /* ===== DIVISION CARDS ===== */
+  .card {
+    position: relative;
+    min-height: 420px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+    z-index: 2;
+  }
+
+  .card-prefix {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  .card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.8;
+    opacity: 0.7;
+    max-width: 320px;
+  }
+
+  .card-arrow {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+
+  .card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  /* SL 103 - Studio */
+  .card-sl {
+    background: linear-gradient(135deg, #1a1520 0%, #0d0b12 100%);
+    border-left: 3px solid #8B5CF6;
+  }
+  .card-sl::before {
+    background: radial-gradient(circle at 30% 70%, rgba(139,92,246,0.15) 0%, transparent 60%);
+  }
+  .card-sl .card-prefix { color: #8B5CF6; }
+  .card-sl .card-title { color: #E0D4F5; }
+  .card-sl .card-arrow { border-color: rgba(139,92,246,0.4); color: #8B5CF6; }
+
+  /* MMI 103 - App */
+  .card-mmi {
+    background: linear-gradient(135deg, #0a1628 0%, #060d18 100%);
+    border-left: 3px solid #3B82F6;
+  }
+  .card-mmi::before {
+    background: radial-gradient(circle at 70% 30%, rgba(59,130,246,0.12) 0%, transparent 60%);
+  }
+  .card-mmi .card-prefix { color: #3B82F6; }
+  .card-mmi .card-title { color: #BFDBFE; }
+  .card-mmi .card-arrow { border-color: rgba(59,130,246,0.4); color: #3B82F6; }
+
+  /* M 103 - Skincare */
+  .card-m {
+    background: linear-gradient(135deg, #1a1510 0%, #100d08 100%);
+    border-left: 3px solid #C9A96E;
+  }
+  .card-m::before {
+    background: radial-gradient(circle at 50% 50%, rgba(201,169,110,0.1) 0%, transparent 60%);
+  }
+  .card-m .card-prefix { color: #C9A96E; }
+  .card-m .card-title { color: #E8D5A8; }
+  .card-m .card-arrow { border-color: rgba(201,169,110,0.4); color: #C9A96E; }
+
+  /* FC 103 - Federal Contracting */
+  .card-fc {
+    background: linear-gradient(135deg, #0a1a14 0%, #060f0b 100%);
+    border-left: 3px solid #10B981;
+  }
+  .card-fc::before {
+    background: radial-gradient(circle at 60% 40%, rgba(16,185,129,0.1) 0%, transparent 60%);
+  }
+  .card-fc .card-prefix { color: #10B981; }
+  .card-fc .card-title { color: #A7F3D0; }
+  .card-fc .card-arrow { border-color: rgba(16,185,129,0.4); color: #10B981; }
+
+  /* Film 103 */
+  .card-film {
+    background: linear-gradient(135deg, #1a1212 0%, #0f0808 100%);
+    border-left: 3px solid #EF4444;
+  }
+  .card-film::before {
+    background: radial-gradient(circle at 40% 60%, rgba(239,68,68,0.1) 0%, transparent 60%);
+  }
+  .card-film .card-prefix { color: #EF4444; }
+  .card-film .card-title { color: #FCA5A5; }
+  .card-film .card-arrow { border-color: rgba(239,68,68,0.4); color: #EF4444; }
+
+  /* HF 103 - Health/Food */
+  .card-hf {
+    background: linear-gradient(135deg, #18170a 0%, #0d0c06 100%);
+    border-left: 3px solid #F59E0B;
+  }
+  .card-hf::before {
+    background: radial-gradient(circle at 50% 50%, rgba(245,158,11,0.1) 0%, transparent 60%);
+  }
+  .card-hf .card-prefix { color: #F59E0B; }
+  .card-hf .card-title { color: #FDE68A; }
+  .card-hf .card-arrow { border-color: rgba(245,158,11,0.4); color: #F59E0B; }
+
+  /* ===== ABOUT SECTION ===== */
+  .about {
+    background: #1A1A1A !important;
+    flex-direction: column;
+    text-align: center;
+    padding: 120px 48px;
+    gap: 40px;
+  }
+
+  .about-label {
+    font-size: 12px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #C9A96E;
+    font-weight: 400;
+  }
+
+  .about-statement {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(24px, 3.5vw, 48px);
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 900px;
+    color: #FFFFFF;
+  }
+
+  .about-statement em {
+    color: #C9A96E;
+    font-style: italic;
+  }
+
+  .about-founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .about-founder-name {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FAFAFA;
+  }
+
+  .about-founder-title {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #8A8A8A;
+  }
+
+  /* ===== CONTACT / FOOTER ===== */
+  .contact {
+    background: #0A0A0A !important;
+    flex-direction: column;
+    text-align: center;
+    padding: 120px 48px;
+    gap: 40px;
+    min-height: 60vh;
+    border-top: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .contact-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #C9A96E;
+  }
+
+  .contact-info {
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-item-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8A8A8A;
+  }
+
+  .contact-item-value {
+    font-size: 15px;
+    color: #F5F0E8;
+    font-weight: 300;
+  }
+
+  .contact-item-value a {
+    color: #F5F0E8;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-item-value a:hover {
+    color: #C9A96E;
+  }
+
+  .footer-line {
+    width: 60px;
+    height: 1px;
+    background: #C9A96E;
+    margin-top: 40px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8A8A8A;
+    font-weight: 400;
+    margin-top: 16px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 16px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hero {
+      padding: 100px 24px 60px;
+    }
+
+    .divisions {
+      padding: 80px 16px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      min-height: 300px;
+      padding: 36px;
+    }
+
+    .about {
+      padding: 80px 24px;
+    }
+
+    .contact {
+      padding: 80px 24px;
+    }
+
+    .contact-info {
+      gap: 32px;
+    }
+  }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body style="background-color: #0A0A0A; color: #FAFAFA;">
+
+<!-- NAV -->
+<nav style="background-color: #0A0A0A;">
+  <div class="nav-logo">Maison<span>103</span></div>
+  <ul class="nav-links">
+    <li><a href="#divisions">Divisions</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="background-color: #0A0A0A;">
+  <div class="hero-103">103</div>
+  <h1 class="hero-title">Maison 103</h1>
+  <p class="hero-sub">Six divisions. One vision. Built from the ground up — analytics, artistry, and everything in between.</p>
+  <div class="hero-line"></div>
+</section>
+
+<!-- DIVISIONS -->
+<section class="divisions" id="divisions">
+  <div class="divisions-header reveal">
+    <h2>The Divisions</h2>
+    <p>Each arm of the dynasty, built with purpose</p>
+  </div>
+
+  <div class="grid">
+    <!-- SL 103 -->
+    <a href="/sl103.html" style="text-decoration:none;color:inherit;"><a href="/sl103.html" style="text-decoration:none;color:inherit;display:flex;"><div class="card card-sl reveal" style="width:100%;">
+      <div class="card-arrow">→</div>
+      <div class="card-prefix">SL 103</div>
+      <div class="card-title">SoundLab 103</div>
+      <div class="card-desc">Professional recording studio. Vocal production, mixing, and mastering for artists who demand release-ready quality.</div>
+</a>
+    </div>
+
+    <!-- MMI 103 -->
+    <a href="/mmi103.html" style="text-decoration:none;color:inherit;display:flex;"><div class="card card-mmi reveal" style="width:100%;">
+      <div class="card-arrow">→</div>
+      <div class="card-prefix">MMI 103</div>
+      <div class="card-title">Me, Myself, and I</div>
+      <div class="card-desc">The all-in-one life management app. Training, nutrition, grooming, dog care, home, sleep, and mental wellness — all connected through one intelligent system.</div>
+    </div>
+
+    <!-- M 103 -->
+    <a href="/m103.html" style="text-decoration:none;color:inherit;display:flex;"><div class="card card-m reveal" style="width:100%;">
+      <div class="card-arrow">→</div>
+      <div class="card-prefix">M 103</div>
+      <div class="card-title">Maison Skincare</div>
+      <div class="card-desc">Premium skincare crafted with intention. Clean ingredients, luxury experience, designed for the modern individual.</div>
+    </div>
+
+    <!-- FC 103 -->
+    <a href="/fc103.html" style="text-decoration:none;color:inherit;display:flex;"><div class="card card-fc reveal" style="width:100%;">
+      <div class="card-arrow">→</div>
+      <div class="card-prefix">FC 103</div>
+      <div class="card-title">Federal Contracting</div>
+      <div class="card-desc">Small Disadvantaged Business delivering analytics, management consulting, and program support to federal and state agencies.</div>
+    </div>
+
+    <!-- Film 103 -->
+    <a href="/film103.html" style="text-decoration:none;color:inherit;display:flex;"><div class="card card-film reveal" style="width:100%;">
+      <div class="card-arrow">→</div>
+      <div class="card-prefix">Film 103</div>
+      <div class="card-title">Film &amp; Production</div>
+      <div class="card-desc">Original film production and creative storytelling. From concept to premiere — independent cinema with a vision.</div>
+    </div>
+
+    <!-- HF 103 -->
+    <a href="/fuel103.html" style="text-decoration:none;color:inherit;display:flex;"><div class="card card-hf reveal" style="width:100%;">
+      <div class="card-arrow">→</div>
+      <div class="card-prefix">Fuel 103</div>
+      <div class="card-title">Fuel 103</div>
+      <div class="card-desc">Health, fitness, nutrition, grooming, and wellness content across all platforms. The channel that powers the lifestyle — connected to MMI 103.</div>
+    </div>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-label reveal">The Foundation</div>
+  <p class="about-statement reveal">
+    Maison 103 is not a company. It's a <em>dynasty</em>. Built by one person across six disciplines — from federal boardrooms to recording studios, from skincare labs to film sets. Every division runs in <em>parallel</em>, waiting for no miracles.
+  </p>
+  <div class="about-founder reveal">
+    <div class="about-founder-name">Marlon Carter</div>
+    <div class="about-founder-title">Founder &amp; Managing Director</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="contact-title reveal">Connect</h2>
+  <div class="contact-info reveal">
+    <div class="contact-item">
+      <div class="contact-item-label">Email</div>
+      <div class="contact-item-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">Phone</div>
+      <div class="contact-item-value"><a href="tel:3056101014">305.610.1014</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">Location</div>
+      <div class="contact-item-value">Miramar, FL</div>
+    </div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">Maison 103 LLC © 2025 — All Rights Reserved</div>
+</section>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

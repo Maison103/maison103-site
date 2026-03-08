@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #0A0A0A;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuel 103 — Health & Wellness Content | Maison 103</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #F59E0B;
+    --amber-light: #FDE68A;
+    --amber-bright: #FBBF24;
+    --amber-glow: rgba(245,158,11,0.12);
+    --obsidian: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --smoke: #2A2A2A;
+    --slate: #1A170A;
+    --silver: #B0B0B0;
+    --cream: #F5F0E8;
+    --white: #FAFAFA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #0A0A0A !important;
+    color: #FAFAFA;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(245,158,11,0.12);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #F59E0B;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    font-weight: 300;
+    color: #B0B0B0;
+    margin-left: 6px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #B0B0B0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: #F59E0B; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 140px 48px 80px;
+    position: relative;
+    background: linear-gradient(170deg, #1A170A 0%, #0A0A0A 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 35%, rgba(245,158,11,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 70%, rgba(245,158,11,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .hero-prefix {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #F59E0B;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 10vw, 120px);
+    font-weight: 300;
+    color: #FDE68A;
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: #FBBF24;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: #B0B0B0;
+    max-width: 520px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-badge {
+    margin-top: 40px;
+    padding: 12px 32px;
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #F59E0B;
+    background: rgba(245,158,11,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #F59E0B;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 100px 48px;
+    position: relative;
+    background-color: #0A0A0A;
+  }
+
+  .section-alt {
+    background: #1A1A1A !important;
+  }
+
+  .section-header {
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #F59E0B;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 500;
+    color: #FFFFFF !important;
+  }
+
+  /* ===== PITCH ===== */
+  .pitch {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pitch-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 1.7;
+  }
+
+  .pitch-text em {
+    color: #FBBF24;
+    font-style: italic;
+  }
+
+  /* ===== CONTENT CATEGORIES ===== */
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .content-card {
+    background: #2A2A2A;
+    padding: 44px;
+    border-left: 2px solid rgba(245,158,11,0.2);
+    transition: all 0.3s;
+  }
+
+  .content-card:hover {
+    border-left-color: #F59E0B;
+    background: rgba(245,158,11,0.04);
+  }
+
+  .content-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .content-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+
+  .content-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  .content-examples {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .content-example {
+    font-size: 12px;
+    font-weight: 400;
+    color: #FDE68A;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .content-example::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    background: #F59E0B;
+    border-radius: 50%;
+  }
+
+  /* ===== CONNECTION ===== */
+  .connection-block {
+    max-width: 700px;
+  }
+
+  .connection-block p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 2;
+    margin-bottom: 24px;
+  }
+
+  .connection-block strong {
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  .mmi-callout {
+    margin-top: 32px;
+    padding: 32px;
+    background: #2A2A2A;
+    border-left: 3px solid #F59E0B;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .mmi-callout-icon {
+    font-size: 32px;
+  }
+
+  .mmi-callout-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.7;
+  }
+
+  .mmi-callout-text span {
+    color: #FBBF24;
+    font-weight: 500;
+  }
+
+  /* ===== PLATFORMS ===== */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+  }
+
+  .platform-card {
+    background: #2A2A2A;
+    padding: 40px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .platform-card:hover {
+    background: rgba(245,158,11,0.06);
+  }
+
+  .platform-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .platform-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .platform-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #F59E0B;
+  }
+
+  /* ===== CONTACT ===== */
+  .fuel-contact {
+    text-align: center;
+    padding: 100px 48px;
+    border-top: 1px solid rgba(245,158,11,0.1);
+    background-color: #0A0A0A;
+  }
+
+  .fuel-contact-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #F59E0B;
+    margin-bottom: 16px;
+  }
+
+  .fuel-contact-desc {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0B0B0;
+    margin-bottom: 40px;
+  }
+
+  .fuel-contact-grid {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .fuel-contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .fuel-contact-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B0B0B0;
+  }
+
+  .fuel-contact-value {
+    font-size: 15px;
+    font-weight: 400;
+    color: #FFFFFF;
+  }
+
+  .fuel-contact-value a {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .fuel-contact-value a:hover { color: #F59E0B; }
+
+  .footer-line {
+    width: 60px;
+    height: 1px;
+    background: #F59E0B;
+    margin: 40px auto 16px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #B0B0B0;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .section { padding: 60px 24px; }
+    .fuel-contact { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body style="background-color: #0A0A0A; color: #FAFAFA;">
+
+<!-- NAV -->
+<nav style="background-color: #0A0A0A;">
+  <a href="/" class="nav-logo">Fuel<span>103</span></a>
+  <ul class="nav-links">
+    <li><a href="#content">Content</a></li>
+    <li><a href="#connection">The App</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="/">← Maison 103</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="background-color: #0A0A0A;">
+  <div class="hero-prefix">Fuel 103 — A Maison 103 Channel</div>
+  <h1 class="hero-title">Fuel 103</h1>
+  <div class="hero-subtitle">Train. Eat. Recover. Repeat.</div>
+  <p class="hero-desc">Health, fitness, nutrition, grooming, wellness, and everything in between. Real content for people who take how they live seriously.</p>
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Coming Soon — All Platforms
+  </div>
+</section>
+
+<!-- PITCH -->
+<div class="section">
+  <div class="pitch reveal">
+    <p class="pitch-text">Most wellness content sells you one thing. Fuel 103 covers <em>everything</em> — because how you train, what you eat, how you sleep, and how you take care of yourself are all <em>connected</em>.</p>
+  </div>
+</div>
+
+<!-- CONTENT CATEGORIES -->
+<div class="section section-alt" id="content">
+  <div class="section-header reveal">
+    <div class="section-label">Content</div>
+    <div class="section-title">What We Cover</div>
+  </div>
+
+  <div class="content-grid reveal">
+    <div class="content-card">
+      <div class="content-icon">🏋🏽</div>
+      <div class="content-name">Training</div>
+      <div class="content-desc">Workouts, form breakdowns, program design, progressive overload, and recovery strategies.</div>
+      <div class="content-examples">
+        <div class="content-example">Workout walkthroughs</div>
+        <div class="content-example">Exercise technique</div>
+        <div class="content-example">Programming philosophy</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">🥗</div>
+      <div class="content-name">Nutrition</div>
+      <div class="content-desc">Meal prep, macros, recipes, juicing, and how to eat for performance without hating your food.</div>
+      <div class="content-examples">
+        <div class="content-example">Meal prep guides</div>
+        <div class="content-example">Macro breakdowns</div>
+        <div class="content-example">Juice recipes</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">💊</div>
+      <div class="content-name">Supplements</div>
+      <div class="content-desc">What works, what doesn't, timing protocols, and honest reviews. No sponsorship bias.</div>
+      <div class="content-examples">
+        <div class="content-example">Supplement deep dives</div>
+        <div class="content-example">Timing and stacking</div>
+        <div class="content-example">Product reviews</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">🪞</div>
+      <div class="content-name">Grooming</div>
+      <div class="content-desc">Skincare routines, hair care, beard maintenance, dental care, and building a grooming system that sticks.</div>
+      <div class="content-examples">
+        <div class="content-example">Skincare routines</div>
+        <div class="content-example">Product recommendations</div>
+        <div class="content-example">Men's and women's grooming</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">😴</div>
+      <div class="content-name">Recovery & Sleep</div>
+      <div class="content-desc">Sleep optimization, wind-down routines, recovery protocols, and what actually moves the needle on how you feel.</div>
+      <div class="content-examples">
+        <div class="content-example">Sleep environment setup</div>
+        <div class="content-example">Recovery techniques</div>
+        <div class="content-example">Alcohol recovery protocols</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">🐕</div>
+      <div class="content-name">Dog Care</div>
+      <div class="content-desc">Because your dog's health is part of your life too. Nutrition, exercise, grooming, and vet protocols for dog owners who care.</div>
+      <div class="content-examples">
+        <div class="content-example">Dog nutrition</div>
+        <div class="content-example">Breed-specific care</div>
+        <div class="content-example">Enrichment ideas</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">🏠</div>
+      <div class="content-name">Home & Life</div>
+      <div class="content-desc">Keeping your space clean, organized, and functioning. Plant care, home maintenance, and building systems that run your life.</div>
+      <div class="content-examples">
+        <div class="content-example">Organization systems</div>
+        <div class="content-example">Plant care</div>
+        <div class="content-example">Home routines</div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-icon">🧠</div>
+      <div class="content-name">Mental Wellness</div>
+      <div class="content-desc">Breathing exercises, meditation, mental prep for training, and real conversations about staying sharp.</div>
+      <div class="content-examples">
+        <div class="content-example">Meditation guides</div>
+        <div class="content-example">Breathing techniques</div>
+        <div class="content-example">Mindset and discipline</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MMI CONNECTION -->
+<div class="section" id="connection">
+  <div class="section-header reveal">
+    <div class="section-label">Powered By</div>
+    <div class="section-title">The App Behind the Content</div>
+  </div>
+  <div class="connection-block reveal">
+    <p>Everything on Fuel 103 connects back to <strong>MMI 103 — Me, Myself, and I</strong> — the all-in-one life management app. The content you watch here, you can live inside the app.</p>
+    <p>See a workout on the channel? It's in the app. Learn a grooming routine? The app schedules it for you. Watch a meal prep video? Log it and track your macros in one tap.</p>
+    <div class="mmi-callout">
+      <div class="mmi-callout-icon">📱</div>
+      <div class="mmi-callout-text">Fuel 103 is the window. <span>MMI 103</span> is the engine. Watch it. Live it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLATFORMS -->
+<div class="section section-alt" id="platforms">
+  <div class="section-header reveal">
+    <div class="section-label">Where to Watch</div>
+    <div class="section-title">Every Platform</div>
+  </div>
+
+  <div class="platforms-grid reveal">
+    <div class="platform-card">
+      <div class="platform-icon">▶️</div>
+      <div class="platform-name">YouTube</div>
+      <div class="platform-handle">Coming Soon</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">📱</div>
+      <div class="platform-name">TikTok</div>
+      <div class="platform-handle">Coming Soon</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">📸</div>
+      <div class="platform-name">Instagram</div>
+      <div class="platform-handle">Coming Soon</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">🎵</div>
+      <div class="platform-name">Shorts & Reels</div>
+      <div class="platform-handle">Coming Soon</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="fuel-contact" id="contact">
+  <div class="fuel-contact-title reveal">Stay Fueled</div>
+  <div class="fuel-contact-desc reveal">Be the first to know when Fuel 103 launches.</div>
+  <div class="fuel-contact-grid reveal">
+    <div class="fuel-contact-item">
+      <div class="fuel-contact-label">Email</div>
+      <div class="fuel-contact-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div>
+    </div>
+    <div class="fuel-contact-item">
+      <div class="fuel-contact-label">Phone</div>
+      <div class="fuel-contact-value"><a href="tel:3056101014">305.610.1014</a></div>
+    </div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">Fuel 103 — A Maison 103 Channel © 2025</div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
