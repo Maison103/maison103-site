@@ -1,0 +1,7 @@
+# Subdomain routing - each division gets its own subdomain
+https://sl103.maison103.co/* /sl103.html 200
+https://mmi103.maison103.co/* /mmi103.html 200
+https://m103.maison103.co/* /m103.html 200
+https://fc103.maison103.co/* /fc103.html 200
+https://film103.maison103.co/* /film103.html 200
+https://fuel103.maison103.co/* /fuel103.html 200
