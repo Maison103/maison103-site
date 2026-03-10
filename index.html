@@ -54,6 +54,24 @@
   nav.scrolled { padding: 16px 48px; }
 
   .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo img {
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-logo:hover img {
+    opacity: 1;
+  }
+
+  .nav-logo-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 600;
@@ -62,7 +80,7 @@
     color: #C9A96E;
   }
 
-  .nav-logo span {
+  .nav-logo-text span {
     font-weight: 300;
     color: #8A8A8A;
     margin-left: 8px;
@@ -160,16 +178,17 @@
     pointer-events: none;
   }
 
-  .hero-103 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(120px, 20vw, 280px);
-    font-weight: 300;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(201,169,110,0.25);
-    line-height: 0.85;
-    margin-bottom: 24px;
+  .hero-logo {
+    margin-bottom: 32px;
     animation: fadeUp 1.2s ease forwards;
     opacity: 0;
+  }
+
+  .hero-logo img {
+    height: clamp(120px, 18vw, 200px);
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
   }
 
   .hero-title {
@@ -520,7 +539,10 @@
 
 <!-- NAV -->
 <nav id="mainNav" style="background-color: #0A0A0A;">
-  <div class="nav-logo">Maison<span>103</span></div>
+  <div class="nav-logo">
+    <img src="/assets/logo-maison103.png" alt="Maison 103">
+    <div class="nav-logo-text">Maison<span>103</span></div>
+  </div>
   <ul class="nav-links">
     <li><a href="#divisions">Divisions</a></li>
     <li><a href="#about">About</a></li>
@@ -535,7 +557,7 @@
 
 <!-- HERO -->
 <section class="hero" style="background-color: #0A0A0A;">
-  <div class="hero-103">103</div>
+  <div class="hero-logo"><img src="/assets/logo-maison103.png" alt="Maison 103"></div>
   <h1 class="hero-title">Maison 103</h1>
   <p class="hero-sub">Six divisions. One vision. Built from the ground up &mdash; analytics, artistry, and everything in between.</p>
   <div class="hero-line"></div>
