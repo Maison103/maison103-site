@@ -139,7 +139,7 @@
     font-size: 16px;
     font-weight: 400;
     color: #B0B0B0;
-    max-width: 520px;
+    max-width: 560px;
     line-height: 1.8;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.6s forwards;
@@ -272,7 +272,7 @@
     line-height: 1.8;
   }
 
-  /* ===== STUDIO VISION ===== */
+  /* ===== VISION ===== */
   .vision-block {
     max-width: 750px;
   }
@@ -288,6 +288,77 @@
   .vision-block strong {
     color: #F5F0E8;
     font-weight: 500;
+  }
+
+  /* ===== PHASES ===== */
+  .phases-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .phase-card {
+    background: rgba(139,92,246,0.03);
+    border: 1px solid rgba(139,92,246,0.1);
+    padding: 40px;
+    position: relative;
+  }
+
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #8B5CF6, transparent);
+  }
+
+  .phase-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    margin-bottom: 12px;
+  }
+
+  .phase-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  .phase-tag {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 4px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .phase-tag.active {
+    background: rgba(139,92,246,0.15);
+    color: #A78BFA;
+    border: 1px solid rgba(139,92,246,0.3);
+  }
+
+  .phase-tag.upcoming {
+    background: rgba(255,255,255,0.04);
+    color: #666;
+    border: 1px solid rgba(255,255,255,0.08);
   }
 
   /* ===== GEAR PREVIEW ===== */
@@ -371,6 +442,43 @@
   }
 
   .audience-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.7;
+  }
+
+  /* ===== ADVANTAGES ===== */
+  .advantages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+  }
+
+  .advantage-item {
+    display: flex;
+    gap: 16px;
+  }
+
+  .advantage-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(139,92,246,0.3);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .advantage-content h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #F5F0E8;
+    margin-bottom: 6px;
+  }
+
+  .advantage-content p {
     font-size: 13px;
     font-weight: 400;
     color: #B0B0B0;
@@ -498,6 +606,7 @@
     .hero { padding: 100px 24px 60px; }
     .section { padding: 60px 24px; }
     .sl-contact { padding: 60px 24px; }
+    .phases-timeline { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -508,26 +617,27 @@
   <a href="https://maison103.co" class="nav-logo">SL<span>103</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#gear">The Setup</a></li>
     <li><a href="#clients">Who It's For</a></li>
     <li><a href="#contact">Book</a></li>
-    <li><a href="https://maison103.co">← Maison 103</a></li>
+    <li><a href="https://maison103.co">&larr; Maison 103</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero" style="background-color: #0A0A0A;">
-  <div class="hero-prefix">SL 103 — A Maison 103 Studio</div>
+  <div class="hero-prefix">SL 103 &mdash; A Maison 103 Studio</div>
   <h1 class="hero-title">SoundLab 103</h1>
-  <div class="hero-subtitle">Full-Service Creative Studio</div>
-  <p class="hero-desc">Recording, mixing, mastering, photography, and film production under one roof. A professional media studio built for artists, creators, and businesses.</p>
+  <div class="hero-subtitle">Luxury Recording &amp; Artist Development</div>
+  <p class="hero-desc">A full-service creative facility merging premium recording quality, structured artist development, and integrated content production. Built for serious artists who want to grow &mdash; not just record.</p>
   <div class="hero-location">
     <div class="hero-location-label">Location</div>
-    <div class="hero-location-value">West Broward County, FL</div>
+    <div class="hero-location-value">Miramar, Florida</div>
   </div>
   <div class="hero-opening">
     <span class="opening-dot"></span>
-    Opening Late 2026
+    Studio A Opening Late 2026
   </div>
 </section>
 
@@ -535,44 +645,44 @@
 <div class="section" id="services">
   <div class="section-header reveal">
     <div class="section-label">Services</div>
-    <div class="section-title">What We Offer</div>
+    <div class="section-title">What We Deliver</div>
   </div>
 
   <div class="services-grid reveal">
     <div class="service-card">
       <div class="service-icon">🎙</div>
       <div class="service-name">Recording</div>
-      <div class="service-desc">Professional vocal tracking and instrument recording. Acoustically treated rooms, high-end microphones, and hardware signal chains for release-ready takes.</div>
+      <div class="service-desc">Premium vocal tracking and instrument capture in a fully treated acoustic environment. High-end hybrid analog-digital signal chain engineered for release-ready output from day one.</div>
     </div>
 
     <div class="service-card">
       <div class="service-icon">🎛</div>
-      <div class="service-name">Mixing</div>
-      <div class="service-desc">Full mix sessions blending analog warmth with digital precision. EQ, compression, spatial effects, and automation crafted to make every track translate across all playback systems.</div>
+      <div class="service-name">Mixing &amp; Mastering</div>
+      <div class="service-desc">Full mix sessions with hybrid processing, spatial effects, and loudness optimization. From rough stems to distribution-ready masters that translate across every playback system.</div>
     </div>
 
     <div class="service-card">
-      <div class="service-icon">💿</div>
-      <div class="service-name">Mastering</div>
-      <div class="service-desc">Final polish for streaming, vinyl, or broadcast. Loudness optimization, stereo enhancement, and true peak limiting to industry standards.</div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon">📸</div>
-      <div class="service-name">Photography</div>
-      <div class="service-desc">Studio photography for artists, brands, and content creators. Album covers, press photos, product shots, and promotional imagery.</div>
+      <div class="service-icon">🧭</div>
+      <div class="service-name">Artist Development</div>
+      <div class="service-desc">Structured A&amp;R guidance, performance audits, vocal coaching, and creative direction. Multi-week programs designed to build measurable artistic growth &mdash; not just finished songs.</div>
     </div>
 
     <div class="service-card">
       <div class="service-icon">🎬</div>
-      <div class="service-name">Film & Video</div>
-      <div class="service-desc">Music videos, short-form content, interviews, and creative visual projects. From concept through post-production.</div>
+      <div class="service-name">Content Production</div>
+      <div class="service-desc">Video podcasting, multi-camera capture, short-form content, and visual media. Record, shoot, and produce under one roof with an integrated creative workflow.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <div class="service-name">Development Programs</div>
+      <div class="service-desc">Songwriting support, branding refinement, creative identity work, and portfolio development. Structured mentorship that turns sessions into long-term career momentum.</div>
     </div>
 
     <div class="service-card">
       <div class="service-icon">🎧</div>
-      <div class="service-name">Studio Time</div>
-      <div class="service-desc">Book the room with or without an engineer. Bring your own session or work with our team. Flexible scheduling for any project size.</div>
+      <div class="service-name">Session Booking</div>
+      <div class="service-desc">Hourly, half-day, full-day, and membership packages tailored to every stage. Book with or without an engineer. Flexible scheduling for projects of any size.</div>
     </div>
   </div>
 </div>
@@ -581,64 +691,141 @@
 <div class="section section-alt" style="background-color: #1A1A1A;">
   <div class="section-header reveal">
     <div class="section-label">The Vision</div>
-    <div class="section-title">Why SoundLab 103</div>
+    <div class="section-title">More Than a Studio</div>
   </div>
   <div class="vision-block reveal">
-    <p>SoundLab 103 isn't just a recording studio — it's a <strong>full creative media facility</strong>. A space where an artist can record a song, shoot the cover art, film the music video, and master the final product without leaving the building.</p>
-    <p>Every piece of gear is selected with purpose. Every room is designed for the work. The goal is simple: <strong>walk in with an idea, walk out with a finished product</strong> ready for the world.</p>
-    <p>Built by a musician, producer, and engineer who understands both sides of the glass — the creative process and the technical execution. SoundLab 103 is where those two things meet.</p>
+    <p>South Florida has one of the fastest-growing concentrations of independent artists, influencers, podcasters, and boutique labels in the country. Yet Broward County still lacks a fully integrated, luxury-grade creative facility that combines professional recording, artist development, and high-end content production under one roof.</p>
+    <p>SoundLab 103 fills that gap. A <strong>creative laboratory</strong> where talent can record and mix at a professional level, participate in structured development programs, improve songwriting and vocal delivery, and create multi-format content for social media, marketing, and releases.</p>
+    <p>This isn't a transactional studio that sells time slots. It's an environment designed for <strong>consistent improvement and career-oriented outcomes</strong> &mdash; where artists build sound, skills, confidence, and creative direction over time.</p>
+  </div>
+</div>
+
+<!-- WHY SL103 -->
+<div class="section">
+  <div class="section-header reveal">
+    <div class="section-label">Our Edge</div>
+    <div class="section-title">Why SoundLab 103</div>
+  </div>
+  <div class="advantages-list reveal">
+    <div class="advantage-item">
+      <div class="advantage-num">01</div>
+      <div class="advantage-content">
+        <h4>Unified Recording &amp; Development</h4>
+        <p>Most studios sell production. SoundLab 103 delivers a structured creative ecosystem &mdash; high-end engineering, A&amp;R guidance, performance coaching, and artist development pathways that extend beyond finished songs.</p>
+      </div>
+    </div>
+    <div class="advantage-item">
+      <div class="advantage-num">02</div>
+      <div class="advantage-content">
+        <h4>Strategic West I-75 Location</h4>
+        <p>The Miramar corridor has no modern, acoustically engineered studios. Artists currently travel east or into Miami for premium rooms. SoundLab 103 fills a geographic gap with local convenience and premium quality.</p>
+      </div>
+    </div>
+    <div class="advantage-item">
+      <div class="advantage-num">03</div>
+      <div class="advantage-content">
+        <h4>Leadership &amp; Creative Insight</h4>
+        <p>Operated by a team with experience across business, production, and artist development. Structured sessions, strategic creative direction, and results-focused project planning &mdash; not just room rental.</p>
+      </div>
+    </div>
+    <div class="advantage-item">
+      <div class="advantage-num">04</div>
+      <div class="advantage-content">
+        <h4>Purpose-Built for Modern Artists</h4>
+        <p>Every detail &mdash; equipment selection, acoustic design, workflow planning &mdash; is tailored to today's creators in recording, development, branding, content creation, and performance refinement.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div class="section section-alt" style="background-color: #1A1A1A;" id="roadmap">
+  <div class="section-header reveal">
+    <div class="section-label">Roadmap</div>
+    <div class="section-title">Built in Phases</div>
+  </div>
+  <div class="phases-timeline reveal">
+    <div class="phase-card">
+      <div class="phase-number">Phase 1</div>
+      <div class="phase-name">Studio A &mdash; MVP</div>
+      <div class="phase-desc">Flagship recording and mix room. Fully treated acoustics, premium hybrid analog-digital hardware, and a modern workflow built around the Mac Pro, Antelope Discrete 4, and Lauten Eden LT-386.</div>
+      <div class="phase-tag active">Launching Late 2026</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-number">Phase 2</div>
+      <div class="phase-name">Studio A &mdash; Expansion</div>
+      <div class="phase-desc">Premium analog outboard upgrades: Tube-Tech CL 1B compressor, Aurora Audio GTQC, SSL Fusion processor. Elevated mastering capability and hybrid analog-digital depth.</div>
+      <div class="phase-tag upcoming">Performance-Based</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-number">Phase 3</div>
+      <div class="phase-name">Studio B &mdash; Content &amp; Mentorship</div>
+      <div class="phase-desc">Dedicated content production and development suite. Video podcasting, multi-camera capture, vocal coaching, performance audits, and structured artist development programs.</div>
+      <div class="phase-tag upcoming">When Studio A Stabilizes</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-number">Phase 4</div>
+      <div class="phase-name">Studio B &mdash; Full Expansion</div>
+      <div class="phase-desc">Advanced multi-camera production, expanded lighting systems, stage elements, audience seating, broadcast hardware, PA support, and elevated A&amp;R-driven development services.</div>
+      <div class="phase-tag upcoming">Long-Term Vision</div>
+    </div>
   </div>
 </div>
 
 <!-- GEAR -->
 <div class="section" id="gear">
   <div class="section-header reveal">
-    <div class="section-label">The Setup</div>
-    <div class="section-title">Professional Grade</div>
+    <div class="section-label">Studio A &mdash; Phase 1</div>
+    <div class="section-title">The Setup</div>
   </div>
   <div class="gear-grid reveal">
     <div class="gear-item">
-      <div class="gear-category">Microphones</div>
+      <div class="gear-category">Computing &amp; Display</div>
       <ul class="gear-list">
-        <li>Warm Audio WA-67 Tube Condenser</li>
-        <li>Additional mics TBA</li>
+        <li>Apple Mac Pro</li>
+        <li>Apple Pro Display XDR</li>
       </ul>
     </div>
     <div class="gear-item">
-      <div class="gear-category">Preamps & EQ</div>
+      <div class="gear-category">Recording Front End</div>
       <ul class="gear-list">
-        <li>Warm Audio WA73-EQ</li>
-        <li>Warm Audio EQP-WA (Pultec)</li>
-      </ul>
-    </div>
-    <div class="gear-item">
-      <div class="gear-category">Compression</div>
-      <ul class="gear-list">
-        <li>Warm Audio WA-2A (Opto)</li>
-        <li>Additional outboard TBA</li>
-      </ul>
-    </div>
-    <div class="gear-item">
-      <div class="gear-category">Interface & DAW</div>
-      <ul class="gear-list">
-        <li>SSL 2+ MK II</li>
-        <li>Logic Pro</li>
-      </ul>
-    </div>
-    <div class="gear-item">
-      <div class="gear-category">Plugins</div>
-      <ul class="gear-list">
-        <li>FabFilter Pro-Q 4 / Pro-L 2</li>
-        <li>Soundtoys EchoBoy / Decapitator</li>
-        <li>Valhalla VintageVerb</li>
+        <li>Antelope Discrete 4 Synergy Core</li>
+        <li>Lauten Audio Eden LT-386</li>
+        <li>Radial J48 DI</li>
       </ul>
     </div>
     <div class="gear-item">
       <div class="gear-category">Monitoring</div>
       <ul class="gear-list">
-        <li>Studio monitors TBA</li>
-        <li>Audio-Technica ATH-M50x</li>
-        <li>sE Reflexion Filter</li>
+        <li>Yamaha HS8 Monitors</li>
+        <li>Yamaha HS8S Subwoofer</li>
+        <li>IsoAcoustics Isolation Stands</li>
+        <li>Beyerdynamic DT 770 Pro</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Acoustics &amp; Environment</div>
+      <ul class="gear-list">
+        <li>Auralex Acoustic Treatment</li>
+        <li>LENRD Bass Traps</li>
+        <li>Isolation &amp; Room Control Elements</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Software &amp; Production</div>
+      <ul class="gear-list">
+        <li>Logic Pro</li>
+        <li>Pro Tools Studio</li>
+        <li>Akai MPK Mini</li>
+      </ul>
+    </div>
+    <div class="gear-item">
+      <div class="gear-category">Infrastructure</div>
+      <ul class="gear-list">
+        <li>Wavebone Headquarter Desk</li>
+        <li>Gator 12U Equipment Rack</li>
+        <li>Mogami Cabling</li>
+        <li>Furman Power Conditioning</li>
       </ul>
     </div>
   </div>
@@ -653,23 +840,23 @@
   <div class="audience-grid reveal">
     <div class="audience-card">
       <div class="audience-icon">🎤</div>
-      <div class="audience-name">Artists</div>
-      <div class="audience-desc">Rappers, singers, and vocalists looking for professional recording and mixing.</div>
+      <div class="audience-name">Artists &amp; Vocalists</div>
+      <div class="audience-desc">Independent recording artists, rappers, singers, and songwriters seeking professional recording, structured development, and long-term creative growth.</div>
     </div>
     <div class="audience-card">
       <div class="audience-icon">🎵</div>
-      <div class="audience-name">Producers</div>
-      <div class="audience-desc">Beatmakers and producers who need a professional environment to create and collaborate.</div>
+      <div class="audience-name">Producers &amp; Engineers</div>
+      <div class="audience-desc">Beatmakers, producers, and engineers who need a professional acoustic environment with premium gear to create, collaborate, and deliver.</div>
     </div>
     <div class="audience-card">
-      <div class="audience-icon">📷</div>
-      <div class="audience-name">Content Creators</div>
-      <div class="audience-desc">Podcasters, YouTubers, and brands needing photo, video, and audio content.</div>
+      <div class="audience-icon">🎙</div>
+      <div class="audience-name">Podcasters &amp; Creators</div>
+      <div class="audience-desc">Podcasters, YouTubers, TikTok creators, and voice-over artists who need controlled, premium audio-video production workflows.</div>
     </div>
     <div class="audience-card">
-      <div class="audience-icon">💼</div>
-      <div class="audience-name">Businesses</div>
-      <div class="audience-desc">Companies needing commercial audio, promotional video, or professional media assets.</div>
+      <div class="audience-icon">🏷</div>
+      <div class="audience-name">Labels &amp; Managers</div>
+      <div class="audience-desc">Boutique labels, artist managers, and creative collectives needing recurring recording, content sessions, and artist development partnerships.</div>
     </div>
   </div>
 </div>
@@ -677,8 +864,8 @@
 <!-- CTA -->
 <div class="section">
   <div class="cta-block reveal">
-    <p class="cta-statement">Walk in with an idea.<br>Walk out with a <em>finished product</em>.</p>
-    <p class="cta-sub">SoundLab 103 is currently in development. Booking opens late 2026.</p>
+    <p class="cta-statement">Build your career,<br>not just your catalog.</p>
+    <p class="cta-sub">SoundLab 103 is Broward County's first luxury-grade creative facility &mdash; where serious artists record, develop, and grow under one roof. Studio A opens late 2026.</p>
   </div>
 </div>
 
@@ -697,11 +884,11 @@
     </div>
     <div class="sl-contact-item">
       <div class="sl-contact-label">Location</div>
-      <div class="sl-contact-value">West Broward County, FL</div>
+      <div class="sl-contact-value">Miramar, FL</div>
     </div>
   </div>
   <div class="footer-line"></div>
-  <div class="footer-copy">SoundLab 103 — A Maison 103 Studio © 2025</div>
+  <div class="footer-copy">SoundLab 103 &mdash; A Maison 103 Studio &copy; 2026</div>
 </div>
 
 <script>
