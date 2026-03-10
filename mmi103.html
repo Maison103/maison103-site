@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MMI 103 — Me, Myself, and I | Maison 103</title>
+<meta name="description" content="The all-in-one life management app. 54 engines, 12 domains, one daily protocol. Training, nutrition, sleep, grooming, dog care, home, bloodwork, life planning — all connected through AI.">
+<meta property="og:title" content="MMI 103 — Me, Myself, and I">
+<meta property="og:description" content="One app. Every domain of your life. 54 engines generating your personalized daily protocol.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mmi103.maison103.co">
+<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -42,8 +48,12 @@
     align-items: center;
     background: rgba(10,10,10,0.9);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(59,130,246,0.12);
+    transition: padding 0.3s ease;
   }
+
+  nav.scrolled { padding: 16px 48px; }
 
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
@@ -79,9 +89,62 @@
 
   .nav-links a:hover { color: #3B82F6; }
 
+  /* ===== MOBILE MENU ===== */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    background: none;
+    border: none;
+  }
+
+  .menu-toggle span {
+    width: 24px;
+    height: 1.5px;
+    background: #3B82F6;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #B0B0B0;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .mobile-menu a:hover { color: #3B82F6; }
+
   /* ===== HERO ===== */
   .hero {
-    min-height: 85vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,10 +200,38 @@
     font-size: 16px;
     font-weight: 400;
     color: #B0B0B0;
-    max-width: 560px;
+    max-width: 620px;
     line-height: 1.8;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    color: #60A5FA;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B0B0B0;
   }
 
   .hero-badge {
@@ -155,7 +246,7 @@
     color: #3B82F6;
     background: rgba(59,130,246,0.05);
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
+    animation: fadeUp 0.8s ease 1s forwards;
   }
 
   @keyframes fadeUp {
@@ -193,6 +284,15 @@
     color: #FFFFFF !important;
   }
 
+  .section-subtitle {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0B0B0;
+    margin-top: 12px;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+
   /* ===== PITCH ===== */
   .pitch {
     max-width: 800px;
@@ -213,6 +313,72 @@
     font-style: italic;
   }
 
+  /* ===== ORCHESTRATOR ===== */
+  .orch-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 700px;
+  }
+
+  .orch-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 0;
+    position: relative;
+  }
+
+  .orch-step::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 48px;
+    bottom: 0;
+    width: 1px;
+    background: rgba(59,130,246,0.15);
+  }
+
+  .orch-step:last-child::before {
+    display: none;
+  }
+
+  .orch-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #3B82F6;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #0A0A0A;
+    position: relative;
+    z-index: 1;
+  }
+
+  .orch-content {
+    padding-top: 8px;
+  }
+
+  .orch-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+
+  .orch-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.7;
+  }
+
   /* ===== DOMAINS ===== */
   .domains-grid {
     display: grid;
@@ -224,7 +390,7 @@
     background: #2A2A2A;
     padding: 44px;
     border-left: 2px solid rgba(59,130,246,0.2);
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .domain-card:hover {
@@ -281,7 +447,7 @@
   /* ===== INTELLIGENCE ===== */
   .intel-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
   }
 
@@ -290,7 +456,17 @@
     background: rgba(59,130,246,0.04);
     border: 1px solid rgba(59,130,246,0.1);
     border-radius: 2px;
-    text-align: center;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .intel-card:hover {
+    border-color: rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.06);
+  }
+
+  .intel-icon {
+    font-size: 24px;
+    margin-bottom: 16px;
   }
 
   .intel-title {
@@ -306,6 +482,83 @@
     font-weight: 400;
     color: #B0B0B0;
     line-height: 1.8;
+  }
+
+  /* ===== WEARABLES ===== */
+  .wearables-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .wearable-item {
+    padding: 20px 32px;
+    background: #2A2A2A;
+    border: 1px solid rgba(59,130,246,0.08);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.3s ease;
+  }
+
+  .wearable-item:hover {
+    border-color: rgba(59,130,246,0.3);
+  }
+
+  .wearable-icon {
+    font-size: 22px;
+  }
+
+  .wearable-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #F5F0E8;
+  }
+
+  .wearable-desc {
+    font-size: 11px;
+    color: #B0B0B0;
+    margin-top: 2px;
+  }
+
+  /* ===== PREDICTIONS ===== */
+  .pred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+
+  .pred-card {
+    background: #2A2A2A;
+    padding: 40px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .pred-card:hover {
+    background: rgba(59,130,246,0.06);
+  }
+
+  .pred-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .pred-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .pred-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.7;
   }
 
   /* ===== XP SYSTEM ===== */
@@ -337,6 +590,11 @@
     background: #2A2A2A;
     border-top: 2px solid rgba(59,130,246,0.3);
     min-width: 140px;
+    transition: border-color 0.3s ease;
+  }
+
+  .xp-level:hover {
+    border-top-color: #3B82F6;
   }
 
   .xp-level-num {
@@ -350,6 +608,43 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #B0B0B0;
+  }
+
+  /* ===== SOCIAL ===== */
+  .social-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+  }
+
+  .social-card {
+    background: #2A2A2A;
+    padding: 36px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .social-card:hover {
+    background: rgba(59,130,246,0.06);
+  }
+
+  .social-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .social-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .social-desc {
+    font-size: 13px;
+    color: #B0B0B0;
+    line-height: 1.7;
   }
 
   /* ===== PRICING ===== */
@@ -434,6 +729,7 @@
     border-radius: 50%;
     background: #3B82F6;
     animation: pulse 2s ease infinite;
+    flex-shrink: 0;
   }
 
   @keyframes pulse {
@@ -540,41 +836,80 @@
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
+    nav.scrolled { padding: 12px 24px; }
     .nav-links { display: none; }
+    .menu-toggle { display: flex; }
     .hero { padding: 100px 24px 60px; }
+    .hero-stats { gap: 24px; }
+    .hero-stat-num { font-size: 22px; }
     .section { padding: 60px 24px; }
     .mmi-contact { padding: 60px 24px; }
     .xp-levels { flex-direction: column; }
+    .wearables-row { gap: 12px; }
+    .wearable-item { width: 100%; }
+    .orch-step { gap: 16px; }
   }
 </style>
 </head>
 <body style="background-color: #0A0A0A; color: #FAFAFA;">
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#domains" onclick="closeMobile()">Domains</a>
+  <a href="#engine" onclick="closeMobile()">The Engine</a>
+  <a href="#intelligence" onclick="closeMobile()">Intelligence</a>
+  <a href="#wearables" onclick="closeMobile()">Wearables</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://maison103.co" onclick="closeMobile()">&larr; Maison 103</a>
+</div>
+
 <!-- NAV -->
-<nav style="background-color: #0A0A0A;">
+<nav id="mainNav" style="background-color: #0A0A0A;">
   <a href="https://maison103.co" class="nav-logo">MMI<span>103</span></a>
   <ul class="nav-links">
     <li><a href="#domains">Domains</a></li>
+    <li><a href="#engine">The Engine</a></li>
     <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#wearables">Wearables</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="https://maison103.co">← Maison 103</a></li>
+    <li><a href="https://maison103.co">&larr; Maison 103</a></li>
   </ul>
+  <button class="menu-toggle" id="menuToggle" onclick="toggleMobile()" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section class="hero" style="background-color: #0A0A0A;">
-  <div class="hero-prefix">MMI 103 — A Maison 103 Product</div>
-  <h1 class="hero-title">Me, Myself<br>& I</h1>
+  <div class="hero-prefix">MMI 103 &mdash; A Maison 103 Product</div>
+  <h1 class="hero-title">Me, Myself<br>&amp; I</h1>
   <div class="hero-subtitle">One app. Every domain of your life.</div>
-  <p class="hero-desc">Training, nutrition, supplements, grooming, dog care, home management, sleep, and mental wellness — all connected through one intelligent system that adapts to you.</p>
-  <div class="hero-badge">Coming Soon — iOS & Android</div>
+  <p class="hero-desc">Training, nutrition, supplements, grooming, dog care, home management, sleep, bloodwork, life planning, and mental wellness &mdash; orchestrated by 54 specialized engines that generate your personalized daily protocol every morning.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">54</div>
+      <div class="hero-stat-label">Engines</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">10</div>
+      <div class="hero-stat-label">Domains</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">1</div>
+      <div class="hero-stat-label">Protocol</div>
+    </div>
+  </div>
+  <div class="hero-badge">Private Testing &mdash; iOS &amp; Android</div>
 </section>
 
 <!-- PITCH -->
 <div class="section">
   <div class="pitch reveal">
-    <p class="pitch-text">You don't need five apps to manage your life. You need <em>one</em> that understands how your training affects your nutrition, how your sleep affects your recovery, and how last night's decisions affect <em>everything</em> tomorrow.</p>
+    <p class="pitch-text">You don't need ten apps to manage your life. You need <em>one</em> that understands how your training affects your nutrition, how your sleep affects your recovery, how your bloodwork shapes your supplements, and how last night's decisions affect <em>everything</em> tomorrow.</p>
   </div>
 </div>
 
@@ -583,95 +918,189 @@
   <div class="section-header reveal">
     <div class="section-label">Life Domains</div>
     <div class="section-title">Everything Connected</div>
+    <div class="section-subtitle">Each domain has its own engine. Together they form one unified daily protocol.</div>
   </div>
 
   <div class="domains-grid reveal">
     <div class="domain-card">
-      <div class="domain-icon">🏋🏽</div>
+      <div class="domain-icon">&#127947;&#127997;</div>
       <div class="domain-name">Training</div>
-      <div class="domain-desc">Guided and custom programs with intelligent progressive loading, auto-timed rest periods, and real-time sync.</div>
+      <div class="domain-desc">Guided and custom programs built on progressive overload, MEV/MAV/MRV volume tracking, and RPE-based autoregulation. The system adjusts your workout in real time based on readiness.</div>
       <div class="domain-features">
-        <div class="domain-feature">Automatic weight progression and deloads</div>
-        <div class="domain-feature">Exercise history and substitution</div>
-        <div class="domain-feature">PRs and trend tracking across all domains</div>
+        <div class="domain-feature">Double progression, wave loading, and linear periodization</div>
+        <div class="domain-feature">Automatic deload detection every 4 weeks</div>
+        <div class="domain-feature">Exercise substitution with reason tracking</div>
+        <div class="domain-feature">Personal records with e1RM trend analysis</div>
+        <div class="domain-feature">Voice commands for hands-free logging</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">🥗</div>
+      <div class="domain-icon">&#129367;</div>
       <div class="domain-name">Nutrition</div>
-      <div class="domain-desc">Macro tracking, meal logging, and guided meal plans. Quick-log in guided mode or build your own in custom.</div>
+      <div class="domain-desc">Macro targets calculated from your training load, body composition, and goals. Log meals by photo, barcode, or search. Guided meal plans or build your own.</div>
       <div class="domain-features">
-        <div class="domain-feature">AI photo meal logging</div>
-        <div class="domain-feature">Barcode scanner</div>
-        <div class="domain-feature">Hydration and juice tracking</div>
+        <div class="domain-feature">Calorie, protein, carb, and fat targets</div>
+        <div class="domain-feature">Meal timing around training windows</div>
+        <div class="domain-feature">Juice recipes with ingredient substitutes</div>
+        <div class="domain-feature">Hydration tracking with dynamic targets</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">💊</div>
+      <div class="domain-icon">&#128138;</div>
       <div class="domain-name">Supplements</div>
-      <div class="domain-desc">Morning, pre-workout, intra, post-workout, and evening supplement scheduling with reminders and logging.</div>
+      <div class="domain-desc">Five-window protocol: morning, pre-workout, intra, post-workout, and evening. Stacks adjust based on training day, readiness, and whether you drank last night.</div>
       <div class="domain-features">
-        <div class="domain-feature">Time-of-day protocols</div>
-        <div class="domain-feature">Alcohol recovery adjustments</div>
+        <div class="domain-feature">Tiered stacks: essential, recommended, optional</div>
+        <div class="domain-feature">Custom stack builder with substitutes</div>
+        <div class="domain-feature">Alcohol recovery protocol adjustments</div>
+        <div class="domain-feature">Compliance tracking with streak rewards</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">🪞</div>
-      <div class="domain-name">Grooming & Care</div>
-      <div class="domain-desc">Full personal care system — face, body, hair, beard, dental. Korean skincare-style routines built from your onboarding profile.</div>
+      <div class="domain-icon">&#129522;</div>
+      <div class="domain-name">Grooming &amp; Care</div>
+      <div class="domain-desc">Full personal care system built from your onboarding profile &mdash; skin type, hair type, beard preferences, dental habits. Korean skincare-style AM/PM routines with weekly rotation.</div>
       <div class="domain-features">
-        <div class="domain-feature">Adapts to your skin type and hair type</div>
+        <div class="domain-feature">Face, body, hair, beard, dental domains</div>
+        <div class="domain-feature">Product tracking and purchase lists</div>
         <div class="domain-feature">Scheduling based on wash frequency</div>
+        <div class="domain-feature">Dehydration awareness after alcohol</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">🐕</div>
+      <div class="domain-icon">&#128021;</div>
       <div class="domain-name">Dogs</div>
-      <div class="domain-desc">Veterinary info, breed-specific protocols, allergy tracking, walk and feed schedules, weight tracking, and enrichment ideas.</div>
+      <div class="domain-desc">Breed-specific health protocols, veterinary tracking, allergy management, weight charting, vaccination schedules, and daily care tasks for every dog in your household.</div>
       <div class="domain-features">
-        <div class="domain-feature">Health condition protocols</div>
-        <div class="domain-feature">Grooming schedules</div>
+        <div class="domain-feature">Multi-dog support with individual profiles</div>
+        <div class="domain-feature">Health condition monitoring and alerts</div>
+        <div class="domain-feature">Walk, feed, and enrichment scheduling</div>
+        <div class="domain-feature">Vet appointment tracking</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">🏠</div>
-      <div class="domain-name">Home & Auto</div>
-      <div class="domain-desc">Task management by room, plant care scheduling, and integrated laundry and maintenance reminders.</div>
+      <div class="domain-icon">&#127968;</div>
+      <div class="domain-name">Home &amp; Auto</div>
+      <div class="domain-desc">Room-based cleaning schedules, plant care with watering reminders, laundry management, and vehicle maintenance tracking with service history.</div>
       <div class="domain-features">
-        <div class="domain-feature">Room-based task lists</div>
-        <div class="domain-feature">Plant watering schedules</div>
+        <div class="domain-feature">Task priority: urgent, high, normal</div>
+        <div class="domain-feature">Plant watering and care schedules</div>
+        <div class="domain-feature">Vehicle service reminders and history</div>
+        <div class="domain-feature">Custom task builder</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">😴</div>
-      <div class="domain-name">Sleep & Recovery</div>
-      <div class="domain-desc">Wind-down routines, room setup guidance, temperature optimization, and readiness scoring from your daily check-in.</div>
+      <div class="domain-icon">&#128564;</div>
+      <div class="domain-name">Sleep &amp; Recovery</div>
+      <div class="domain-desc">Target bedtime, wake time, and wind-down activities generated from your training load and readiness data. Sleep debt calculation and quality scoring.</div>
       <div class="domain-features">
-        <div class="domain-feature">Fatigue and recovery tracking</div>
-        <div class="domain-feature">Phone-down protocol</div>
+        <div class="domain-feature">Sleep debt tracking and recovery guidance</div>
+        <div class="domain-feature">Wind-down protocols: meditation, breathing</div>
+        <div class="domain-feature">Phone-down reminders</div>
+        <div class="domain-feature">Wearable sleep data integration</div>
       </div>
     </div>
 
     <div class="domain-card">
-      <div class="domain-icon">🧠</div>
+      <div class="domain-icon">&#129656;</div>
+      <div class="domain-name">Bloodwork &amp; Health</div>
+      <div class="domain-desc">Upload your lab results and input health conditions. The system analyzes your panels and generates personalized supplement, nutrition, and lifestyle recommendations based on your actual biomarkers.</div>
+      <div class="domain-features">
+        <div class="domain-feature">Lab panel upload and parsing</div>
+        <div class="domain-feature">Condition-specific protocol adjustments</div>
+        <div class="domain-feature">Supplement recommendations from bloodwork</div>
+        <div class="domain-feature">Longitudinal tracking across lab draws</div>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-icon">&#128203;</div>
+      <div class="domain-name">Life Planner</div>
+      <div class="domain-desc">Everything else. Kids, finances, work goals, personal projects &mdash; a flexible system of notes, to-dos, and custom categories for the parts of life that don't fit the other domains.</div>
+      <div class="domain-features">
+        <div class="domain-feature">Custom categories: kids, money, career, personal</div>
+        <div class="domain-feature">Notes, checklists, and goal tracking</div>
+        <div class="domain-feature">Priority and deadline management</div>
+        <div class="domain-feature">Integrated into the daily protocol view</div>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-icon">&#129504;</div>
       <div class="domain-name">Mental Wellness</div>
-      <div class="domain-desc">Breathing exercises, meditation, and mental preparation integrated into both training and care routines.</div>
+      <div class="domain-desc">Breathing exercises, meditation, mindset content, and pre-training mental preparation. The AI coach checks in on stress, mood, and energy as part of your daily readiness.</div>
       <div class="domain-features">
-        <div class="domain-feature">Pre-training mental prep</div>
+        <div class="domain-feature">Guided breathing and meditation</div>
+        <div class="domain-feature">Daily mood and stress tracking</div>
         <div class="domain-feature">AI coach powered by Claude</div>
+        <div class="domain-feature">Mindset content integrated into training</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE ENGINE -->
+<div class="section" id="engine">
+  <div class="section-header reveal">
+    <div class="section-label">The Orchestrator</div>
+    <div class="section-title">How Your Day Gets Built</div>
+    <div class="section-subtitle">Every morning, your daily check-in triggers a pipeline of 12 engines that run in sequence. The output is one unified protocol for your entire day.</div>
+  </div>
+
+  <div class="orch-flow reveal">
+    <div class="orch-step">
+      <div class="orch-num">01</div>
+      <div class="orch-content">
+        <div class="orch-name">Readiness Engine</div>
+        <div class="orch-desc">Analyzes your sleep, energy, stress, and soreness to calculate a readiness score (1&ndash;100) and training capacity for the day.</div>
+      </div>
+    </div>
+    <div class="orch-step">
+      <div class="orch-num">02</div>
+      <div class="orch-content">
+        <div class="orch-name">Workout Orchestrator</div>
+        <div class="orch-desc">Selects exercises, sets, reps, and weight targets based on your program phase, readiness, volume history, and progression model.</div>
+      </div>
+    </div>
+    <div class="orch-step">
+      <div class="orch-num">03</div>
+      <div class="orch-content">
+        <div class="orch-name">Supplement Engine</div>
+        <div class="orch-desc">Builds your supplement stack across five time windows. Adjusts for training day, rest day, and recovery scenarios.</div>
+      </div>
+    </div>
+    <div class="orch-step">
+      <div class="orch-num">04</div>
+      <div class="orch-content">
+        <div class="orch-name">Nutrition Engine</div>
+        <div class="orch-desc">Calculates macro targets, meal timing, and hydration goals based on your training load, body composition, and readiness.</div>
+      </div>
+    </div>
+    <div class="orch-step">
+      <div class="orch-num">05</div>
+      <div class="orch-content">
+        <div class="orch-name">Lifestyle Engines</div>
+        <div class="orch-desc">Juice recipes, grooming routines, sleep protocol, dog care tasks, home maintenance, vehicle reminders &mdash; all generated in parallel.</div>
+      </div>
+    </div>
+    <div class="orch-step">
+      <div class="orch-num">06</div>
+      <div class="orch-content">
+        <div class="orch-name">Coach Engine</div>
+        <div class="orch-desc">Summarizes everything into focus areas, warnings, and quick wins. The AI coach layer adds context-aware guidance using your full history.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- INTELLIGENCE -->
-<div class="section" id="intelligence">
+<div class="section section-alt" style="background-color: #1A1A1A;" id="intelligence">
   <div class="section-header reveal">
     <div class="section-label">Cross-Domain Intelligence</div>
     <div class="section-title">Everything Talks to Everything</div>
@@ -679,32 +1108,124 @@
 
   <div class="intel-grid reveal">
     <div class="intel-card">
+      <div class="intel-icon">&#127863;</div>
       <div class="intel-title">Alcohol Recovery Protocol</div>
-      <div class="intel-desc">Log that you drank last night and the entire system adapts — water targets increase, supplements adjust, workout intensity scales down, nutrition recalibrates, and grooming routines account for dehydration.</div>
+      <div class="intel-desc">Log that you drank last night and every engine responds. Water targets increase, supplements adjust for liver support, workout intensity scales down, nutrition recalibrates for recovery, grooming accounts for dehydration. One input. System-wide adaptation.</div>
     </div>
     <div class="intel-card">
-      <div class="intel-title">AI Coach</div>
-      <div class="intel-desc">A Claude-powered assistant embedded in the app that answers questions about any domain in your program. Training form, meal alternatives, supplement timing — ask anything.</div>
+      <div class="intel-icon">&#129302;</div>
+      <div class="intel-title">AI Coach &mdash; Claude Powered</div>
+      <div class="intel-desc">Three coaching styles: motivational, strict, or technical. The coach has full access to your readiness history, training trends, sleep patterns, nutrition adherence, and program context. Ask it anything &mdash; it knows your data.</div>
     </div>
     <div class="intel-card">
-      <div class="intel-title">Readiness Score</div>
-      <div class="intel-desc">Your daily check-in generates a readiness score from fatigue and recovery inputs. The system uses this to inform your training intensity and recovery recommendations.</div>
+      <div class="intel-icon">&#128200;</div>
+      <div class="intel-title">Readiness-Driven Autoregulation</div>
+      <div class="intel-desc">Your daily check-in generates a readiness score from sleep quality, fatigue, soreness, stress, and energy. Low readiness automatically reduces training volume, adjusts nutrition targets, and modifies recovery protocols.</div>
     </div>
     <div class="intel-card">
-      <div class="intel-title">Analytics & Insights</div>
-      <div class="intel-desc">Cross-domain compliance trends, body composition tracking, progress photos, training PRs, nutrition adherence, sleep patterns, and a scientific health report of your entire program.</div>
+      <div class="intel-icon">&#129656;</div>
+      <div class="intel-title">Bloodwork Intelligence</div>
+      <div class="intel-desc">Upload your lab results and the system maps biomarkers to supplement recommendations, flags nutritional deficiencies, and adjusts protocols based on your actual health data &mdash; not guesses.</div>
+    </div>
+    <div class="intel-card">
+      <div class="intel-icon">&#128202;</div>
+      <div class="intel-title">Predictive Analytics</div>
+      <div class="intel-desc">Injury risk scoring, overtraining detection, plateau prediction, optimal deload timing, and goal ETAs with confidence scores. The system warns you before problems happen, not after.</div>
+    </div>
+    <div class="intel-card">
+      <div class="intel-icon">&#128247;</div>
+      <div class="intel-title">Body Composition Tracking</div>
+      <div class="intel-desc">Progress photos with side-by-side comparison, weight trends, body measurements over time, and visual timeline of your transformation across weeks and months.</div>
     </div>
   </div>
 </div>
 
-<!-- XP SYSTEM -->
+<!-- WEARABLES -->
+<div class="section" id="wearables">
+  <div class="section-header reveal">
+    <div class="section-label">Integrations</div>
+    <div class="section-title">Your Wearables, Connected</div>
+    <div class="section-subtitle">Import real data from your devices. HRV, sleep stages, strain, recovery &mdash; fed directly into the readiness engine.</div>
+  </div>
+
+  <div class="wearables-row reveal">
+    <div class="wearable-item">
+      <div class="wearable-icon">&#9412;</div>
+      <div>
+        <div class="wearable-name">Whoop</div>
+        <div class="wearable-desc">Strain, recovery, HRV</div>
+      </div>
+    </div>
+    <div class="wearable-item">
+      <div class="wearable-icon">&#9711;</div>
+      <div>
+        <div class="wearable-name">Oura Ring</div>
+        <div class="wearable-desc">Sleep, readiness, HRV</div>
+      </div>
+    </div>
+    <div class="wearable-item">
+      <div class="wearable-icon">&#9650;</div>
+      <div>
+        <div class="wearable-name">Garmin</div>
+        <div class="wearable-desc">Workouts, stress, body battery</div>
+      </div>
+    </div>
+    <div class="wearable-item">
+      <div class="wearable-icon">&#9829;</div>
+      <div>
+        <div class="wearable-name">Apple Health</div>
+        <div class="wearable-desc">Steps, heart rate, sleep</div>
+      </div>
+    </div>
+    <div class="wearable-item">
+      <div class="wearable-icon">&#9733;</div>
+      <div>
+        <div class="wearable-name">Strava</div>
+        <div class="wearable-desc">Cycling, running, activities</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PREDICTIONS -->
 <div class="section section-alt" style="background-color: #1A1A1A;">
   <div class="section-header reveal">
-    <div class="section-label">Progression</div>
+    <div class="section-label">Predictive Models</div>
+    <div class="section-title">Know Before It Happens</div>
+  </div>
+
+  <div class="pred-grid reveal">
+    <div class="pred-card">
+      <div class="pred-icon">&#9888;&#65039;</div>
+      <div class="pred-name">Injury Risk</div>
+      <div class="pred-desc">Composite score from volume spikes, sleep deficit, readiness trends, and fatigue accumulation. Alerts before you push too far.</div>
+    </div>
+    <div class="pred-card">
+      <div class="pred-icon">&#128293;</div>
+      <div class="pred-name">Overtraining Detection</div>
+      <div class="pred-desc">Monitors weekly volume vs. your rolling average, combined with sleep and readiness data. Flags when accumulated stress exceeds recovery capacity.</div>
+    </div>
+    <div class="pred-card">
+      <div class="pred-icon">&#128337;</div>
+      <div class="pred-name">Deload Timing</div>
+      <div class="pred-desc">Tracks fatigue accumulation across training blocks and recommends optimal deload windows based on your individual recovery patterns.</div>
+    </div>
+    <div class="pred-card">
+      <div class="pred-icon">&#127919;</div>
+      <div class="pred-name">Goal ETA</div>
+      <div class="pred-desc">Projects when you'll hit your target lifts based on your progression curve, with confidence scores and plateau early warnings.</div>
+    </div>
+  </div>
+</div>
+
+<!-- XP & SOCIAL -->
+<div class="section">
+  <div class="section-header reveal">
+    <div class="section-label">Gamification &amp; Community</div>
     <div class="section-title">Earn Your Level</div>
   </div>
   <div class="xp-block reveal">
-    <p>Every action earns XP — completing workouts, logging meals, hitting macro targets, finishing grooming routines, taking care of your dogs, maintaining streaks. Your level reflects your commitment across every domain, not just one.</p>
+    <p>Every action earns XP &mdash; completing workouts, logging meals, hitting macro targets, finishing grooming routines, taking care of your dogs, maintaining streaks. Achievements unlock across domains. Your level reflects your commitment to the whole system, not just one piece.</p>
     <div class="xp-levels">
       <div class="xp-level">
         <div class="xp-level-num">10</div>
@@ -722,6 +1243,35 @@
   </div>
 </div>
 
+<div class="section section-alt" style="background-color: #1A1A1A;">
+  <div class="section-header reveal">
+    <div class="section-label">Social</div>
+    <div class="section-title">Compete &amp; Connect</div>
+  </div>
+  <div class="social-features reveal">
+    <div class="social-card">
+      <div class="social-icon">&#127942;</div>
+      <div class="social-name">Challenges</div>
+      <div class="social-desc">Official and custom challenges. Compete head-to-head or join community-wide events with real leaderboards.</div>
+    </div>
+    <div class="social-card">
+      <div class="social-icon">&#128081;</div>
+      <div class="social-name">Leaderboards</div>
+      <div class="social-desc">Ranked by XP, streaks, domain compliance, and challenge performance. See where you stand.</div>
+    </div>
+    <div class="social-card">
+      <div class="social-icon">&#128227;</div>
+      <div class="social-name">Activity Feed</div>
+      <div class="social-desc">Follow other users, share achievements, and see real progress from people on the same mission.</div>
+    </div>
+    <div class="social-card">
+      <div class="social-icon">&#128101;</div>
+      <div class="social-name">Community</div>
+      <div class="social-desc">User discovery, profile previews, and a network of people building better lives across every domain.</div>
+    </div>
+  </div>
+</div>
+
 <!-- PRICING -->
 <div class="section" id="pricing">
   <div class="section-header reveal">
@@ -731,14 +1281,18 @@
   <div class="pricing-center reveal">
     <div class="price-display"><sup>$</sup>189</div>
     <div class="price-period">Full Access Bundle</div>
-    <div class="price-includes">All domains included. Training, nutrition, supplements, grooming, dogs, home and auto, sleep, and mental wellness — plus the AI coach, analytics, health reports, and community.</div>
+    <div class="price-includes">All domains included. Training, nutrition, supplements, grooming, dogs, home and auto, sleep, bloodwork intelligence, life planner, mental wellness &mdash; plus the AI coach, predictive analytics, wearable integrations, health reports, and community.</div>
     <div class="price-domains">
       <div class="price-domain-tag">Performance</div>
       <div class="price-domain-tag">Nutrition</div>
       <div class="price-domain-tag">Supplements</div>
       <div class="price-domain-tag">Grooming</div>
       <div class="price-domain-tag">Dogs</div>
-      <div class="price-domain-tag">Home & Auto</div>
+      <div class="price-domain-tag">Home &amp; Auto</div>
+      <div class="price-domain-tag">Bloodwork</div>
+      <div class="price-domain-tag">Life Planner</div>
+      <div class="price-domain-tag">AI Coach</div>
+      <div class="price-domain-tag">Wearables</div>
     </div>
     <div class="price-note">Individual domain subscriptions also available. Guided and custom modes for every domain.</div>
   </div>
@@ -752,7 +1306,7 @@
   </div>
   <div class="status-bar reveal">
     <div class="status-dot"></div>
-    <div class="status-text">Currently in <span>private testing</span>. Public launch coming soon on iOS and Android.</div>
+    <div class="status-text">Currently in <span>private testing</span> with 54 engines live. Public launch coming soon on iOS and Android.</div>
   </div>
 </div>
 
@@ -771,10 +1325,29 @@
     </div>
   </div>
   <div class="footer-line"></div>
-  <div class="footer-copy">MMI 103 — A Maison 103 Product © 2025</div>
+  <div class="footer-copy">MMI 103 &mdash; A Maison 103 Product &copy; 2026</div>
 </div>
 
 <script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Mobile menu
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('menuToggle').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuToggle').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
