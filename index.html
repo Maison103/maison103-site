@@ -53,37 +53,15 @@
 
   nav.scrolled { padding: 16px 48px; }
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
   .nav-logo img {
-    height: 36px;
+    height: 40px;
     width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
+    opacity: 0.85;
     transition: opacity 0.3s ease;
   }
 
   .nav-logo:hover img {
     opacity: 1;
-  }
-
-  .nav-logo-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #C9A96E;
-  }
-
-  .nav-logo-text span {
-    font-weight: 300;
-    color: #8A8A8A;
-    margin-left: 8px;
   }
 
   .nav-links {
@@ -179,28 +157,15 @@
   }
 
   .hero-logo {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     animation: fadeUp 1.2s ease forwards;
     opacity: 0;
   }
 
   .hero-logo img {
-    height: clamp(120px, 18vw, 200px);
+    height: clamp(140px, 22vw, 240px);
     width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.85;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 72px);
-    font-weight: 300;
-    letter-spacing: 12px;
-    text-transform: uppercase;
-    color: #C9A96E;
-    margin-bottom: 32px;
-    animation: fadeUp 1.2s ease 0.3s forwards;
-    opacity: 0;
+    opacity: 0.9;
   }
 
   .hero-sub {
@@ -540,8 +505,7 @@
 <!-- NAV -->
 <nav id="mainNav" style="background-color: #0A0A0A;">
   <div class="nav-logo">
-    <img src="/assets/logo-maison103.png" alt="Maison 103">
-    <div class="nav-logo-text">Maison<span>103</span></div>
+    <img src="/assets/logo-maison103-light.png" alt="Maison 103">
   </div>
   <ul class="nav-links">
     <li><a href="#divisions">Divisions</a></li>
@@ -557,8 +521,7 @@
 
 <!-- HERO -->
 <section class="hero" style="background-color: #0A0A0A;">
-  <div class="hero-logo"><img src="/assets/logo-maison103.png" alt="Maison 103"></div>
-  <h1 class="hero-title">Maison 103</h1>
+  <div class="hero-logo"><img src="/assets/logo-maison103-light.png" alt="Maison 103"></div>
   <p class="hero-sub">Six divisions. One vision. Built from the ground up &mdash; analytics, artistry, and everything in between.</p>
   <div class="hero-line"></div>
 </section>
