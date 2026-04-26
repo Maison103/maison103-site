@@ -285,10 +285,10 @@
   }
 
   .id-item {
-    flex: 1;
-    min-width: 160px;
-    padding: 20px 24px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
     border-right: 1px solid rgba(16,185,129,0.08);
   }
 
@@ -296,15 +296,14 @@
 
   .id-label {
     font-size: 9px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: #B0B0B0;
-    margin-bottom: 4px;
   }
 
   .id-value {
     font-family: 'Space Mono', monospace;
-    font-size: 13px;
+    font-size: 12px;
     color: #A7F3D0;
   }
 
@@ -706,7 +705,7 @@
     .section { padding: 48px 24px; }
     .fc-contact { padding: 48px 24px; }
     .fc-ids { flex-direction: column; align-items: center; gap: 8px; }
-    .id-item { min-width: 50%; }
+    .id-item { flex-direction: column; gap: 2px; text-align: center; padding: 10px 16px; min-width: 50%; }
     .hero-ctas { flex-direction: column; }
     .cta-btn { text-align: center; justify-content: center; }
   }
