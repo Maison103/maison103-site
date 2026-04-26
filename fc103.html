@@ -240,53 +240,65 @@
     stroke-width: 2;
   }
 
-  /* ===== SCROLL INDICATOR ===== */
-  .scroll-cta {
+  /* ===== SCROLL BUTTONS (static at page boundaries) ===== */
+  .scroll-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     cursor: pointer;
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 900;
-    background: rgba(10,10,10,0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 10px 20px;
+    padding: 16px 24px;
+    margin: 0 auto;
+    width: fit-content;
     border-radius: 20px;
     border: 1px solid rgba(16,185,129,0.15);
-    transition: opacity 0.3s ease;
+    background: rgba(16,185,129,0.04);
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .scroll-cta-text {
+  .scroll-btn:hover {
+    background: rgba(16,185,129,0.1);
+    border-color: rgba(16,185,129,0.3);
+  }
+
+  .scroll-btn-text {
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(16,185,129,0.4);
+    color: rgba(16,185,129,0.5);
   }
 
-  .scroll-cta-arrow {
-    width: 16px;
-    height: 16px;
+  .scroll-btn-arrow {
+    width: 14px;
+    height: 14px;
     border-right: 1.5px solid #10B981;
     border-bottom: 1.5px solid #10B981;
-    transform: rotate(45deg);
-    animation: bounce 2s ease infinite;
-    transition: transform 0.3s ease;
   }
 
-  .scroll-cta.flipped .scroll-cta-arrow {
+  .scroll-btn-arrow.down {
+    transform: rotate(45deg);
+    animation: bounce 2s ease infinite;
+  }
+
+  .scroll-btn-arrow.up {
     transform: rotate(-135deg);
     animation: bounceUp 2s ease infinite;
+  }
+
+  .scroll-btn.up-btn {
+    flex-direction: column-reverse;
   }
 
   @keyframes bounceUp {
     0%, 20%, 50%, 80%, 100% { transform: rotate(-135deg) translateY(0); }
     40% { transform: rotate(-135deg) translateY(6px); }
     60% { transform: rotate(-135deg) translateY(3px); }
+  }
+
+  .page-boundary {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-scroll {
@@ -880,6 +892,13 @@
 
 <!-- ==================== PAGE 1: IDs + Capabilities ==================== -->
 <div class="page" id="page1">
+  <!-- Back to Hero -->
+  <div class="page-boundary">
+    <div class="scroll-btn up-btn" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">
+      <span class="scroll-btn-text">Back</span>
+      <div class="scroll-btn-arrow up"></div>
+    </div>
+  </div>
   <!-- ID STRIP -->
   <div class="id-strip">
     <div class="id-item">
@@ -1022,16 +1041,24 @@
   </div>
 
 
-</div>
-
-<!-- FIXED SCROLL BUTTON -->
-<div class="scroll-cta" id="scrollBtn" onclick="toggleScroll(this, 'page3', 'page1')" data-down="true">
-  <span class="scroll-cta-text">More</span>
-  <div class="scroll-cta-arrow"></div>
+  <!-- More to Page 3 -->
+  <div class="page-boundary">
+    <div class="scroll-btn" onclick="document.getElementById('page3').scrollIntoView({behavior:'smooth'})">
+      <span class="scroll-btn-text">More</span>
+      <div class="scroll-btn-arrow down"></div>
+    </div>
+  </div>
 </div>
 
 <!-- ==================== PAGE 3: Teaming + Contact ==================== -->
 <div id="page3" class="final-view">
+  <!-- Back to Page 1 -->
+  <div class="page-boundary" style="padding-top: 24px;">
+    <div class="scroll-btn up-btn" onclick="document.getElementById('page1').scrollIntoView({behavior:'smooth'})">
+      <span class="scroll-btn-text">Back</span>
+      <div class="scroll-btn-arrow up"></div>
+    </div>
+  </div>
   <div style="padding: 20px 48px 12px;" class="reveal">
     <div class="section-header">
       <div class="section-label">Teaming &amp; Partnerships</div>
@@ -1114,50 +1141,6 @@
     document.getElementById('menuToggle').classList.remove('active');
   }
 
-  // Toggle scroll buttons
-  function toggleScroll(el, downTarget, upTarget) {
-    const goingDown = el.dataset.down === 'true';
-    const target = goingDown ? downTarget : upTarget;
-    document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
-    flipBtn(el, !goingDown);
-  }
-
-  function flipBtn(el, pointDown) {
-    el.dataset.down = pointDown ? 'true' : 'false';
-    if (pointDown) {
-      el.classList.remove('flipped');
-      el.querySelector('.scroll-cta-text').textContent = 'More';
-    } else {
-      el.classList.add('flipped');
-      el.querySelector('.scroll-cta-text').textContent = 'Back';
-    }
-  }
-
-  // Auto-flip arrow based on scroll position & show/hide
-  const scrollBtn = document.getElementById('scrollBtn');
-  const page1 = document.getElementById('page1');
-  const page3 = document.getElementById('page3');
-  window.addEventListener('scroll', () => {
-    const page1Bottom = page1.getBoundingClientRect().bottom;
-    const page3Top = page3.getBoundingClientRect().top;
-    const vh = window.innerHeight;
-
-    // Hide on hero (before page1 content)
-    if (page1.getBoundingClientRect().top > vh * 0.5) {
-      scrollBtn.style.opacity = '0';
-      scrollBtn.style.pointerEvents = 'none';
-    } else {
-      scrollBtn.style.opacity = '1';
-      scrollBtn.style.pointerEvents = 'auto';
-    }
-
-    // Flip direction: if page3 is mostly visible, point up
-    if (page3Top < vh * 0.5) {
-      flipBtn(scrollBtn, false);
-    } else {
-      flipBtn(scrollBtn, true);
-    }
-  });
 
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
