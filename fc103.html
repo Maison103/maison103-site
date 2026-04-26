@@ -661,6 +661,12 @@
     border-radius: 50%;
   }
 
+  .split-teaming {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+  }
+
   .teaming-tags {
     display: flex;
     flex-wrap: wrap;
@@ -1022,103 +1028,55 @@
   </div>
 </div>
 
-<!-- ==================== PAGE 3: Statement + Teaming + Contact ==================== -->
+<!-- ==================== PAGE 3: Teaming + Contact ==================== -->
 <div id="page3" class="final-view">
-  <div class="final-top reveal">
-    <!-- LEFT: Capability Statement -->
-    <div class="final-statement">
-      <h3><span>Capability Statement</span>At a Glance</h3>
-      <div class="stmt-grid">
-        <div class="stmt-col">
-          <h4>Company Overview</h4>
-          <ul>
-            <li>Minority Business Enterprise (MBE)</li>
-            <li>Headquartered in Miramar, FL</li>
-            <li>UEI: J18TZDRH5FK7</li>
-            <li>CAGE Code: 16DD3</li>
-            <li>Florida MBE Certified</li>
-          </ul>
-        </div>
-        <div class="stmt-col">
-          <h4>Core Competencies</h4>
-          <ul>
-            <li>Data Analytics &amp; Reporting</li>
-            <li>AI, Machine Learning &amp; NLP</li>
-            <li>Business Intelligence</li>
-            <li>Program &amp; Project Management</li>
-            <li>Process Improvement</li>
-            <li>Custom Software Development</li>
-            <li>Strategic Planning</li>
-            <li>Administrative Support</li>
-          </ul>
-        </div>
-        <div class="stmt-col">
-          <h4>Differentiators</h4>
-          <ul>
-            <li>AI-forward analytics capability</li>
-            <li>Full-stack technical depth</li>
-            <li>Rapid deployment &amp; integration</li>
-            <li>Scalable &mdash; prime or sub</li>
-            <li>Cross-domain expertise</li>
-            <li>Mission-first delivery</li>
-          </ul>
-        </div>
-        <div class="stmt-col">
-          <h4>Target Agencies</h4>
-          <ul>
-            <li>Veterans Affairs (VA)</li>
-            <li>Health &amp; Human Services (HHS)</li>
-            <li>Department of Defense (DoD)</li>
-            <li>Homeland Security (DHS)</li>
-            <li>Department of the Treasury</li>
-          </ul>
-        </div>
-      </div>
-      <div class="stmt-downloads">
-        <a href="/assets/fc103-capability-statement.pdf" class="download-btn" download>
-          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Download Statement
-        </a>
-        <a href="/assets/fc103-capability-narrative.pdf" class="download-btn" download>
-          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Download Narrative
-        </a>
-      </div>
+  <div style="padding: 40px 48px;" class="reveal">
+    <div class="section-header">
+      <div class="section-label">Teaming &amp; Partnerships</div>
+      <div class="section-title">Let's Work Together</div>
     </div>
-
-    <!-- RIGHT: Teaming -->
-    <div class="final-teaming">
-      <h3><span>Teaming &amp; Partnerships</span>Let's Work Together</h3>
-      <div class="teaming-section">
-        <div class="teaming-group">
-          <h4>Registered Supplier Portals</h4>
-          <ul>
-            <li>Leidos</li>
-            <li>SAIC</li>
-            <li>Booz Allen Hamilton</li>
-            <li>CACI International</li>
-            <li>Lockheed Martin</li>
-          </ul>
+    <div class="split-teaming">
+      <div class="teaming-group">
+        <h4>Registered Supplier Portals</h4>
+        <ul>
+          <li>Leidos</li>
+          <li>SAIC</li>
+          <li>Booz Allen Hamilton</li>
+          <li>CACI International</li>
+          <li>Lockheed Martin</li>
+        </ul>
+      </div>
+      <div class="teaming-group">
+        <h4>Engagement Models</h4>
+        <div class="teaming-tags">
+          <span class="teaming-tag">Subcontracting</span>
+          <span class="teaming-tag">Teaming Agreements</span>
+          <span class="teaming-tag">IDIQ / MAC</span>
+          <span class="teaming-tag">BPA Support</span>
+          <span class="teaming-tag">Task Orders</span>
+          <span class="teaming-tag">Analytics Augmentation</span>
         </div>
-        <div class="teaming-group">
-          <h4>Engagement Models</h4>
-          <div class="teaming-tags">
-            <span class="teaming-tag">Subcontracting</span>
-            <span class="teaming-tag">Teaming Agreements</span>
-            <span class="teaming-tag">IDIQ / MAC</span>
-            <span class="teaming-tag">BPA Support</span>
-            <span class="teaming-tag">Task Orders</span>
-            <span class="teaming-tag">Analytics Augmentation</span>
-          </div>
-        </div>
-        <div class="teaming-group">
-          <h4>Past Performance</h4>
-          <ul>
-            <li>Analytics &amp; strategy with private-sector partners</li>
-            <li>Full-stack application development (production)</li>
-            <li>Workflow optimization engagements</li>
-            <li>Pursuing federal contract opportunities</li>
-          </ul>
+      </div>
+      <div class="teaming-group">
+        <h4>Past Performance</h4>
+        <ul>
+          <li>Analytics &amp; strategy with private-sector partners</li>
+          <li>Full-stack application development (production)</li>
+          <li>Workflow optimization engagements</li>
+          <li>Pursuing federal contract opportunities</li>
+        </ul>
+      </div>
+      <div class="teaming-group">
+        <h4>Downloads</h4>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="/assets/fc103-capability-statement.pdf" class="download-btn" download>
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Capability Statement
+          </a>
+          <a href="/assets/fc103-capability-narrative.pdf" class="download-btn" download>
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Capability Narrative
+          </a>
         </div>
       </div>
     </div>
