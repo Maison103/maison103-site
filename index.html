@@ -261,7 +261,7 @@
   }
 
   .grid > a:last-child {
-    grid-column: 1 / -1;
+    grid-column: span 1;
   }
 
   .grid > a {
@@ -517,7 +517,7 @@
   /* ===== RESPONSIVE ===== */
   @media (max-width: 1024px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
-    .grid > a:last-child { grid-column: 1 / -1; }
+    .grid > a:last-child { grid-column: span 1; }
   }
 
   @media (max-width: 768px) {
