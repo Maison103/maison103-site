@@ -248,6 +248,9 @@
     gap: 6px;
     cursor: pointer;
     padding: 12px 0;
+    position: sticky;
+    bottom: 16px;
+    z-index: 100;
   }
 
   .scroll-cta-text {
@@ -1111,10 +1114,34 @@
     const goingDown = el.dataset.down === 'true';
     const target = goingDown ? downTarget : upTarget;
     document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
-    el.dataset.down = goingDown ? 'false' : 'true';
-    el.classList.toggle('flipped');
-    el.querySelector('.scroll-cta-text').textContent = goingDown ? 'Back' : 'More';
+    flipBtn(el, !goingDown);
   }
+
+  function flipBtn(el, pointDown) {
+    el.dataset.down = pointDown ? 'true' : 'false';
+    if (pointDown) {
+      el.classList.remove('flipped');
+      el.querySelector('.scroll-cta-text').textContent = 'More';
+    } else {
+      el.classList.add('flipped');
+      el.querySelector('.scroll-cta-text').textContent = 'Back';
+    }
+  }
+
+  // Auto-flip arrows based on scroll position
+  const scrollBtns = document.querySelectorAll('.scroll-cta');
+  window.addEventListener('scroll', () => {
+    scrollBtns.forEach(btn => {
+      const rect = btn.getBoundingClientRect();
+      const midScreen = window.innerHeight / 2;
+      // If the button is in the top half of screen, user scrolled past it — flip to "Back"
+      if (rect.top < midScreen) {
+        flipBtn(btn, false);
+      } else {
+        flipBtn(btn, true);
+      }
+    });
+  });
 
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
