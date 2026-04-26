@@ -247,10 +247,18 @@
     align-items: center;
     gap: 6px;
     cursor: pointer;
-    padding: 12px 0;
-    position: sticky;
-    bottom: 16px;
-    z-index: 100;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 900;
+    background: rgba(10,10,10,0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(16,185,129,0.15);
+    transition: opacity 0.3s ease;
   }
 
   .scroll-cta-text {
@@ -1013,10 +1021,13 @@
     </div>
   </div>
 
-  <div class="scroll-cta" onclick="toggleScroll(this, 'page3', 'page1')" data-down="true">
-    <span class="scroll-cta-text">More</span>
-    <div class="scroll-cta-arrow"></div>
-  </div>
+
+</div>
+
+<!-- FIXED SCROLL BUTTON -->
+<div class="scroll-cta" id="scrollBtn" onclick="toggleScroll(this, 'page3', 'page1')" data-down="true">
+  <span class="scroll-cta-text">More</span>
+  <div class="scroll-cta-arrow"></div>
 </div>
 
 <!-- ==================== PAGE 3: Teaming + Contact ==================== -->
@@ -1122,19 +1133,30 @@
     }
   }
 
-  // Auto-flip arrows based on scroll position
-  const scrollBtns = document.querySelectorAll('.scroll-cta');
+  // Auto-flip arrow based on scroll position & show/hide
+  const scrollBtn = document.getElementById('scrollBtn');
+  const page1 = document.getElementById('page1');
+  const page3 = document.getElementById('page3');
   window.addEventListener('scroll', () => {
-    scrollBtns.forEach(btn => {
-      const rect = btn.getBoundingClientRect();
-      const midScreen = window.innerHeight / 2;
-      // If the button is in the top half of screen, user scrolled past it — flip to "Back"
-      if (rect.top < midScreen) {
-        flipBtn(btn, false);
-      } else {
-        flipBtn(btn, true);
-      }
-    });
+    const page1Bottom = page1.getBoundingClientRect().bottom;
+    const page3Top = page3.getBoundingClientRect().top;
+    const vh = window.innerHeight;
+
+    // Hide on hero (before page1 content)
+    if (page1.getBoundingClientRect().top > vh * 0.5) {
+      scrollBtn.style.opacity = '0';
+      scrollBtn.style.pointerEvents = 'none';
+    } else {
+      scrollBtn.style.opacity = '1';
+      scrollBtn.style.pointerEvents = 'auto';
+    }
+
+    // Flip direction: if page3 is mostly visible, point up
+    if (page3Top < vh * 0.5) {
+      flipBtn(scrollBtn, false);
+    } else {
+      flipBtn(scrollBtn, true);
+    }
   });
 
   // Reveal on scroll
