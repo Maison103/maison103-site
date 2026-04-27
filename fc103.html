@@ -244,12 +244,37 @@
     100% { left: 100%; }
   }
 
+  .hero-contact {
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .hero-contact-item {
+    font-size: 16px;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  .hero-contact-item strong {
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  .hero-contact-item a {
+    color: #A7F3D0;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .hero-contact-item a:hover { color: #10B981; }
+
   .hero-ctas {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
     opacity: 0;
-    animation: fadeUp 0.8s ease 1.1s forwards;
+    animation: fadeUp 0.8s ease 1.2s forwards;
   }
 
   .cta-btn {
@@ -927,6 +952,10 @@
     <div class="badge">541512 &mdash; Computer Systems Design</div>
     <div class="badge">541690 &mdash; Other Scientific &amp; Technical Consulting</div>
   </div>
+  <div class="hero-contact">
+    <div class="hero-contact-item"><strong>Marlon Carter</strong> &mdash; Managing Director</div>
+    <div class="hero-contact-item"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a> &nbsp;|&nbsp; <a href="tel:3057974552">305.797.4552</a> &nbsp;|&nbsp; Miramar, FL</div>
+  </div>
   <div class="hero-ctas">
     <a href="/assets/fc103-capability-statement.pdf" class="cta-btn cta-primary" download>
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -937,23 +966,10 @@
       Capability Narrative
     </a>
   </div>
-  <div class="hero-scroll" onclick="document.getElementById('page1').scrollIntoView({behavior:'smooth'})">
-    <div class="scroll-btn">
-      <span class="scroll-btn-text">Scroll</span>
-      <div class="scroll-btn-arrow down"></div>
-    </div>
-  </div>
 </section>
 
 <!-- ==================== PAGE 1: IDs + Capabilities ==================== -->
 <div class="page" id="page1">
-  <!-- Back to Hero -->
-  <div class="page-boundary">
-    <div class="scroll-btn up-btn" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">
-      <span class="scroll-btn-text">Back</span>
-      <div class="scroll-btn-arrow up"></div>
-    </div>
-  </div>
   <!-- CAPABILITIES -->
   <div class="section" id="capabilities">
     <div class="section-header reveal">
@@ -1059,24 +1075,11 @@
   </div>
 
 
-  <!-- More to Page 3 -->
-  <div class="page-boundary sticky-bottom">
-    <div class="scroll-btn" onclick="document.getElementById('page3').scrollIntoView({behavior:'smooth'})">
-      <span class="scroll-btn-text">More</span>
-      <div class="scroll-btn-arrow down"></div>
-    </div>
-  </div>
+
 </div>
 
 <!-- ==================== PAGE 3: Teaming + Contact ==================== -->
 <div id="page3" class="final-view">
-  <!-- Back to Page 1 -->
-  <div class="page-boundary" style="padding-top: 24px;">
-    <div class="scroll-btn up-btn" onclick="document.getElementById('page1').scrollIntoView({behavior:'smooth'})">
-      <span class="scroll-btn-text">Back</span>
-      <div class="scroll-btn-arrow up"></div>
-    </div>
-  </div>
   <div style="padding: 32px 48px 24px;" class="reveal">
     <div class="section-header">
       <div class="section-label">Teaming &amp; Partnerships</div>
