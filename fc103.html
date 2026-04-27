@@ -293,14 +293,12 @@
 
   /* ===== SCROLL BUTTONS (static at page boundaries) ===== */
   .scroll-btn {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     cursor: pointer;
     padding: 16px 24px;
-    margin: 0 auto;
-    width: fit-content;
     border-radius: 20px;
     border: 1px solid rgba(16,185,129,0.15);
     background: rgba(16,185,129,0.04);
@@ -348,8 +346,7 @@
 
   .page-boundary {
     padding: 40px 0;
-    display: flex;
-    justify-content: center;
+    text-align: center;
   }
 
   .page-boundary.sticky-bottom {
@@ -363,8 +360,9 @@
   .hero-scroll {
     position: absolute;
     bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
     opacity: 0;
     animation: fadeUp 0.8s ease 1.2s forwards;
   }
