@@ -4,24 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CC 103 — Commercial Consulting | Maison 103</title>
-<meta name="description" content="Analytics, management consulting, and operational strategy for commercial and private-sector organizations. From startups to enterprise — data-driven results.">
+<meta name="description" content="CC 103 — Analytics, management consulting, and operational strategy for commercial and private-sector organizations. Data-driven results from startup to enterprise.">
 <meta property="og:title" content="CC 103 — Commercial Consulting">
 <meta property="og:description" content="Analytics, strategy, and operational consulting for commercial clients. A Maison 103 division.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://cc103.maison103.co">
+<meta property="og:url" content="https://maison103.co/cc103">
 <meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --teal: #06B6D4;
     --teal-light: #A5F3FC;
-    --teal-bright: #22D3EE;
     --teal-dim: rgba(6,182,212,0.08);
-    --teal-glow: rgba(6,182,212,0.12);
+    --teal-glow: rgba(6,182,212,0.15);
     --obsidian: #0A0A0A;
     --charcoal: #1A1A1A;
     --smoke: #2A2A2A;
-    --slate: #0A1A1F;
     --silver: #B0B0B0;
     --cream: #F5F0E8;
     --white: #FAFAFA;
@@ -42,18 +40,18 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    padding: 24px 48px;
+    padding: 20px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,10,0.9);
+    background: rgba(10,10,10,0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(6,182,212,0.12);
     transition: padding 0.3s ease;
   }
 
-  nav.scrolled { padding: 16px 48px; }
+  nav.scrolled { padding: 14px 48px; }
 
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
@@ -65,22 +63,14 @@
     text-decoration: none;
   }
 
-  .nav-logo span {
-    font-weight: 300;
-    color: #B0B0B0;
-    margin-left: 6px;
-  }
+  .nav-logo span { font-weight: 400; color: #F5F0E8; margin-left: 6px; }
 
-  .nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
 
   .nav-links a {
     color: #B0B0B0;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -89,7 +79,7 @@
 
   .nav-links a:hover { color: #06B6D4; }
 
-  /* ===== MOBILE MENU ===== */
+  /* Mobile */
   .menu-toggle {
     display: none;
     flex-direction: column;
@@ -102,7 +92,7 @@
   }
 
   .menu-toggle span {
-    width: 24px;
+    width: 22px;
     height: 1.5px;
     background: #06B6D4;
     transition: all 0.3s ease;
@@ -118,39 +108,33 @@
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(10,10,10,0.98);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
     z-index: 999;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 28px;
+    gap: 32px;
   }
 
   .mobile-menu.open { display: flex; }
 
   .mobile-menu a {
-    font-family: 'Outfit', sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #B0B0B0;
+    color: #F5F0E8;
     text-decoration: none;
-    transition: color 0.3s;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 300;
   }
-
-  .mobile-menu a:hover { color: #06B6D4; }
 
   /* ===== HERO ===== */
   .hero {
-    min-height: 70vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 140px 48px 80px;
+    padding: 120px 48px 60px;
     position: relative;
-    background: linear-gradient(170deg, #0A1A1F 0%, #0A0A0A 60%);
+    background: linear-gradient(170deg, #0A1A1F 0%, #0A0A0A 50%);
   }
 
   .hero::before {
@@ -161,57 +145,108 @@
     pointer-events: none;
   }
 
-  .hero-prefix {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #06B6D4;
-    margin-bottom: 16px;
+  .hero-division {
     opacity: 0;
     animation: fadeUp 0.8s ease 0.2s forwards;
+    margin-bottom: 24px;
+  }
+
+  .hero-division-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: #FFFFFF;
+    text-shadow: 0 0 30px rgba(6,182,212,0.4), 0 0 60px rgba(6,182,212,0.15);
+  }
+
+  .hero-division-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(11px, 1.4vw, 15px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #06B6D4;
+    margin-top: 10px;
+    font-weight: 700;
   }
 
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 6vw, 80px);
+    font-size: clamp(52px, 8vw, 110px);
     font-weight: 300;
-    color: #A5F3FC;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 24px;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
+    background: linear-gradient(135deg, #A5F3FC 0%, #FFFFFF 50%, #A5F3FC 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeUp 0.8s ease 0.4s forwards, gradientShift 6s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   .hero-desc {
-    font-size: 16px;
+    font-size: clamp(16px, 2vw, 20px);
     font-weight: 400;
     color: #B0B0B0;
-    max-width: 640px;
-    line-height: 1.8;
+    max-width: 680px;
+    line-height: 1.7;
+    margin-bottom: 32px;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
+    animation: fadeUp 0.8s ease 0.7s forwards;
   }
 
   .hero-badges {
     display: flex;
-    gap: 16px;
-    margin-top: 36px;
+    gap: 12px;
     flex-wrap: wrap;
+    margin-bottom: 36px;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
+    animation: fadeUp 0.8s ease 0.9s forwards;
   }
 
   .badge {
-    padding: 8px 20px;
+    padding: 8px 18px;
     border: 1px solid rgba(6,182,212,0.3);
     border-radius: 2px;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #06B6D4;
     background: rgba(6,182,212,0.05);
   }
+
+  .hero-contact {
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .hero-contact-item {
+    font-size: 16px;
+    color: #B0B0B0;
+    line-height: 1.8;
+  }
+
+  .hero-contact-item strong {
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  .hero-contact-item a {
+    color: #A5F3FC;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .hero-contact-item a:hover { color: #06B6D4; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -220,133 +255,194 @@
 
   /* ===== SECTIONS ===== */
   .section {
-    padding: 100px 48px;
+    padding: 40px 48px;
     position: relative;
   }
 
-  .section-alt {
-    background: #1A1A1A !important;
-  }
-
-  .section-header {
-    margin-bottom: 56px;
-  }
+  .section-header { margin-bottom: 24px; }
 
   .section-label {
     font-family: 'Space Mono', monospace;
-    font-size: 11px;
+    font-size: 16px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: #06B6D4;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .section-title {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 500;
-    color: #FFFFFF !important;
-  }
-
-  .section-subtitle {
-    font-size: 15px;
-    font-weight: 400;
-    color: #B0B0B0;
-    margin-top: 12px;
-    line-height: 1.8;
-    max-width: 600px;
-  }
-
-  /* ===== INDUSTRIES ===== */
-  .ind-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px;
-  }
-
-  .ind-card {
-    background: #2A2A2A;
-    padding: 40px;
-    border-left: 2px solid rgba(6,182,212,0.2);
-    transition: all 0.3s;
-  }
-
-  .ind-card:hover {
-    border-left-color: #06B6D4;
-    background: rgba(6,182,212,0.04);
-  }
-
-  .ind-icon {
-    font-size: 28px;
-    margin-bottom: 16px;
-  }
-
-  .ind-name {
-    font-family: 'Outfit', sans-serif;
-    font-size: 22px;
+    font-size: clamp(40px, 4.5vw, 60px);
     font-weight: 600;
-    color: #FFFFFF;
-    margin-bottom: 10px;
-  }
-
-  .ind-desc {
-    font-size: 13px;
-    font-weight: 400;
-    color: #B0B0B0;
-    line-height: 1.8;
+    color: #FFFFFF !important;
   }
 
   /* ===== CAPABILITIES ===== */
   .cap-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(6,182,212,0.06);
   }
 
   .cap-item {
-    padding: 40px;
-    background: #2A2A2A;
-    position: relative;
-    transition: background 0.3s;
+    padding: 28px 32px;
+    background: #0A0A0A;
+    border-left: 3px solid rgba(6,182,212,0.2);
+    transition: all 0.3s;
   }
 
   .cap-item:hover {
-    background: rgba(6,182,212,0.06);
+    border-left-color: #06B6D4;
+    background: rgba(6,182,212,0.03);
   }
 
   .cap-number {
     font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: rgba(6,182,212,0.7);
-    margin-bottom: 16px;
+    font-size: 15px;
+    color: rgba(6,182,212,0.6);
+    margin-bottom: 8px;
   }
 
   .cap-name {
     font-family: 'Outfit', sans-serif;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 600;
     color: #FFFFFF;
     margin-bottom: 12px;
   }
 
   .cap-desc {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 400;
     color: #B0B0B0;
-    line-height: 1.8;
+    line-height: 1.7;
+  }
+
+  .cap-tools {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cap-tool {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(6,182,212,0.08);
+    color: #06B6D4;
+    border-radius: 2px;
+  }
+
+  /* ===== INDUSTRIES ===== */
+  .ind-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(6,182,212,0.06);
+  }
+
+  .ind-card {
+    padding: 28px 32px;
+    background: #1A1A1A;
+    border-left: 3px solid rgba(6,182,212,0.2);
+    transition: all 0.3s;
+  }
+
+  .ind-card:hover {
+    border-left-color: #06B6D4;
+    background: rgba(6,182,212,0.03);
+  }
+
+  .ind-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+
+  .ind-desc {
+    font-size: 18px;
+    font-weight: 400;
+    color: #B0B0B0;
+    line-height: 1.7;
+  }
+
+  /* ===== DIFFERENTIATORS ===== */
+  .diff-item {
+    padding: 28px 32px;
+    background: #1A1A1A;
+    border-left: 3px solid rgba(6,182,212,0.2);
+    transition: all 0.3s;
+  }
+
+  .diff-item:hover {
+    border-left-color: #06B6D4;
+  }
+
+  /* ===== PAST PERFORMANCE ===== */
+  .perf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .perf-card {
+    padding: 28px 32px;
+    background: #1A1A1A;
+    border-left: 3px solid rgba(6,182,212,0.25);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+
+  .perf-card:hover {
+    border-left-color: #06B6D4;
+  }
+
+  .perf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .perf-company {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .perf-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    color: #06B6D4;
+    white-space: nowrap;
+  }
+
+  .perf-role {
+    font-size: 20px;
+    font-weight: 500;
+    color: #A5F3FC;
+    margin-bottom: 14px;
+  }
+
+  .perf-desc {
+    font-size: 18px;
+    color: #B0B0B0;
+    line-height: 1.7;
   }
 
   /* ===== NARRATIVE ===== */
-  .narrative {
-    max-width: 800px;
-  }
-
   .narrative p {
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 400;
     color: #B0B0B0;
-    line-height: 2;
-    margin-bottom: 24px;
+    line-height: 1.8;
+    margin-bottom: 18px;
   }
 
   .narrative strong {
@@ -354,91 +450,45 @@
     font-weight: 500;
   }
 
-  /* ===== STATEMENT ===== */
-  .statement-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-  }
-
-  .statement-block {
-    padding: 32px;
-    background: #2A2A2A;
-    border-top: 2px solid rgba(6,182,212,0.2);
-  }
-
-  .statement-block h4 {
-    font-family: 'Outfit', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: #A5F3FC;
-    margin-bottom: 16px;
-  }
-
-  .statement-block p,
-  .statement-block li {
-    font-size: 13px;
-    font-weight: 400;
-    color: #B0B0B0;
-    line-height: 1.8;
-  }
-
-  .statement-block ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .statement-block li::before {
-    content: '— ';
-    color: #06B6D4;
-  }
-
   /* ===== ENGAGEMENT ===== */
   .engage-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .engage-card {
-    padding: 40px;
+    padding: 28px 32px;
     background: rgba(6,182,212,0.04);
     border: 1px solid rgba(6,182,212,0.1);
     border-radius: 2px;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s;
   }
 
   .engage-card:hover {
     border-color: rgba(6,182,212,0.3);
   }
 
-  .engage-icon {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-
   .engage-name {
     font-family: 'Outfit', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     color: #FFFFFF;
     margin-bottom: 10px;
   }
 
   .engage-desc {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 400;
     color: #B0B0B0;
-    line-height: 1.8;
+    line-height: 1.7;
   }
 
   /* ===== CONTACT ===== */
   .cc-contact {
     text-align: center;
-    padding: 100px 48px;
-    border-top: 1px solid rgba(6,182,212,0.1);
+    padding: 40px 48px;
+    border-top: 1px solid rgba(6,182,212,0.08);
   }
 
   .cc-contact-name {
@@ -446,43 +496,35 @@
     font-size: 28px;
     font-weight: 500;
     color: #FFFFFF;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
   }
 
   .cc-contact-title {
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #06B6D4;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 
   .cc-contact-grid {
     display: flex;
-    gap: 48px;
+    gap: 40px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
 
-  .cc-contact-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .cc-contact-item { display: flex; flex-direction: column; gap: 2px; }
 
   .cc-contact-label {
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: #B0B0B0;
   }
 
-  .cc-contact-value {
-    font-size: 15px;
-    font-weight: 400;
-    color: #F5F0E8;
-  }
+  .cc-contact-value { font-size: 16px; font-weight: 400; color: #F5F0E8; }
 
   .cc-contact-value a {
     color: #F5F0E8;
@@ -493,14 +535,14 @@
   .cc-contact-value a:hover { color: #06B6D4; }
 
   .footer-line {
-    width: 60px;
+    width: 40px;
     height: 1px;
     background: #06B6D4;
-    margin: 40px auto 16px;
+    margin: 20px auto 8px;
   }
 
   .footer-copy {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 2px;
     color: #B0B0B0;
     font-weight: 400;
@@ -510,8 +552,8 @@
   /* ===== REVEAL ===== */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(16px);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .reveal.visible {
@@ -520,14 +562,18 @@
   }
 
   /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .cap-grid, .ind-grid, .perf-grid, .engage-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    nav.scrolled { padding: 12px 24px; }
+    nav { padding: 14px 24px; }
+    nav.scrolled { padding: 10px 24px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
     .hero { padding: 100px 24px 60px; }
-    .section { padding: 60px 24px; }
-    .cc-contact { padding: 60px 24px; }
+    .section { padding: 32px 24px; }
+    .cc-contact { padding: 24px; }
   }
 </style>
 </head>
@@ -535,24 +581,22 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#industries" onclick="closeMobile()">Industries</a>
   <a href="#capabilities" onclick="closeMobile()">Capabilities</a>
-  <a href="#narrative" onclick="closeMobile()">Approach</a>
-  <a href="#engagement" onclick="closeMobile()">Engagement</a>
+  <a href="#industries" onclick="closeMobile()">Industries</a>
+  <a href="#differentiators" onclick="closeMobile()">Why CC 103</a>
+  <a href="#performance" onclick="closeMobile()">Performance</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a href="/cc103.html" onclick="closeMobile()">CC 103</a>
 </div>
 
 <!-- NAV -->
 <nav id="mainNav" style="background-color: #0A0A0A;">
   <a href="/cc103.html" class="nav-logo">CC<span>103</span></a>
   <ul class="nav-links">
-    <li><a href="#industries">Industries</a></li>
     <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#narrative">Approach</a></li>
-    <li><a href="#engagement">Engagement</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#differentiators">Why CC 103</a></li>
+    <li><a href="#performance">Performance</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="/cc103.html">CC 103</a></li>
   </ul>
   <button class="menu-toggle" id="menuToggle" onclick="toggleMobile()" aria-label="Menu">
     <span></span>
@@ -561,62 +605,28 @@
   </button>
 </nav>
 
-<!-- HERO -->
+<!-- ==================== HERO ==================== -->
 <section class="hero" style="background-color: #0A0A0A;">
-  <div class="hero-prefix">CC 103 &mdash; Commercial Consulting</div>
-  <h1 class="hero-title">Analytics &amp;<br>Strategy</h1>
-  <p class="hero-desc">Maison 103 LLC delivers analytics, management consulting, and operational strategy to commercial and private-sector organizations &mdash; from startups to enterprise.</p>
+  <div class="hero-division">
+    <div class="hero-division-name">CC-103</div>
+    <div class="hero-division-sub">Commercial Consulting Division</div>
+  </div>
+  <h1 class="hero-title">Analytics.<br>Strategy.<br>Results.</h1>
+  <p class="hero-desc">CC 103 delivers analytics, management consulting, and operational strategy to commercial and private-sector organizations &mdash; from startups to enterprise.</p>
   <div class="hero-badges">
     <div class="badge">Data Analytics</div>
     <div class="badge">Management Consulting</div>
     <div class="badge">Operational Strategy</div>
+    <div class="badge">AI &amp; Automation</div>
+  </div>
+  <div class="hero-contact">
+    <div class="hero-contact-item"><strong>Marlon Carter</strong> &mdash; Owner / Managing Director</div>
+    <div class="hero-contact-item"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a> &nbsp;|&nbsp; <a href="tel:3057974552">305.797.4552</a> &nbsp;|&nbsp; Miramar, FL</div>
   </div>
 </section>
 
-<!-- INDUSTRIES -->
-<div class="section" id="industries">
-  <div class="section-header reveal">
-    <div class="section-label">Industries</div>
-    <div class="section-title">Who We Serve</div>
-    <div class="section-subtitle">The same analytical rigor we bring to federal agencies, applied to private-sector challenges.</div>
-  </div>
-
-  <div class="ind-grid reveal">
-    <div class="ind-card">
-      <div class="ind-icon">&#128188;</div>
-      <div class="ind-name">Professional Services</div>
-      <div class="ind-desc">Consulting firms, legal practices, accounting firms, and service-based businesses looking to optimize operations and scale efficiently.</div>
-    </div>
-    <div class="ind-card">
-      <div class="ind-icon">&#127973;</div>
-      <div class="ind-name">Healthcare &amp; Wellness</div>
-      <div class="ind-desc">Private practices, health systems, wellness brands, and med-tech companies seeking data-driven operational improvements.</div>
-    </div>
-    <div class="ind-card">
-      <div class="ind-icon">&#128200;</div>
-      <div class="ind-name">Finance &amp; Insurance</div>
-      <div class="ind-desc">Financial services firms, fintech startups, and insurance companies needing analytics, reporting, and process optimization.</div>
-    </div>
-    <div class="ind-card">
-      <div class="ind-icon">&#127970;</div>
-      <div class="ind-name">Real Estate &amp; Construction</div>
-      <div class="ind-desc">Developers, property management firms, and construction companies requiring project management and business intelligence.</div>
-    </div>
-    <div class="ind-card">
-      <div class="ind-icon">&#128187;</div>
-      <div class="ind-name">Technology &amp; SaaS</div>
-      <div class="ind-desc">Startups and growth-stage tech companies needing operational strategy, KPI frameworks, and performance analytics.</div>
-    </div>
-    <div class="ind-card">
-      <div class="ind-icon">&#128666;</div>
-      <div class="ind-name">Logistics &amp; Operations</div>
-      <div class="ind-desc">Supply chain companies, distributors, and logistics firms looking for workflow optimization and data-driven process improvement.</div>
-    </div>
-  </div>
-</div>
-
-<!-- CORE CAPABILITIES -->
-<div class="section section-alt" style="background-color: #1A1A1A;" id="capabilities">
+<!-- ==================== CORE CAPABILITIES ==================== -->
+<div class="section" id="capabilities">
   <div class="section-header reveal">
     <div class="section-label">Core Capabilities</div>
     <div class="section-title">What We Deliver</div>
@@ -626,137 +636,282 @@
       <div class="cap-number">01</div>
       <div class="cap-name">Data Analytics &amp; Reporting</div>
       <div class="cap-desc">Performance analytics, KPI dashboards, and data-driven insights that turn raw numbers into clear business decisions.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Python</span>
+        <span class="cap-tool">SQL</span>
+        <span class="cap-tool">Tableau</span>
+        <span class="cap-tool">Power BI</span>
+      </div>
     </div>
     <div class="cap-item">
       <div class="cap-number">02</div>
       <div class="cap-name">Business Intelligence</div>
       <div class="cap-desc">Custom dashboard development and BI solutions that give leadership real-time visibility into what matters.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">ETL</span>
+        <span class="cap-tool">Data Modeling</span>
+        <span class="cap-tool">Visualization</span>
+      </div>
     </div>
     <div class="cap-item">
       <div class="cap-number">03</div>
       <div class="cap-name">Operational Strategy</div>
       <div class="cap-desc">Strategic planning, organizational design, and roadmap development to align operations with growth objectives.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Roadmapping</span>
+        <span class="cap-tool">Change Mgmt</span>
+      </div>
     </div>
     <div class="cap-item">
       <div class="cap-number">04</div>
       <div class="cap-name">Process Improvement</div>
       <div class="cap-desc">Workflow optimization, efficiency analysis, and operational streamlining that reduce waste and accelerate output.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Lean</span>
+        <span class="cap-tool">Six Sigma</span>
+        <span class="cap-tool">BPR</span>
+      </div>
     </div>
     <div class="cap-item">
       <div class="cap-number">05</div>
       <div class="cap-name">Project &amp; Program Management</div>
       <div class="cap-desc">End-to-end project delivery, milestone tracking, and cross-functional coordination for complex initiatives.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Agile</span>
+        <span class="cap-tool">PMP</span>
+        <span class="cap-tool">Jira</span>
+      </div>
     </div>
     <div class="cap-item">
       <div class="cap-number">06</div>
       <div class="cap-name">AI &amp; Automation Consulting</div>
       <div class="cap-desc">Identifying automation opportunities, AI integration strategy, and building intelligent workflows that scale with your business.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">LLMs</span>
+        <span class="cap-tool">NLP</span>
+        <span class="cap-tool">Workflow Automation</span>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">07</div>
+      <div class="cap-name">Custom Software Development</div>
+      <div class="cap-desc">Full-stack applications, API integrations, cloud infrastructure, and custom tools built to solve your specific operational problems.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">React</span>
+        <span class="cap-tool">Python</span>
+        <span class="cap-tool">AWS</span>
+        <span class="cap-tool">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-number">08</div>
+      <div class="cap-name">Financial Analytics</div>
+      <div class="cap-desc">Revenue analysis, financial modeling, budget variance tracking, and automated financial reporting for leadership decision-making.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Financial Modeling</span>
+        <span class="cap-tool">Excel</span>
+        <span class="cap-tool">Forecasting</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- CAPABILITY NARRATIVE -->
+<!-- ==================== INDUSTRIES ==================== -->
+<div class="section" id="industries" style="background:#1A1A1A;">
+  <div class="section-header reveal">
+    <div class="section-label">Industries</div>
+    <div class="section-title">Who We Serve</div>
+  </div>
+  <div class="ind-grid reveal">
+    <div class="ind-card">
+      <div class="ind-name">Healthcare &amp; Wellness</div>
+      <div class="ind-desc">Private practices, health systems, wellness brands, and med-tech companies seeking data-driven operational improvements and financial analytics.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-name">Financial Services</div>
+      <div class="ind-desc">Credit unions, fintech startups, and insurance companies needing analytics, Tableau dashboards, reporting automation, and process optimization.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-name">Professional Services</div>
+      <div class="ind-desc">Consulting firms, legal practices, and service-based businesses looking to optimize operations and scale efficiently with data-driven strategy.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-name">Technology &amp; SaaS</div>
+      <div class="ind-desc">Startups and growth-stage tech companies needing operational strategy, KPI frameworks, performance analytics, and custom tooling.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-name">Hospitality &amp; Entertainment</div>
+      <div class="ind-desc">Cruise lines, hotels, and entertainment companies requiring financial analysis, P&amp;L management, and multi-location operational reporting.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-name">Retail &amp; E-Commerce</div>
+      <div class="ind-desc">Retailers and e-commerce brands needing pricing strategy, revenue optimization, inventory analytics, and automated reporting solutions.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DIFFERENTIATORS ==================== -->
+<div class="section" id="differentiators">
+  <div class="section-header reveal">
+    <div class="section-label">Why CC 103</div>
+    <div class="section-title">Differentiators</div>
+  </div>
+  <div class="cap-grid reveal">
+    <div class="diff-item">
+      <div class="cap-number">01</div>
+      <div class="cap-name">Builder, Not Just a Consultant</div>
+      <div class="cap-desc">We don't just advise &mdash; we build. Production software, data pipelines, dashboards, and automated workflows. We deliver working systems, not slide decks.</div>
+    </div>
+    <div class="diff-item">
+      <div class="cap-number">02</div>
+      <div class="cap-name">Federal Rigor, Commercial Speed</div>
+      <div class="cap-desc">The same analytical discipline and structured methodology we apply in federal consulting &mdash; without the bureaucracy. Practical deliverables, fast execution.</div>
+    </div>
+    <div class="diff-item">
+      <div class="cap-number">03</div>
+      <div class="cap-name">AI-Native Operations</div>
+      <div class="cap-desc">AI and machine learning integrated into every engagement &mdash; from predictive analytics to intelligent automation. Not as an add-on, but as core methodology.</div>
+    </div>
+    <div class="diff-item">
+      <div class="cap-number">04</div>
+      <div class="cap-name">End-to-End Technical Depth</div>
+      <div class="cap-desc">From Python and SQL analytics to React frontends, AWS cloud, and API architecture &mdash; we own the full stack. No handoffs to subcontractors for technical execution.</div>
+    </div>
+    <div class="diff-item">
+      <div class="cap-number">05</div>
+      <div class="cap-name">Lean &amp; No Overhead</div>
+      <div class="cap-desc">Small team, zero bureaucracy. You're not paying for layers of management and overhead. Direct access to senior talent on every engagement.</div>
+    </div>
+    <div class="diff-item">
+      <div class="cap-number">06</div>
+      <div class="cap-name">Cross-Industry Intelligence</div>
+      <div class="cap-desc">Operating across 7 business divisions (tech, media, consumer products, consulting) gives us pattern recognition and operational insight single-vertical firms can't match.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAST PERFORMANCE ==================== -->
+<div class="section" id="performance" style="background:#1A1A1A;">
+  <div class="section-header reveal">
+    <div class="section-label">Past Performance</div>
+    <div class="section-title">Proven Track Record</div>
+  </div>
+  <div class="perf-grid reveal">
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Vohra Wound Physicians</div>
+        <div class="perf-date">2020 &ndash; Present</div>
+      </div>
+      <div class="perf-role">Senior Finance Lead</div>
+      <div class="perf-desc">Healthcare financial analytics for a national organization across 30+ states. Built SQL/EMR reporting infrastructure, AI-automated workflows, and executive dashboards driving C-suite decisions.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">SQL</span>
+        <span class="cap-tool">EMR/NextGen</span>
+        <span class="cap-tool">Python</span>
+        <span class="cap-tool">AI Automation</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Affinity Federal Credit Union</div>
+        <div class="perf-date">2022 &ndash; Present</div>
+      </div>
+      <div class="perf-role">Senior Business Analyst</div>
+      <div class="perf-desc">Primary liaison between business units and Tableau development teams. Built dashboards and automated reporting for lending, operations, and member services. Eliminated manual data pulls.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Tableau</span>
+        <span class="cap-tool">CView</span>
+        <span class="cap-tool">Data Visualization</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Carnival Cruise Line</div>
+        <div class="perf-date">2017 &ndash; 2020</div>
+      </div>
+      <div class="perf-role">Senior Financial Analyst &mdash; Casino Operations</div>
+      <div class="perf-desc">P&amp;L management, budget variance analysis, and financial reporting across a multi-vessel fleet. Fixed asset tracking, depreciation schedules, and cross-functional reconciliation.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Financial Modeling</span>
+        <span class="cap-tool">P&amp;L Analysis</span>
+        <span class="cap-tool">Asset Mgmt</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Office Depot</div>
+        <div class="perf-date">2015 &ndash; 2017</div>
+      </div>
+      <div class="perf-role">Senior Financial Analyst</div>
+      <div class="perf-desc">Financial modeling and competitive pricing strategy supporting revenue growth. Automated reporting in Excel. Promoted from Pricing Analyst within first year.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Financial Modeling</span>
+        <span class="cap-tool">Pricing Strategy</span>
+        <span class="cap-tool">Excel Automation</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Maison 103 LLC &mdash; Internal Product</div>
+        <div class="perf-date">2024 &ndash; Present</div>
+      </div>
+      <div class="perf-role">Full-Stack Production Software</div>
+      <div class="perf-desc">Designed, built, and deployed a production application with 54+ engines spanning 10 domains. React Native frontend, Python/FastAPI backend, PostgreSQL on AWS RDS, and Claude AI integration.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">React Native</span>
+        <span class="cap-tool">Python</span>
+        <span class="cap-tool">AWS</span>
+        <span class="cap-tool">AI / LLMs</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== NARRATIVE ==================== -->
 <div class="section" id="narrative">
   <div class="section-header reveal">
     <div class="section-label">Our Approach</div>
     <div class="section-title">How We Work</div>
   </div>
-  <div class="narrative reveal">
-    <p><strong>Maison 103 LLC</strong> brings the same analytical discipline and structured methodology we apply in federal consulting to the commercial sector &mdash; without the bureaucracy.</p>
+  <div class="narrative reveal" style="max-width: 800px;">
+    <p><strong>CC 103</strong> brings the same analytical discipline and structured methodology we apply in federal consulting to the commercial sector &mdash; without the bureaucracy.</p>
     <p>We work with organizations that have outgrown spreadsheets and gut-feel decision-making but aren't ready for (or don't need) a Big Four engagement. Our focus is <strong>practical analytics, clear strategy, and measurable outcomes</strong> &mdash; not 200-page decks that collect dust.</p>
-    <p>Every engagement starts with your data and your goals. We build <strong>dashboards, reporting frameworks, and operational playbooks</strong> that your team can actually use &mdash; then we help you execute against them. Whether it's a 4-week sprint or a 6-month transformation, the work is scoped to deliver results, not billable hours.</p>
+    <p>Every engagement starts with your data and your goals. We build <strong>dashboards, reporting frameworks, and operational playbooks</strong> that your team can actually use &mdash; then we help you execute against them.</p>
     <p>We operate with a commitment to <strong>precision, transparency, and speed</strong>. No black boxes. No vendor lock-in. Just clear thinking applied to your hardest operational problems.</p>
   </div>
 </div>
 
-<!-- CAPABILITY STATEMENT -->
-<div class="section section-alt" style="background-color: #1A1A1A;" id="statement">
-  <div class="section-header reveal">
-    <div class="section-label">At a Glance</div>
-    <div class="section-title">Capability Statement</div>
-  </div>
-  <div class="statement-grid reveal">
-    <div class="statement-block">
-      <h4>Company Overview</h4>
-      <ul>
-        <li>Maison 103 LLC</li>
-        <li>Headquartered in Miramar, FL</li>
-        <li>Analytics &amp; consulting firm</li>
-        <li>Commercial &amp; private-sector focus</li>
-        <li>Engagements nationwide</li>
-      </ul>
-    </div>
-    <div class="statement-block">
-      <h4>Core Competencies</h4>
-      <ul>
-        <li>Data Analytics &amp; Performance Reporting</li>
-        <li>Business Intelligence &amp; Dashboard Development</li>
-        <li>Operational Strategy &amp; Planning</li>
-        <li>Process Improvement &amp; Workflow Optimization</li>
-        <li>Project &amp; Program Management</li>
-        <li>AI &amp; Automation Consulting</li>
-      </ul>
-    </div>
-    <div class="statement-block">
-      <h4>Differentiators</h4>
-      <ul>
-        <li>Federal-grade analytical rigor, commercial speed</li>
-        <li>Practical deliverables, not theoretical frameworks</li>
-        <li>Flexible engagement models &mdash; sprint to retainer</li>
-        <li>Cross-industry operational expertise</li>
-      </ul>
-    </div>
-    <div class="statement-block">
-      <h4>Industries Served</h4>
-      <ul>
-        <li>Professional Services</li>
-        <li>Healthcare &amp; Wellness</li>
-        <li>Finance &amp; Insurance</li>
-        <li>Real Estate &amp; Construction</li>
-        <li>Technology &amp; SaaS</li>
-        <li>Logistics &amp; Operations</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ENGAGEMENT MODELS -->
-<div class="section" id="engagement">
+<!-- ==================== ENGAGEMENT MODELS ==================== -->
+<div class="section" id="engagement" style="background:#1A1A1A;">
   <div class="section-header reveal">
     <div class="section-label">Engagement Models</div>
     <div class="section-title">How We Engage</div>
-    <div class="section-subtitle">Flexible structures designed to match your timeline, budget, and complexity.</div>
   </div>
-
   <div class="engage-grid reveal">
     <div class="engage-card">
-      <div class="engage-icon">&#9889;</div>
       <div class="engage-name">Sprint</div>
       <div class="engage-desc">Focused 2&ndash;6 week engagements targeting a specific problem. Diagnostic, solution, and deliverable &mdash; fast.</div>
     </div>
     <div class="engage-card">
-      <div class="engage-icon">&#128736;</div>
       <div class="engage-name">Project-Based</div>
       <div class="engage-desc">Defined scope, timeline, and deliverables for larger initiatives. Dashboard builds, operational redesigns, analytics implementations.</div>
     </div>
     <div class="engage-card">
-      <div class="engage-icon">&#128257;</div>
       <div class="engage-name">Retainer</div>
       <div class="engage-desc">Ongoing advisory and analytics support. Monthly hours, standing availability, and continuous operational optimization.</div>
     </div>
     <div class="engage-card">
-      <div class="engage-icon">&#129309;</div>
       <div class="engage-name">Embedded</div>
-      <div class="engage-desc">We integrate directly with your team for a defined period. Operate as an extension of your leadership &mdash; same tools, same meetings, same goals.</div>
+      <div class="engage-desc">We integrate directly with your team for a defined period. Same tools, same meetings, same goals &mdash; as an extension of your leadership.</div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
+<!-- ==================== CONTACT ==================== -->
 <div class="cc-contact" id="contact">
-  <div class="cc-contact-name reveal">Marlon Carter</div>
-  <div class="cc-contact-title reveal">Managing Director</div>
-  <div class="cc-contact-grid reveal">
+  <div class="cc-contact-name">Marlon Carter</div>
+  <div class="cc-contact-title">Owner / Managing Director</div>
+  <div class="cc-contact-grid">
     <div class="cc-contact-item">
       <div class="cc-contact-label">Email</div>
       <div class="cc-contact-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div>
@@ -775,30 +930,25 @@
 </div>
 
 <script>
-  // Nav scroll effect
+  // Nav scroll
   window.addEventListener('scroll', () => {
-    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
   });
 
   // Mobile menu
   function toggleMobile() {
     document.getElementById('mobileMenu').classList.toggle('open');
     document.getElementById('menuToggle').classList.toggle('active');
-    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
   }
-
   function closeMobile() {
     document.getElementById('mobileMenu').classList.remove('open');
     document.getElementById('menuToggle').classList.remove('active');
-    document.body.style.overflow = '';
   }
 
-  // Scroll reveal
+  // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
