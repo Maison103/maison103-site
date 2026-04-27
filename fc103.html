@@ -624,6 +624,59 @@
     stroke-width: 2;
   }
 
+  /* ===== PAST PERFORMANCE ===== */
+  .perf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .perf-card {
+    padding: 28px 32px;
+    background: #1A1A1A;
+    border-left: 3px solid rgba(16,185,129,0.25);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+
+  .perf-card:hover {
+    border-left-color: #10B981;
+  }
+
+  .perf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .perf-company {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .perf-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #10B981;
+    white-space: nowrap;
+  }
+
+  .perf-role {
+    font-size: 15px;
+    font-weight: 500;
+    color: #A7F3D0;
+    margin-bottom: 12px;
+  }
+
+  .perf-desc {
+    font-size: 16px;
+    color: #B0B0B0;
+    line-height: 1.7;
+  }
+
   /* ===== FINAL VIEW: STATEMENT + TEAMING + CONTACT ===== */
   .final-view {
     background: #1A1A1A;
@@ -872,6 +925,7 @@
   /* ===== RESPONSIVE ===== */
   @media (max-width: 1024px) {
     .cap-grid { grid-template-columns: 1fr; }
+    .perf-grid { grid-template-columns: 1fr; }
     .split-view { grid-template-columns: 1fr; }
     .split-left { border-right: none; border-bottom: 1px solid rgba(16,185,129,0.08); padding: 40px 48px; }
     .split-right { padding: 40px 48px; }
@@ -1111,7 +1165,87 @@
   </div>
 </div>
 
-<!-- ==================== PAGE 3: Teaming + Contact ==================== -->
+<!-- ==================== PAST PERFORMANCE ==================== -->
+<div class="section" id="performance" style="background:#0A0A0A;">
+  <div class="section-header reveal">
+    <div class="section-label">Past Performance</div>
+    <div class="section-title">Proven Track Record</div>
+  </div>
+  <div class="perf-grid reveal">
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Vohra Wound Physicians</div>
+        <div class="perf-date">2020 &ndash; Present</div>
+      </div>
+      <div class="perf-role">Senior Finance Lead</div>
+      <div class="perf-desc">Healthcare financial analytics for a national organization operating across 30+ states. Built SQL/EMR reporting infrastructure, AI-automated workflows, and executive dashboards driving data-informed decisions at the C-suite level.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">SQL</span>
+        <span class="cap-tool">EMR/NextGen</span>
+        <span class="cap-tool">Python</span>
+        <span class="cap-tool">AI Automation</span>
+        <span class="cap-tool">Financial Reporting</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Affinity Federal Credit Union</div>
+        <div class="perf-date">2022 &ndash; Present</div>
+      </div>
+      <div class="perf-role">Senior Business Analyst</div>
+      <div class="perf-desc">Primary liaison between business units and Tableau development teams. Built dashboards and automated reporting workflows for lending, operations, and member services. Eliminated manual data pulls and reduced turnaround time for recurring deliverables.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Tableau</span>
+        <span class="cap-tool">CView</span>
+        <span class="cap-tool">Data Visualization</span>
+        <span class="cap-tool">Stakeholder Mgmt</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Carnival Cruise Line</div>
+        <div class="perf-date">2017 &ndash; 2020</div>
+      </div>
+      <div class="perf-role">Senior Financial Analyst &mdash; Casino Operations</div>
+      <div class="perf-desc">P&amp;L management, budget variance analysis, and financial reporting across a multi-vessel fleet. Managed fixed asset tracking, depreciation schedules, and cross-functional reconciliation between shipboard and corporate finance teams.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Financial Modeling</span>
+        <span class="cap-tool">P&amp;L Analysis</span>
+        <span class="cap-tool">Asset Mgmt</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Office Depot</div>
+        <div class="perf-date">2015 &ndash; 2017</div>
+      </div>
+      <div class="perf-role">Senior Financial Analyst</div>
+      <div class="perf-desc">Financial modeling and competitive pricing strategy supporting revenue growth across product categories. Developed automated reporting solutions in Excel to streamline financial deliverables and support leadership decisions. Promoted from Pricing Analyst within first year.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">Financial Modeling</span>
+        <span class="cap-tool">Pricing Strategy</span>
+        <span class="cap-tool">Excel Automation</span>
+      </div>
+    </div>
+    <div class="perf-card">
+      <div class="perf-header">
+        <div class="perf-company">Maison 103 LLC &mdash; Internal Product</div>
+        <div class="perf-date">2024 &ndash; Present</div>
+      </div>
+      <div class="perf-role">Full-Stack Production Software</div>
+      <div class="perf-desc">Designed, built, and deployed a production application with 54+ engines spanning 10 domains. End-to-end ownership: React Native frontend, Python/FastAPI backend, PostgreSQL on AWS RDS, Cognito auth, App Runner infrastructure, and Claude AI integration.</div>
+      <div class="cap-tools">
+        <span class="cap-tool">React Native</span>
+        <span class="cap-tool">Python</span>
+        <span class="cap-tool">AWS</span>
+        <span class="cap-tool">PostgreSQL</span>
+        <span class="cap-tool">AI / LLMs</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Teaming + Contact ==================== -->
 <div id="page3" class="final-view">
   <div style="padding: 32px 48px 24px;" class="reveal">
     <div class="section-header">
@@ -1138,16 +1272,6 @@
           <span class="teaming-tag">Task Orders</span>
           <span class="teaming-tag">Analytics Augmentation</span>
         </div>
-      </div>
-      <div class="teaming-group">
-        <h4>Relevant Past Performance</h4>
-        <ul>
-          <li><strong>Vohra Wound Physicians</strong> &mdash; Senior Finance Lead. Healthcare financial analytics across 30+ states. SQL/EMR reporting, AI-automated workflows, executive dashboards. (2020&ndash;Present)</li>
-          <li><strong>Affinity Federal Credit Union</strong> &mdash; Senior Business Analyst. Tableau dashboards, reporting automation, stakeholder-to-developer liaison for financial services. (2022&ndash;Present)</li>
-          <li><strong>Carnival Cruise Line</strong> &mdash; Senior Financial Analyst. P&amp;L management, budget variance analysis, and financial reporting for multi-vessel casino operations. (2017&ndash;2020)</li>
-          <li><strong>Office Depot</strong> &mdash; Senior Financial Analyst. Financial modeling, pricing strategy, and automated reporting solutions supporting revenue optimization. (2015&ndash;2017)</li>
-          <li><strong>Maison 103 LLC (Internal)</strong> &mdash; Full-stack production software (React, Python, AWS) with 54+ engines. End-to-end development, cloud infrastructure, and AI integration.</li>
-        </ul>
       </div>
     </div>
   </div>
