@@ -143,58 +143,51 @@
   .hero-division {
     opacity: 0;
     animation: fadeUp 0.8s ease 0.2s forwards;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .hero-division-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(72px, 12vw, 140px);
-    font-weight: 700;
-    letter-spacing: -2px;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 600;
+    letter-spacing: 2px;
     line-height: 1;
-    background: linear-gradient(135deg, #10B981 0%, #A7F3D0 40%, #FFFFFF 60%, #A7F3D0 80%, #10B981 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeUp 0.8s ease 0.2s forwards, gradientShift 6s ease infinite;
+    color: #10B981;
   }
 
   .hero-division-sub {
     font-family: 'Space Mono', monospace;
-    font-size: clamp(12px, 1.5vw, 16px);
-    letter-spacing: 6px;
+    font-size: clamp(10px, 1.2vw, 13px);
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: #10B981;
-    margin-top: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
+    color: rgba(16,185,129,0.6);
+    border-left: 1px solid rgba(16,185,129,0.3);
+    padding-left: 16px;
   }
 
-  .hero-division-line {
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, #10B981, transparent);
-    margin-top: 16px;
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 110px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 24px;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.5s forwards;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+    background: linear-gradient(135deg, #A7F3D0 0%, #FFFFFF 50%, #A7F3D0 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeUp 0.8s ease 0.4s forwards, gradientShift 6s ease infinite;
   }
 
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 300;
-    color: #A7F3D0;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
   }
 
   .hero-desc {
@@ -894,9 +887,8 @@
   <div class="hero-division">
     <div class="hero-division-name">FC-103</div>
     <div class="hero-division-sub">Federal Contracting Division</div>
-    <div class="hero-division-line"></div>
   </div>
-  <h1 class="hero-title">Analytics. Strategy. Results.</h1>
+  <h1 class="hero-title">Analytics.<br>Strategy.<br>Results.</h1>
   <p class="hero-desc">FC 103 delivers data analytics, management consulting, and program support services to federal and state agencies &mdash; turning complex operational data into mission-critical outcomes.</p>
   <div class="hero-badges">
     <div class="badge">SAM Registered</div>
