@@ -301,6 +301,14 @@
     justify-content: center;
   }
 
+  .page-boundary.sticky-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 800;
+    background: linear-gradient(to top, rgba(10,10,10,0.95) 60%, transparent);
+    padding: 32px 0 24px;
+  }
+
   .hero-scroll {
     position: absolute;
     bottom: 32px;
@@ -325,6 +333,7 @@
   .page {
     display: flex;
     flex-direction: column;
+    scroll-margin-top: 70px;
   }
 
   /* ===== ID STRIP ===== */
@@ -546,6 +555,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    scroll-margin-top: 70px;
   }
 
   .final-top {
@@ -1023,7 +1033,7 @@
 
 
   <!-- More to Page 3 -->
-  <div class="page-boundary">
+  <div class="page-boundary sticky-bottom">
     <div class="scroll-btn" onclick="document.getElementById('page3').scrollIntoView({behavior:'smooth'})">
       <span class="scroll-btn-text">More</span>
       <div class="scroll-btn-arrow down"></div>
