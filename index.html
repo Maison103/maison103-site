@@ -121,9 +121,9 @@
   .orbit-node.dragging { cursor: grabbing; }
 
   .orbit-dot {
-    width: 14px; height: 14px; border-radius: 50%;
+    width: 16px; height: 16px; border-radius: 50%;
     background: var(--color);
-    box-shadow: 0 0 16px var(--color), 0 0 40px var(--color);
+    box-shadow: 0 0 20px var(--color), 0 0 50px var(--color);
     transition: all 0.3s;
   }
   .orbit-node:hover .orbit-dot {
@@ -134,12 +134,12 @@
   .orbit-code {
     font-family: 'Space Mono', monospace;
     font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(201,169,110,0.5);
+    color: rgba(201,169,110,0.7);
     white-space: nowrap;
   }
   .orbit-name {
     font-family: 'Outfit', sans-serif;
-    font-size: 13px; font-weight: 400; color: var(--silver);
+    font-size: 13px; font-weight: 400; color: var(--cream);
     white-space: nowrap; transition: color 0.3s;
   }
   .orbit-node:hover .orbit-name { color: var(--white); }
@@ -305,13 +305,16 @@
   <!-- Interactive orbit — built by JS -->
   <div class="orbit-container" id="orbitContainer">
     <svg class="orbit-svg" id="orbitSvg" width="0" height="0">
-      <circle cx="0" cy="0" r="0" fill="none" stroke="rgba(201,169,110,0.12)" stroke-width="1" stroke-dasharray="6 4" id="orbitPath" filter="url(#orbitGlow)"/>
       <defs>
         <filter id="orbitGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feGaussianBlur stdDeviation="3" result="blur"/>
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
+      <!-- Outer glow ring -->
+      <circle cx="0" cy="0" r="0" fill="none" stroke="rgba(201,169,110,0.06)" stroke-width="12" id="orbitGlowRing"/>
+      <!-- Main orbit ring -->
+      <circle cx="0" cy="0" r="0" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1.5" id="orbitPath" filter="url(#orbitGlow)"/>
     </svg>
   </div>
 
@@ -400,6 +403,7 @@
   const container = document.getElementById('orbitContainer');
   const svg = document.getElementById('orbitSvg');
   const orbitPath = document.getElementById('orbitPath');
+  const orbitGlowRing = document.getElementById('orbitGlowRing');
 
   let angle = 0;
   let angularVelocity = 0;
@@ -449,6 +453,9 @@
     orbitPath.setAttribute('cx', svgSize / 2);
     orbitPath.setAttribute('cy', svgSize / 2);
     orbitPath.setAttribute('r', r);
+    orbitGlowRing.setAttribute('cx', svgSize / 2);
+    orbitGlowRing.setAttribute('cy', svgSize / 2);
+    orbitGlowRing.setAttribute('r', r);
 
     const step = (2 * Math.PI) / divisions.length;
     nodes.forEach((node, i) => {
