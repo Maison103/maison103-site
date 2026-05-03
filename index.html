@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://maison103.co/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://maison103.co/assets/og-image.png">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #C9A96E;
@@ -20,8 +20,8 @@
     --gold-bright: #D4B87A;
     --gold-glow: rgba(201,169,110,0.12);
     --obsidian: #0A0A0A;
-    --charcoal: #1A1A1A;
-    --smoke: #2A2A2A;
+    --charcoal: #111111;
+    --smoke: #1A1A1A;
     --silver: #8A8A8A;
     --cream: #F5F0E8;
     --white: #FAFAFA;
@@ -32,8 +32,8 @@
 
   body {
     font-family: 'Outfit', sans-serif;
-    background: #0A0A0A !important;
-    color: #FAFAFA;
+    background: var(--obsidian);
+    color: var(--white);
     overflow-x: hidden;
   }
 
@@ -46,43 +46,41 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,10,0.9);
+    background: rgba(10,10,10,0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(201,169,110,0.1);
+    border-bottom: 1px solid rgba(201,169,110,0.08);
     transition: padding 0.3s ease;
   }
 
   nav.scrolled { padding: 16px 48px; }
 
   .nav-logo img {
-    height: 56px;
+    height: 44px;
     width: auto;
     opacity: 0.85;
     transition: opacity 0.3s ease;
   }
 
-  .nav-logo:hover img {
-    opacity: 1;
-  }
+  .nav-logo:hover img { opacity: 1; }
 
   .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 36px;
     list-style: none;
   }
 
   .nav-links a {
-    color: #8A8A8A;
+    color: var(--silver);
     text-decoration: none;
     font-size: 12px;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     transition: color 0.3s ease;
   }
 
-  .nav-links a:hover { color: #C9A96E; }
+  .nav-links a:hover { color: var(--gold); }
 
   /* ===== MOBILE MENU ===== */
   .menu-toggle {
@@ -99,7 +97,7 @@
   .menu-toggle span {
     width: 24px;
     height: 1.5px;
-    background: #C9A96E;
+    background: var(--gold);
     transition: all 0.3s ease;
     display: block;
   }
@@ -130,12 +128,12 @@
     font-weight: 300;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #8A8A8A;
+    color: var(--silver);
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .mobile-menu a:hover { color: #C9A96E; }
+  .mobile-menu a:hover { color: var(--gold); }
 
   /* ===== HERO ===== */
   .hero {
@@ -146,7 +144,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 120px 48px 80px;
+    padding: 120px 48px 100px;
     overflow: hidden;
   }
 
@@ -154,83 +152,214 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.08) 0%, transparent 70%);
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(201,169,110,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.03) 0%, transparent 50%);
     pointer-events: none;
   }
 
   .hero-logo {
-    margin-bottom: 40px;
-    animation: fadeUp 1.2s ease forwards;
+    margin-bottom: 48px;
+    animation: fadeUp 1s ease forwards;
     opacity: 0;
   }
 
   .hero-logo img {
-    height: clamp(200px, 30vw, 360px);
+    height: clamp(100px, 15vw, 160px);
     width: auto;
-    opacity: 0.9;
+    opacity: 0.7;
   }
 
-  .hero-sub {
-    font-size: clamp(16px, 2vw, 20px);
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 300;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    animation: fadeUp 1s ease 0.2s forwards;
+    opacity: 0;
+  }
+
+  .hero-dynasty {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 32px);
     font-weight: 400;
-    letter-spacing: 4px;
+    font-style: italic;
+    letter-spacing: 8px;
     text-transform: uppercase;
-    color: #8A8A8A;
-    max-width: 700px;
-    line-height: 2;
-    animation: fadeUp 1.2s ease 0.6s forwards;
+    color: var(--gold);
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease 0.4s forwards;
     opacity: 0;
   }
 
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    animation: fadeUp 1.2s ease 0.9s forwards;
+  .hero-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease 0.5s forwards;
     opacity: 0;
-    cursor: pointer;
   }
 
-  .hero-scroll-text {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(201,169,110,0.5);
-  }
-
-  .hero-scroll-arrow {
-    width: 20px;
-    height: 20px;
-    border-right: 1.5px solid #C9A96E;
-    border-bottom: 1.5px solid #C9A96E;
-    transform: rotate(45deg);
-    animation: bounce 2s ease infinite;
+  .hero-statement {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300;
+    color: var(--silver);
+    max-width: 560px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    animation: fadeUp 1s ease 0.6s forwards;
+    opacity: 0;
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
-    40% { transform: rotate(45deg) translateY(8px); }
-    60% { transform: rotate(45deg) translateY(4px); }
+  /* ===== STORY ===== */
+  .story {
+    padding: 120px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .story-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  .story-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--white);
+    max-width: 800px;
+    margin-bottom: 48px;
+  }
+
+  .story-quote em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .story-body {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--silver);
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+
+  .story-founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .story-founder-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .story-founder-role {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--silver);
+  }
+
+  /* ===== CREDIBILITY STRIP ===== */
+  .cred-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 48px;
+    border-top: 1px solid rgba(201,169,110,0.08);
+    border-bottom: 1px solid rgba(201,169,110,0.08);
+    flex-wrap: wrap;
+  }
+
+  .cred-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .cred-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .cred-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  .cred-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.3;
   }
 
   /* ===== DIVISIONS ===== */
   .divisions {
-    padding: 100px 48px 80px;
+    padding: 120px 48px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
   .divisions-header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 80px;
   }
 
   .divisions-header h2 {
@@ -239,283 +368,277 @@
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #C9A96E;
-    margin-bottom: 12px;
+    color: var(--gold);
+    margin-bottom: 16px;
   }
 
   .divisions-header p {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 500;
-    color: #FFFFFF;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    background: #0A0A0A;
-  }
-
-  .grid > a:last-child {
-    grid-column: span 1;
-  }
-
-  .grid > a {
-    display: flex;
-  }
-
-  /* ===== DIVISION CARDS ===== */
-  .card {
-    position: relative;
-    padding: 40px 36px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: flex-end;
-    cursor: pointer;
-    overflow: hidden;
-    background: #0A0A0A;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: rgba(201,169,110,0.15);
-    transition: background 0.4s ease;
-  }
-
-  .card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-
-  .card:hover::after {
-    opacity: 1;
-  }
-
-  .card:hover {
-    background: #0F0F0F;
-  }
-
-  .card-prefix {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(201,169,110,0.5);
-    margin-bottom: 10px;
-    transition: color 0.4s ease;
-  }
-
-  .card-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: #E8D5A8;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-    transition: color 0.4s ease;
-  }
-
-  .card-desc {
-    font-size: 13px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
     font-weight: 400;
-    line-height: 1.7;
-    color: #8A8A8A;
-    max-width: 320px;
-    min-height: 66px;
-    transition: color 0.4s ease;
-  }
-
-  .card-arrow {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
+    color: var(--white);
     letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #C9A96E 0%, #E8D5A8 25%, #FFFFFF 50%, #E8D5A8 75%, #C9A96E 100%);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s ease-in-out infinite;
-    transition: transform 0.4s ease;
   }
 
-  .card:hover .card-arrow {
-    transform: translateX(4px);
-    animation: shimmer 1.5s ease-in-out infinite;
+  /* Featured division (MMI 103) */
+  .div-featured {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--charcoal);
+    border: 1px solid rgba(201,169,110,0.08);
+    padding: 56px 48px;
+    margin-bottom: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
   }
 
-  @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+  .div-featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: #3B82F6;
+    transition: width 0.4s ease;
   }
 
-  .card:hover .card-prefix { color: rgba(201,169,110,0.7); }
-  .card:hover .card-desc { color: #B0B0B0; }
+  .div-featured:hover::before { width: 5px; }
 
-  /* Hover accents — subtle brand color glow */
-  .card-sl::after { background: radial-gradient(ellipse at 30% 80%, rgba(139,92,246,0.06) 0%, transparent 70%); }
-  .card-mmi::after { background: radial-gradient(ellipse at 70% 30%, rgba(59,130,246,0.06) 0%, transparent 70%); }
-  .card-m::after { background: radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%); }
-  .card-fc::after { background: radial-gradient(ellipse at 60% 40%, rgba(16,185,129,0.06) 0%, transparent 70%); }
-  .card-film::after { background: radial-gradient(ellipse at 40% 60%, rgba(239,68,68,0.06) 0%, transparent 70%); }
-  .card-hf::after { background: radial-gradient(ellipse at 50% 50%, rgba(245,158,11,0.06) 0%, transparent 70%); }
-  .card-cc::after { background: radial-gradient(ellipse at 60% 30%, rgba(6,182,212,0.06) 0%, transparent 70%); }
-
-  /* Hover top-line accent color */
-  .card-sl:hover::before { background: rgba(139,92,246,0.4); }
-  .card-mmi:hover::before { background: rgba(59,130,246,0.4); }
-  .card-m:hover::before { background: rgba(201,169,110,0.4); }
-  .card-fc:hover::before { background: rgba(16,185,129,0.4); }
-  .card-film:hover::before { background: rgba(239,68,68,0.4); }
-  .card-hf:hover::before { background: rgba(245,158,11,0.4); }
-  .card-cc:hover::before { background: rgba(6,182,212,0.4); }
-
-  /* ===== ABOUT ===== */
-  .about {
-    background: #1A1A1A !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 48px;
-    gap: 20px;
+  .div-featured:hover {
+    background: #141414;
+    border-color: rgba(201,169,110,0.15);
   }
 
-  .about-label {
+  .div-featured-prefix {
     font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #C9A96E;
-    font-weight: 400;
-  }
-
-  .about-statement {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(24px, 3.5vw, 44px);
-    font-weight: 500;
-    line-height: 1.6;
-    max-width: 800px;
-    color: #FFFFFF;
-  }
-
-  .about-statement em {
-    color: #C9A96E;
-    font-style: italic;
-  }
-
-  .about-founder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-top: 24px;
-  }
-
-  .about-founder-name {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #FAFAFA;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 12px;
   }
 
-  .about-founder-title {
+  .div-featured-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .div-featured-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--silver);
+    max-width: 700px;
+  }
+
+  .div-featured-arrow {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    font-family: 'Outfit', sans-serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 2px;
-    color: #8A8A8A;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateX(-8px);
+  }
+
+  .div-featured:hover .div-featured-arrow {
+    opacity: 0.7;
+    transform: translateX(0);
+  }
+
+  /* Division grid — 2 columns */
+  .div-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .div-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--charcoal);
+    border: 1px solid rgba(201,169,110,0.06);
+    padding: 44px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .div-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    transition: width 0.4s ease;
+  }
+
+  .div-card:hover::before { width: 5px; }
+
+  .div-card:hover {
+    background: #141414;
+    border-color: rgba(201,169,110,0.12);
+  }
+
+  /* Accent colors per division */
+  .div-fuel::before { background: #F59E0B; }
+  .div-m::before { background: var(--gold); }
+  .div-film::before { background: #EF4444; }
+  .div-sl::before { background: #8B5CF6; }
+  .div-fc::before { background: #10B981; }
+  .div-cc::before { background: #06B6D4; }
+
+  .div-card-prefix {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 10px;
+  }
+
+  .div-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .div-card-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--silver);
+  }
+
+  .div-card-arrow {
+    position: absolute;
+    top: 40px;
+    right: 36px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateX(-8px);
+  }
+
+  .div-card:hover .div-card-arrow {
+    opacity: 0.6;
+    transform: translateX(0);
   }
 
   /* ===== CONTACT ===== */
   .contact {
+    padding: 120px 48px 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    padding: 32px 48px 40px;
-    gap: 20px;
-    border-top: 1px solid rgba(201,169,110,0.1);
+    position: relative;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .contact-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
   }
 
   .contact-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 36px;
-    font-weight: 500;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: #C9A96E;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 48px;
   }
 
   .contact-info {
     display: flex;
-    gap: 64px;
+    gap: 72px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 48px;
   }
 
   .contact-item {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .contact-item-label {
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #8A8A8A;
+    color: var(--silver);
   }
 
   .contact-item-value {
-    font-size: 15px;
-    color: #F5F0E8;
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    color: var(--cream);
     font-weight: 300;
   }
 
   .contact-item-value a {
-    color: #F5F0E8;
+    color: var(--cream);
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .contact-item-value a:hover { color: #C9A96E; }
+  .contact-item-value a:hover { color: var(--gold); }
 
-  .footer-line {
-    width: 60px;
-    height: 1px;
-    background: #C9A96E;
-    margin-top: 40px;
+  /* Footer */
+  .footer {
+    padding: 40px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(201,169,110,0.06);
   }
 
   .footer-copy {
     font-size: 11px;
     letter-spacing: 2px;
-    color: #8A8A8A;
-    font-weight: 400;
-    margin-top: 16px;
+    color: rgba(138,138,138,0.6);
+    font-weight: 300;
   }
 
   /* ===== REVEAL ===== */
@@ -531,43 +654,62 @@
   }
 
   /* ===== RESPONSIVE ===== */
-  @media (max-width: 1024px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-    .grid > a:last-child { grid-column: span 1; }
-  }
-
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     nav.scrolled { padding: 12px 24px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
-    .hero { padding: 100px 24px 60px; }
-    .divisions { padding: 60px 16px; }
-    .grid { grid-template-columns: 1fr; }
-    .card { padding: 32px 28px; }
-    .about { padding: 80px 24px; }
-    .contact { padding: 80px 24px; }
+
+    .hero { padding: 100px 24px 80px; }
+    .hero-name { letter-spacing: 6px; }
+    .hero-dynasty { letter-spacing: 4px; }
+
+    .story { padding: 80px 24px; }
+    .story::before { height: 50px; }
+
+    .cred-strip {
+      gap: 24px;
+      padding: 36px 24px;
+    }
+    .cred-dot { display: none; }
+    .cred-item { min-width: 100px; }
+
+    .divisions { padding: 80px 16px 60px; }
+    .div-grid { grid-template-columns: 1fr; }
+    .div-featured { padding: 40px 28px; }
+    .div-card { padding: 36px 28px; }
+    .div-featured-arrow, .div-card-arrow { display: none; }
+
+    .contact { padding: 80px 24px 60px; }
     .contact-info { gap: 32px; }
+
+    .footer { padding: 32px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-logo img { height: 80px; }
+    .cred-strip { gap: 20px; }
+    .cred-number { font-size: 28px; }
   }
 </style>
 </head>
-<body style="background-color: #0A0A0A; color: #FAFAFA;">
+<body>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#story" onclick="closeMobile()">Story</a>
   <a href="#divisions" onclick="closeMobile()">Divisions</a>
-  <a href="#about" onclick="closeMobile()">About</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
 </div>
 
 <!-- NAV -->
-<nav id="mainNav" style="background-color: #0A0A0A;">
+<nav id="mainNav">
   <div class="nav-logo">
     <img src="/assets/logo-maison103-light.png" alt="Maison 103">
   </div>
   <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
     <li><a href="#divisions">Divisions</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="menu-toggle" id="menuToggle" onclick="toggleMobile()" aria-label="Menu">
@@ -578,14 +720,51 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="background-color: #0A0A0A;">
+<section class="hero">
   <div class="hero-logo"><img src="/assets/logo-maison103-light.png" alt="Maison 103"></div>
-  <p class="hero-sub">Seven divisions. One vision. Built from the ground up &mdash; analytics, artistry, and everything in between.</p>
-  <div class="hero-scroll" onclick="document.getElementById('divisions').scrollIntoView({behavior:'smooth'})">
-    <span class="hero-scroll-text">Scroll</span>
-    <div class="hero-scroll-arrow"></div>
+  <h1 class="hero-name">Maison 103</h1>
+  <p class="hero-dynasty">The Dynasty</p>
+  <div class="hero-line"></div>
+  <p class="hero-statement">Seven divisions. One founder. Built from the ground up &mdash; no investors, no board, no ceiling.</p>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-label reveal">The Foundation</div>
+  <p class="story-quote reveal">
+    I built this because I don&rsquo;t wait for <em>permission</em>.
+  </p>
+  <p class="story-body reveal">
+    Maison 103 is seven divisions running in parallel &mdash; technology, skincare, film, music, federal contracting, commercial consulting, and wellness content. MS Finance. Six years in healthcare analytics. But I&rsquo;ve never been one thing. Every division launched from scratch. Every system, every formula, every frame &mdash; built by hand.
+  </p>
+  <div class="story-founder reveal">
+    <span class="story-founder-name">Marlon Carter</span>
+    <span class="story-founder-role">Founder &amp; Managing Director</span>
   </div>
 </section>
+
+<!-- CREDIBILITY -->
+<div class="cred-strip reveal">
+  <div class="cred-item">
+    <span class="cred-number">7</span>
+    <span class="cred-label">Divisions</span>
+  </div>
+  <span class="cred-dot"></span>
+  <div class="cred-item">
+    <span class="cred-number">54+</span>
+    <span class="cred-label">Engines Built</span>
+  </div>
+  <span class="cred-dot"></span>
+  <div class="cred-item">
+    <span class="cred-number">MBE</span>
+    <span class="cred-label">Florida Certified</span>
+  </div>
+  <span class="cred-dot"></span>
+  <div class="cred-item">
+    <span class="cred-number">2024</span>
+    <span class="cred-label">Established</span>
+  </div>
+</div>
 
 <!-- DIVISIONS -->
 <section class="divisions" id="divisions">
@@ -594,92 +773,64 @@
     <p>Seven Divisions</p>
   </div>
 
-  <div class="grid reveal">
-    <a href="/mmi103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-mmi">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">MMI 103</div>
-        <div class="card-title">Me, Myself, and I</div>
-        <div class="card-desc">All-in-one life management app. 54 engines across 10 domains &mdash; training, nutrition, grooming, dog care, home, sleep, and more.</div>
-      </div>
+  <!-- Featured: MMI 103 -->
+  <a href="/mmi103.html" class="div-featured reveal">
+    <span class="div-featured-arrow">Explore &rarr;</span>
+    <div class="div-featured-prefix">MMI 103 &mdash; Flagship</div>
+    <div class="div-featured-title">Me, Myself, and I</div>
+    <div class="div-featured-desc">All-in-one life management app. 54 engines across 10 domains &mdash; training, nutrition, grooming, dog care, home, sleep, and more. Production software with real users, real data, real results.</div>
+  </a>
+
+  <!-- Grid: remaining 6 divisions -->
+  <div class="div-grid">
+    <a href="/fuel103.html" class="div-card div-fuel reveal">
+      <span class="div-card-arrow">Explore &rarr;</span>
+      <div class="div-card-prefix">Fuel 103</div>
+      <div class="div-card-title">Health &amp; Wellness Content</div>
+      <div class="div-card-desc">Fitness, nutrition, and wellness content across all platforms. The content channel powered by MMI 103 data.</div>
     </a>
 
-    <a href="/fuel103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-hf">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">Fuel 103</div>
-        <div class="card-title">Fuel 103</div>
-        <div class="card-desc">Health, fitness, and wellness content across all platforms. The content channel powered by MMI 103.</div>
-      </div>
+    <a href="/m103.html" class="div-card div-m reveal">
+      <span class="div-card-arrow">Explore &rarr;</span>
+      <div class="div-card-prefix">M 103</div>
+      <div class="div-card-title">Maison Skincare</div>
+      <div class="div-card-desc">Luxury unisex skincare. Proprietary formulas developed through Dynamic Blending with full R&amp;D COA verification.</div>
     </a>
 
-    <a href="/m103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-m">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">M 103</div>
-        <div class="card-title">Maison Skincare</div>
-        <div class="card-desc">Luxury unisex skincare. Proprietary formulas developed through Dynamic Blending with full R&amp;D COA verification.</div>
-      </div>
+    <a href="/film103.html" class="div-card div-film reveal">
+      <span class="div-card-arrow">Explore &rarr;</span>
+      <div class="div-card-prefix">Film 103</div>
+      <div class="div-card-title">Film &amp; Production</div>
+      <div class="div-card-desc">Independent cinema. Original storytelling from concept to premiere. H.O.T. premieres May 2026.</div>
     </a>
 
-    <a href="/film103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-film">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">Film 103</div>
-        <div class="card-title">Film &amp; Production</div>
-        <div class="card-desc">Independent cinema. H.O.T. premieres May 1, 2026. Original storytelling from concept to premiere.</div>
-      </div>
+    <a href="/sl103.html" class="div-card div-sl reveal">
+      <span class="div-card-arrow">Explore &rarr;</span>
+      <div class="div-card-prefix">SL 103</div>
+      <div class="div-card-title">SoundLab 103</div>
+      <div class="div-card-desc">Luxury recording studio and artist development. Premium engineering, structured mentorship, and content production.</div>
     </a>
 
-    <a href="/sl103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-sl">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">SL 103</div>
-        <div class="card-title">SoundLab 103</div>
-        <div class="card-desc">Luxury recording studio and artist development facility. Premium engineering, structured mentorship, and content production.</div>
-      </div>
+    <a href="/fc103.html" class="div-card div-fc reveal">
+      <span class="div-card-arrow">Explore &rarr;</span>
+      <div class="div-card-prefix">FC 103</div>
+      <div class="div-card-title">Federal Contracting</div>
+      <div class="div-card-desc">Florida-certified MBE delivering analytics, management consulting, and program support to federal agencies.</div>
     </a>
 
-    <a href="/fc103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-fc">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">FC 103</div>
-        <div class="card-title">Federal Contracting</div>
-        <div class="card-desc">Small Disadvantaged Business delivering analytics, management consulting, and program support to federal agencies.</div>
-      </div>
+    <a href="/cc103.html" class="div-card div-cc reveal">
+      <span class="div-card-arrow">Explore &rarr;</span>
+      <div class="div-card-prefix">CC 103</div>
+      <div class="div-card-title">Commercial Consulting</div>
+      <div class="div-card-desc">Analytics, operational strategy, and management consulting for commercial and private-sector organizations.</div>
     </a>
-
-    <a href="/cc103.html" style="text-decoration:none;color:inherit;">
-      <div class="card card-cc">
-        <div class="card-arrow">Visit &rarr;</div>
-        <div class="card-prefix">CC 103</div>
-        <div class="card-title">Commercial Consulting</div>
-        <div class="card-desc">Analytics, management consulting, and operational strategy for commercial and private-sector organizations.</div>
-      </div>
-    </a>
-  </div>
-
-  <div class="hero-scroll" style="position:relative;bottom:auto;left:auto;transform:none;margin:48px auto 0;opacity:0;animation:fadeUp 1.2s ease 0.3s forwards;" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-    <span class="hero-scroll-text">More</span>
-    <div class="hero-scroll-arrow"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-label reveal">The Foundation</div>
-  <p class="about-statement reveal">
-    Maison 103 is not a company. It's a <em>dynasty</em>. Built by one person across seven disciplines &mdash; from federal boardrooms to recording studios, from skincare labs to film sets. Every division runs in <em>parallel</em>, waiting for no miracles.
-  </p>
-  <div class="about-founder reveal">
-    <div class="about-founder-name">Marlon Carter</div>
-    <div class="about-founder-title">Founder &amp; Managing Director</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <h2 class="contact-title reveal">Connect</h2>
+  <div class="contact-label reveal">Get in Touch</div>
+  <h2 class="contact-title reveal">Let&rsquo;s Connect</h2>
   <div class="contact-info reveal">
     <div class="contact-item">
       <div class="contact-item-label">Email</div>
@@ -694,9 +845,12 @@
       <div class="contact-item-value">Miramar, FL</div>
     </div>
   </div>
-  <div class="footer-line"></div>
-  <div class="footer-copy">Maison 103 LLC &copy; 2026 &mdash; All Rights Reserved</div>
 </section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-copy">Maison 103 LLC &copy; 2026 &mdash; All Rights Reserved</div>
+</div>
 
 <script>
   // Nav scroll effect
