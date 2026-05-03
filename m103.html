@@ -364,15 +364,10 @@
     overflow: hidden;
   }
 
-  .product-visual-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 300;
-    color: rgba(201,169,110,0.18);
-    letter-spacing: 2px;
-    text-align: center;
-    padding: 24px;
-    line-height: 1.3;
+  .product-visual svg {
+    width: 220px;
+    height: auto;
+    filter: drop-shadow(0 4px 24px rgba(201,169,110,0.08));
   }
 
   .product-text {
@@ -760,7 +755,31 @@
   <!-- Product 01 -->
   <div class="product reveal">
     <div class="product-visual">
-      <div class="product-visual-title">Anti-Aging<br>Night Serum</div>
+      <svg viewBox="0 0 200 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Dropper cap -->
+        <rect x="85" y="0" width="30" height="18" rx="3" fill="#2A2520"/>
+        <rect x="90" y="18" width="20" height="12" rx="1" fill="#1E1A16"/>
+        <!-- Neck -->
+        <rect x="82" y="30" width="36" height="20" rx="2" fill="#1A1510"/>
+        <rect x="82" y="30" width="36" height="20" rx="2" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
+        <!-- Bottle body -->
+        <path d="M78 50 Q78 50 72 70 L72 320 Q72 340 90 340 L110 340 Q128 340 128 320 L128 70 Q122 50 122 50 Z" fill="#1A1510"/>
+        <path d="M78 50 Q78 50 72 70 L72 320 Q72 340 90 340 L110 340 Q128 340 128 320 L128 70 Q122 50 122 50 Z" stroke="rgba(201,169,110,0.25)" stroke-width="0.8"/>
+        <!-- Highlight -->
+        <path d="M82 70 L82 310 Q82 330 92 330" stroke="rgba(201,169,110,0.06)" stroke-width="8" stroke-linecap="round"/>
+        <!-- Label area -->
+        <rect x="78" y="140" width="44" height="110" rx="2" fill="rgba(201,169,110,0.04)" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
+        <!-- Label text -->
+        <text x="100" y="165" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="600" letter-spacing="2" fill="rgba(201,169,110,0.7)">M 103</text>
+        <line x1="86" y1="172" x2="114" y2="172" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
+        <text x="100" y="188" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Anti-Aging</text>
+        <text x="100" y="202" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Night Serum</text>
+        <text x="100" y="220" text-anchor="middle" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5" fill="rgba(201,169,110,0.4)">30 ML</text>
+        <!-- Liquid fill hint -->
+        <rect x="76" y="230" width="48" height="100" rx="0" fill="rgba(201,169,110,0.03)"/>
+        <!-- Bottom reflection -->
+        <ellipse cx="100" cy="355" rx="32" ry="6" fill="rgba(201,169,110,0.04)"/>
+      </svg>
     </div>
     <div class="product-text">
       <div class="product-category">Serum &middot; First to Launch</div>
@@ -791,7 +810,29 @@
   <!-- Product 02 -->
   <div class="product reveal">
     <div class="product-visual">
-      <div class="product-visual-title">Peptide<br>Eye Cream</div>
+      <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Jar lid -->
+        <rect x="55" y="0" width="90" height="24" rx="4" fill="#2A2520"/>
+        <rect x="55" y="0" width="90" height="24" rx="4" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
+        <rect x="58" y="20" width="84" height="4" rx="1" fill="#1E1A16"/>
+        <!-- Jar body -->
+        <rect x="50" y="24" width="100" height="120" rx="8" fill="#1A1510"/>
+        <rect x="50" y="24" width="100" height="120" rx="8" stroke="rgba(201,169,110,0.25)" stroke-width="0.8"/>
+        <!-- Highlight -->
+        <path d="M58 34 L58 130 Q58 138 62 138" stroke="rgba(201,169,110,0.06)" stroke-width="6" stroke-linecap="round"/>
+        <!-- Label area -->
+        <rect x="58" y="48" width="84" height="76" rx="2" fill="rgba(201,169,110,0.04)" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
+        <!-- Label text -->
+        <text x="100" y="68" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="600" letter-spacing="2" fill="rgba(201,169,110,0.7)">M 103</text>
+        <line x1="72" y1="74" x2="128" y2="74" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
+        <text x="100" y="90" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="10" font-weight="400" fill="#F5F0E8">Peptide</text>
+        <text x="100" y="104" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="10" font-weight="400" fill="#F5F0E8">Eye Cream</text>
+        <text x="100" y="118" text-anchor="middle" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5" fill="rgba(201,169,110,0.4)">15 ML</text>
+        <!-- Bottom base -->
+        <rect x="52" y="140" width="96" height="6" rx="3" fill="#1E1A16"/>
+        <!-- Bottom reflection -->
+        <ellipse cx="100" cy="160" rx="46" ry="6" fill="rgba(201,169,110,0.04)"/>
+      </svg>
     </div>
     <div class="product-text">
       <div class="product-category">Eyes</div>
@@ -822,7 +863,32 @@
   <!-- Product 03 -->
   <div class="product reveal">
     <div class="product-visual">
-      <div class="product-visual-title">Repair Night<br>Moisturizer</div>
+      <svg viewBox="0 0 200 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Pump top -->
+        <rect x="93" y="0" width="14" height="20" rx="2" fill="#2A2520"/>
+        <rect x="88" y="20" width="24" height="8" rx="2" fill="#1E1A16"/>
+        <!-- Pump neck -->
+        <rect x="92" y="28" width="16" height="16" rx="1" fill="#1A1510" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
+        <!-- Pump collar -->
+        <rect x="80" y="44" width="40" height="10" rx="3" fill="#2A2520" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
+        <!-- Bottle body -->
+        <path d="M72 54 L68 80 L68 280 Q68 300 86 300 L114 300 Q132 300 132 280 L132 80 L128 54 Z" fill="#1A1510"/>
+        <path d="M72 54 L68 80 L68 280 Q68 300 86 300 L114 300 Q132 300 132 280 L132 80 L128 54 Z" stroke="rgba(201,169,110,0.25)" stroke-width="0.8"/>
+        <!-- Highlight -->
+        <path d="M76 80 L76 270 Q76 290 88 290" stroke="rgba(201,169,110,0.06)" stroke-width="8" stroke-linecap="round"/>
+        <!-- Label area -->
+        <rect x="74" y="110" width="52" height="100" rx="2" fill="rgba(201,169,110,0.04)" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
+        <!-- Label text -->
+        <text x="100" y="132" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="600" letter-spacing="2" fill="rgba(201,169,110,0.7)">M 103</text>
+        <line x1="82" y1="138" x2="118" y2="138" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
+        <text x="100" y="155" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Repair Night</text>
+        <text x="100" y="169" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Moisturizer</text>
+        <text x="100" y="188" text-anchor="middle" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5" fill="rgba(201,169,110,0.4)">50 ML</text>
+        <!-- Cream fill hint -->
+        <rect x="72" y="200" width="56" height="90" rx="0" fill="rgba(201,169,110,0.03)"/>
+        <!-- Bottom reflection -->
+        <ellipse cx="100" cy="315" rx="36" ry="6" fill="rgba(201,169,110,0.04)"/>
+      </svg>
     </div>
     <div class="product-text">
       <div class="product-category">Night</div>
