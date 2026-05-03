@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing & Community — MMI 103 | Maison 103</title>
+<meta name="description" content="MMI 103 pricing, gamification system, XP levels, and community features. One price for every domain of your life.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #3B82F6;
+    --blue-light: #BFDBFE;
+    --blue-bright: #60A5FA;
+    --obsidian: #0A0A0A;
+    --charcoal: #111111;
+    --smoke: #1A1A1A;
+    --silver: #8A8A8A;
+    --silver-light: #B0B0B0;
+    --cream: #F5F0E8;
+    --white: #FAFAFA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--obsidian); }
+  body { font-family: 'Outfit', sans-serif; background: var(--obsidian); color: var(--white); overflow-x: hidden; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59,130,246,0.08);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 16px 48px; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); text-decoration: none; }
+  .nav-logo span { font-weight: 300; color: var(--silver-light); margin-left: 6px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--silver-light); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--blue); }
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; z-index: 1001; background: none; border: none; }
+  .menu-toggle span { width: 24px; height: 1.5px; background: var(--blue); transition: all 0.3s; display: block; }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.98); backdrop-filter: blur(30px); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 20px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; color: var(--silver-light); text-decoration: none; transition: color 0.3s; }
+  .mobile-menu a:hover { color: var(--blue); }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header { padding: 140px 48px 80px; text-align: center; }
+  .page-header-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+  .page-header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 300; color: var(--white); }
+
+  /* ===== SECTIONS ===== */
+  .section { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-full { padding: 120px 48px; background: var(--smoke); }
+  .section-full > .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: 56px; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 400; color: var(--white); margin-bottom: 12px; }
+
+  /* ===== GAMIFICATION ===== */
+  .xp-block { max-width: 700px; }
+  .xp-block p { font-size: 16px; font-weight: 300; color: var(--silver-light); line-height: 2; margin-bottom: 24px; }
+  .xp-levels { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; margin-bottom: 48px; }
+  .xp-level {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 24px 32px; background: var(--charcoal);
+    border-top: 2px solid rgba(59,130,246,0.25);
+    min-width: 140px; transition: border-color 0.3s;
+  }
+  .xp-level:hover { border-top-color: var(--blue); }
+  .xp-level-num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--blue-bright); }
+  .xp-level-name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--silver-light); }
+
+  .social-row { display: flex; gap: 2px; flex-wrap: wrap; }
+  .social-item {
+    flex: 1; min-width: 200px;
+    background: var(--charcoal); padding: 32px;
+    transition: background 0.3s;
+  }
+  .social-item:hover { background: rgba(59,130,246,0.04); }
+  .social-name { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+  .social-desc { font-size: 14px; font-weight: 300; color: var(--silver-light); line-height: 1.7; }
+
+  /* ===== PRICING ===== */
+  .pricing-center { text-align: center; max-width: 600px; margin: 0 auto; }
+  .price-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(60px, 10vw, 100px); font-weight: 300;
+    color: var(--blue-light); line-height: 1; margin-bottom: 8px;
+  }
+  .price-display sup { font-size: 0.4em; vertical-align: super; color: var(--blue); }
+  .price-period { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--silver-light); margin-bottom: 40px; }
+  .price-includes { font-size: 16px; font-weight: 300; color: var(--silver-light); line-height: 2; margin-bottom: 32px; }
+  .price-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .price-tag {
+    padding: 6px 16px; border: 1px solid rgba(59,130,246,0.15);
+    font-size: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue-light); background: rgba(59,130,246,0.03);
+  }
+  .price-note { margin-top: 32px; font-size: 14px; color: var(--silver); font-style: italic; }
+
+  /* ===== STATUS ===== */
+  .status-bar {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 600px; padding: 28px 32px;
+    background: var(--charcoal); border-left: 3px solid var(--blue);
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue); flex-shrink: 0;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .status-text { font-size: 16px; font-weight: 300; color: var(--cream); }
+  .status-text span { color: var(--blue-bright); }
+
+  /* ===== CONTACT ===== */
+  .contact-footer { text-align: center; padding: 100px 48px; border-top: 1px solid rgba(59,130,246,0.08); }
+  .contact-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; letter-spacing: 4px; color: var(--blue); margin-bottom: 12px; }
+  .contact-desc { font-size: 16px; font-weight: 300; color: var(--silver-light); margin-bottom: 40px; }
+  .contact-grid { display: flex; gap: 56px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .contact-item { display: flex; flex-direction: column; gap: 6px; }
+  .contact-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
+  .contact-value { font-size: 16px; font-weight: 300; color: var(--cream); }
+  .contact-value a { color: var(--cream); text-decoration: none; transition: color 0.3s; }
+  .contact-value a:hover { color: var(--blue); }
+  .footer-line { width: 50px; height: 1px; background: var(--blue); margin: 40px auto 16px; opacity: 0.4; }
+  .footer-copy { font-size: 11px; letter-spacing: 2px; color: rgba(138,138,138,0.5); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .page-header { padding: 100px 24px 60px; }
+    .section { padding: 80px 24px; }
+    .section-full { padding: 80px 24px; }
+    .xp-levels { flex-direction: column; }
+    .social-row { flex-direction: column; }
+    .contact-footer { padding: 60px 24px; }
+    .contact-grid { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#gamification" onclick="closeMobile()">Gamification</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#status" onclick="closeMobile()">Status</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="/mmi103.html" onclick="closeMobile()">MMI 103</a>
+  <a href="/" onclick="closeMobile()">Maison 103</a>
+</div>
+
+<nav id="mainNav">
+  <a href="/mmi103.html" class="nav-logo">MMI<span>103</span></a>
+  <ul class="nav-links">
+    <li><a href="#gamification">Gamification</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#status">Status</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="/mmi103.html">&larr; MMI 103</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-label">MMI 103</div>
+  <div class="page-header-title">Pricing &amp; Community</div>
+</div>
+
+<!-- ===== GAMIFICATION ===== -->
+<div class="section" id="gamification">
+  <div class="section-header reveal">
+    <div class="section-label">Gamification &amp; Community</div>
+    <div class="section-title">Earn Your Level</div>
+  </div>
+  <div class="xp-block reveal">
+    <p>Every action earns XP &mdash; completing workouts, logging meals, hitting macro targets, finishing grooming routines, taking care of your dogs, maintaining streaks. Your level reflects your commitment to the whole system, not just one piece.</p>
+    <div class="xp-levels">
+      <div class="xp-level"><div class="xp-level-num">10</div><div class="xp-level-name">Dedicated</div></div>
+      <div class="xp-level"><div class="xp-level-num">25</div><div class="xp-level-name">Committed</div></div>
+      <div class="xp-level"><div class="xp-level-num">50</div><div class="xp-level-name">Legend</div></div>
+    </div>
+    <div class="social-row">
+      <div class="social-item"><div class="social-name">Challenges</div><div class="social-desc">Official and custom challenges. Compete head-to-head or join community-wide events with real leaderboards.</div></div>
+      <div class="social-item"><div class="social-name">Leaderboards</div><div class="social-desc">Ranked by XP, streaks, domain compliance, and challenge performance. See where you stand.</div></div>
+      <div class="social-item"><div class="social-name">Activity Feed</div><div class="social-desc">Follow other users, share achievements, and see real progress from people on the same mission.</div></div>
+      <div class="social-item"><div class="social-name">Community</div><div class="social-desc">User discovery, profile previews, and a network of people building better lives across every domain.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRICING ===== -->
+<div class="section-full" id="pricing">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Investment</div>
+      <div class="section-title">One Price. Every Domain.</div>
+    </div>
+    <div class="pricing-center reveal">
+      <div class="price-display"><sup>$</sup>189</div>
+      <div class="price-period">Full Access Bundle</div>
+      <div class="price-includes">All domains included. Training, nutrition, supplements, grooming, dogs, home and auto, sleep, bloodwork intelligence, life planner, mental wellness &mdash; plus the AI coach, predictive analytics, wearable integrations, health reports, and community.</div>
+      <div class="price-tags">
+        <span class="price-tag">Performance</span>
+        <span class="price-tag">Nutrition</span>
+        <span class="price-tag">Supplements</span>
+        <span class="price-tag">Grooming</span>
+        <span class="price-tag">Dogs</span>
+        <span class="price-tag">Home &amp; Auto</span>
+        <span class="price-tag">Bloodwork</span>
+        <span class="price-tag">Life Planner</span>
+        <span class="price-tag">AI Coach</span>
+        <span class="price-tag">Wearables</span>
+      </div>
+      <div class="price-note">Individual domain subscriptions also available. Guided and custom modes for every domain.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STATUS ===== -->
+<div class="section" id="status">
+  <div class="section-header reveal">
+    <div class="section-label">Development</div>
+    <div class="section-title">Where We&rsquo;re At</div>
+  </div>
+  <div class="status-bar reveal">
+    <div class="status-dot"></div>
+    <div class="status-text">Currently in <span>private testing</span> with 54 engines live. Public launch coming soon on iOS and Android.</div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div class="contact-footer" id="contact">
+  <div class="contact-title reveal">Stay Updated</div>
+  <div class="contact-desc reveal">Be the first to know when MMI 103 launches.</div>
+  <div class="contact-grid reveal">
+    <div class="contact-item"><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div></div>
+    <div class="contact-item"><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:3057974552">305.797.4552</a></div></div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">MMI 103 &mdash; A Maison 103 Product &copy; 2026</div>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
+  });
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('menuToggle').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuToggle').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

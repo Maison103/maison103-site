@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Studio — SoundLab 103 | Maison 103</title>
+<meta name="description" content="Studio A roadmap, gear list, and who SoundLab 103 is built for. Launching late 2026 in Miramar, FL.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #8B5CF6;
+    --purple-light: #E0D4F5;
+    --purple-bright: #A78BFA;
+    --obsidian: #0A0A0A;
+    --charcoal: #111111;
+    --smoke: #161616;
+    --silver: #8A8A8A;
+    --silver-light: #B0B0B0;
+    --cream: #F5F0E8;
+    --white: #FAFAFA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--obsidian); }
+  body { font-family: 'Outfit', sans-serif; background: var(--obsidian); color: var(--white); overflow-x: hidden; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(139,92,246,0.06);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 16px 48px; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); text-decoration: none; }
+  .nav-logo span { font-weight: 300; color: var(--silver-light); margin-left: 6px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--silver-light); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--purple); }
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; z-index: 1001; background: none; border: none; }
+  .menu-toggle span { width: 24px; height: 1.5px; background: var(--purple); transition: all 0.3s; display: block; }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.98); backdrop-filter: blur(30px); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 20px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; color: var(--silver-light); text-decoration: none; transition: color 0.3s; }
+  .mobile-menu a:hover { color: var(--purple); }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    padding: 140px 48px 80px;
+    text-align: center;
+  }
+  .page-header-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--purple); margin-bottom: 16px; }
+  .page-header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 300; color: var(--white); }
+
+  /* ===== SECTIONS ===== */
+  .section { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-full { padding: 120px 48px; background: var(--smoke); }
+  .section-full > .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: 56px; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--purple); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 400; color: var(--white); }
+
+  /* ===== PHASES ===== */
+  .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; }
+  .phase { background: rgba(139,92,246,0.03); border: 1px solid rgba(139,92,246,0.08); padding: 36px; position: relative; }
+  .phase::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--purple), transparent); }
+  .phase-num { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+  .phase-name { font-size: 20px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+  .phase-desc { font-size: 14px; font-weight: 300; color: var(--silver-light); line-height: 1.8; margin-bottom: 16px; }
+  .phase-tag { display: inline-block; padding: 4px 12px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
+  .phase-tag.active { background: rgba(139,92,246,0.12); color: var(--purple-bright); border: 1px solid rgba(139,92,246,0.25); }
+  .phase-tag.upcoming { background: rgba(255,255,255,0.03); color: var(--silver); border: 1px solid rgba(255,255,255,0.06); }
+
+  /* ===== GEAR ===== */
+  .gear-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .gear-item { padding: 28px; background: rgba(139,92,246,0.03); border: 1px solid rgba(139,92,246,0.06); }
+  .gear-cat { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+  .gear-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .gear-list li { font-size: 14px; font-weight: 300; color: var(--cream); padding-left: 14px; position: relative; }
+  .gear-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; background: var(--purple-bright); border-radius: 50%; }
+
+  /* ===== AUDIENCE ===== */
+  .audience-list { max-width: 800px; }
+  .audience-item { display: flex; gap: 20px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid rgba(139,92,246,0.06); }
+  .audience-item:last-child { border-bottom: none; }
+  .audience-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 8px rgba(139,92,246,0.3); flex-shrink: 0; margin-top: 6px; }
+  .audience-name { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+  .audience-desc { font-size: 15px; font-weight: 300; color: var(--silver-light); line-height: 1.7; }
+
+  /* ===== CONTACT ===== */
+  .contact-footer { text-align: center; padding: 100px 48px; border-top: 1px solid rgba(139,92,246,0.06); }
+  .contact-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; letter-spacing: 4px; color: var(--purple); margin-bottom: 12px; }
+  .contact-desc { font-size: 16px; font-weight: 300; color: var(--silver-light); margin-bottom: 40px; }
+  .contact-grid { display: flex; gap: 56px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .contact-item { display: flex; flex-direction: column; gap: 6px; }
+  .contact-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
+  .contact-value { font-size: 16px; font-weight: 300; color: var(--cream); }
+  .contact-value a { color: var(--cream); text-decoration: none; transition: color 0.3s; }
+  .contact-value a:hover { color: var(--purple); }
+  .footer-line { width: 50px; height: 1px; background: var(--purple); margin: 40px auto 16px; opacity: 0.4; }
+  .footer-copy { font-size: 11px; letter-spacing: 2px; color: rgba(138,138,138,0.5); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .page-header { padding: 100px 24px 60px; }
+    .section { padding: 80px 24px; }
+    .section-full { padding: 80px 24px; }
+    .phases { grid-template-columns: 1fr; }
+    .contact-footer { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#roadmap" onclick="closeMobile()">Roadmap</a>
+  <a href="#gear" onclick="closeMobile()">The Setup</a>
+  <a href="#audience" onclick="closeMobile()">Who It's For</a>
+  <a href="#contact" onclick="closeMobile()">Book</a>
+  <a href="/sl103.html" onclick="closeMobile()">SL 103</a>
+  <a href="/" onclick="closeMobile()">Maison 103</a>
+</div>
+
+<nav id="mainNav">
+  <a href="/sl103.html" class="nav-logo">SL<span>103</span></a>
+  <ul class="nav-links">
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#gear">The Setup</a></li>
+    <li><a href="#audience">Who It's For</a></li>
+    <li><a href="#contact">Book</a></li>
+    <li><a href="/sl103.html">&larr; SL 103</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-label">SoundLab 103</div>
+  <div class="page-header-title">The Studio</div>
+</div>
+
+<!-- ===== ROADMAP ===== -->
+<div class="section-full" id="roadmap">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Roadmap</div>
+      <div class="section-title">Built in Phases</div>
+    </div>
+    <div class="phases reveal">
+      <div class="phase"><div class="phase-num">Phase 1</div><div class="phase-name">Studio A &mdash; MVP</div><div class="phase-desc">Flagship recording and mix room. Fully treated acoustics, premium hybrid analog-digital hardware, and a modern workflow built around the Mac Pro, Antelope Discrete 4, and Lauten Eden LT-386.</div><div class="phase-tag active">Launching Late 2026</div></div>
+      <div class="phase"><div class="phase-num">Phase 2</div><div class="phase-name">Studio A &mdash; Expansion</div><div class="phase-desc">Premium analog outboard upgrades: Tube-Tech CL 1B compressor, Aurora Audio GTQC, SSL Fusion processor. Elevated mastering capability and hybrid depth.</div><div class="phase-tag upcoming">Performance-Based</div></div>
+      <div class="phase"><div class="phase-num">Phase 3</div><div class="phase-name">Studio B &mdash; Content</div><div class="phase-desc">Dedicated content production and development suite. Video podcasting, multi-camera capture, vocal coaching, performance audits, and structured artist development.</div><div class="phase-tag upcoming">When Studio A Stabilizes</div></div>
+      <div class="phase"><div class="phase-num">Phase 4</div><div class="phase-name">Studio B &mdash; Full</div><div class="phase-desc">Advanced multi-camera production, expanded lighting, stage elements, audience seating, broadcast hardware, PA support, and elevated A&amp;R services.</div><div class="phase-tag upcoming">Long-Term Vision</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GEAR ===== -->
+<div class="section" id="gear">
+  <div class="section-header reveal">
+    <div class="section-label">Studio A &mdash; Phase 1</div>
+    <div class="section-title">The Setup</div>
+  </div>
+  <div class="gear-grid reveal">
+    <div class="gear-item"><div class="gear-cat">Computing</div><ul class="gear-list"><li>Apple Mac Pro</li><li>Apple Pro Display XDR</li></ul></div>
+    <div class="gear-item"><div class="gear-cat">Recording Front End</div><ul class="gear-list"><li>Antelope Discrete 4 Synergy Core</li><li>Lauten Audio Eden LT-386</li><li>Radial J48 DI</li></ul></div>
+    <div class="gear-item"><div class="gear-cat">Monitoring</div><ul class="gear-list"><li>Yamaha HS8 Monitors</li><li>Yamaha HS8S Subwoofer</li><li>IsoAcoustics Stands</li><li>Beyerdynamic DT 770 Pro</li></ul></div>
+    <div class="gear-item"><div class="gear-cat">Acoustics</div><ul class="gear-list"><li>Auralex Treatment</li><li>LENRD Bass Traps</li><li>Isolation Elements</li></ul></div>
+    <div class="gear-item"><div class="gear-cat">Software</div><ul class="gear-list"><li>Logic Pro</li><li>Pro Tools Studio</li><li>Akai MPK Mini</li></ul></div>
+    <div class="gear-item"><div class="gear-cat">Infrastructure</div><ul class="gear-list"><li>Wavebone HQ Desk</li><li>Gator 12U Rack</li><li>Mogami Cabling</li><li>Furman Power</li></ul></div>
+  </div>
+</div>
+
+<!-- ===== WHO IT'S FOR ===== -->
+<div class="section-full" id="audience">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Who It&rsquo;s For</div>
+      <div class="section-title">Your Studio</div>
+    </div>
+    <div class="audience-list reveal">
+      <div class="audience-item"><span class="audience-dot"></span><div><div class="audience-name">Artists &amp; Vocalists</div><div class="audience-desc">Independent recording artists, rappers, singers, and songwriters seeking professional recording, structured development, and long-term creative growth.</div></div></div>
+      <div class="audience-item"><span class="audience-dot"></span><div><div class="audience-name">Producers &amp; Engineers</div><div class="audience-desc">Beatmakers, producers, and engineers who need a professional acoustic environment with premium gear to create, collaborate, and deliver.</div></div></div>
+      <div class="audience-item"><span class="audience-dot"></span><div><div class="audience-name">Podcasters &amp; Creators</div><div class="audience-desc">Podcasters, YouTubers, and voice-over artists who need controlled, premium audio-video production workflows.</div></div></div>
+      <div class="audience-item"><span class="audience-dot"></span><div><div class="audience-name">Labels &amp; Managers</div><div class="audience-desc">Boutique labels, artist managers, and creative collectives needing recurring recording, content sessions, and artist development partnerships.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div class="contact-footer" id="contact">
+  <div class="contact-title reveal">Get on the List</div>
+  <div class="contact-desc reveal">Be the first to book when SoundLab 103 opens.</div>
+  <div class="contact-grid reveal">
+    <div class="contact-item"><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:marleyc@maison103.co">marleyc@maison103.co</a></div></div>
+    <div class="contact-item"><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:3057974552">305.797.4552</a></div></div>
+    <div class="contact-item"><div class="contact-label">Location</div><div class="contact-value">Miramar, FL</div></div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">SoundLab 103 &mdash; A Maison 103 Studio &copy; 2026</div>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
+  });
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('menuToggle').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuToggle').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

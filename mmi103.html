@@ -63,6 +63,14 @@
     text-align: center; padding: 120px 48px 80px; overflow: hidden;
     background: linear-gradient(170deg, #0F1628 0%, var(--obsidian) 50%);
   }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(170deg, rgba(15,22,40,0.96) 0%, rgba(10,10,10,0.97) 50%, rgba(10,10,10,0.98) 100%);
+  }
 
   /* Engine glow */
   .engine-glow {
@@ -420,19 +428,7 @@
     .contact-grid { gap: 24px; }
   }
 
-  /* ===== ORNAMENTAL ARCH ===== */
-  .hero-arch {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -48%);
-    width: clamp(280px, 50vw, 550px);
-    height: auto;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    animation: archReveal 2s ease 0.5s forwards;
-  }
-  @keyframes archReveal { to { opacity: 1; } }
+
 </style>
 </head>
 <body>
@@ -461,23 +457,7 @@
 
 <!-- ===== HERO + CONSTELLATION ===== -->
 <section class="hero">
-  <svg class="hero-arch" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 50,350 L 50,180 Q 50,10 250,10 Q 450,10 450,180 L 450,350" stroke="#3B82F6" stroke-width="1.2" opacity="0.2"/>
-    <path d="M 70,350 L 70,195 Q 70,30 250,30 Q 430,30 430,195 L 430,350" stroke="#3B82F6" stroke-width="0.5" opacity="0.1"/>
-    <path d="M 35,350 L 35,175 Q 35,-5 250,-5 Q 465,-5 465,175 L 465,350" stroke="#3B82F6" stroke-width="0.3" opacity="0.06"/>
-    <path d="M 243,12 L 250,0 L 257,12" stroke="#3B82F6" stroke-width="1" opacity="0.3"/>
-    <circle cx="250" cy="0" r="2.5" fill="#3B82F6" fill-opacity="0.15"/>
-    <path d="M 50,260 C 28,260 18,242 28,225 C 38,208 25,195 25,186" stroke="#3B82F6" stroke-width="0.7" opacity="0.15"/>
-    <path d="M 25,186 C 24,182 27,179 30,183" stroke="#3B82F6" stroke-width="0.5" opacity="0.12"/>
-    <path d="M 50,310 C 32,310 24,298 32,283 C 40,268 30,258 30,250" stroke="#3B82F6" stroke-width="0.6" opacity="0.12"/>
-    <path d="M 30,250 C 29,247 32,244 35,248" stroke="#3B82F6" stroke-width="0.4" opacity="0.08"/>
-    <path d="M 450,260 C 472,260 482,242 472,225 C 462,208 475,195 475,186" stroke="#3B82F6" stroke-width="0.7" opacity="0.15"/>
-    <path d="M 475,186 C 476,182 473,179 470,183" stroke="#3B82F6" stroke-width="0.5" opacity="0.12"/>
-    <path d="M 450,310 C 468,310 476,298 468,283 C 460,268 470,258 470,250" stroke="#3B82F6" stroke-width="0.6" opacity="0.12"/>
-    <path d="M 470,250 C 471,247 468,244 465,248" stroke="#3B82F6" stroke-width="0.4" opacity="0.08"/>
-    <line x1="80" y1="290" x2="420" y2="290" stroke="#3B82F6" stroke-width="0.4" opacity="0.08"/>
-    <circle cx="250" cy="175" r="25" stroke="#3B82F6" stroke-width="0.5" opacity="0.1"/>
-  </svg>
+  <div class="hero-bg"></div>
   <div class="engine-glow"></div>
 
   <!-- Constellation lines (SVG) -->
@@ -654,155 +634,10 @@
   </div>
 </div>
 
-<!-- ===== THE ENGINE ===== -->
-<div class="section-dark" id="engine">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label">The Orchestrator</div>
-      <div class="section-title">How Your Day Gets Built</div>
-      <div class="section-subtitle">Every morning, your daily check-in triggers a pipeline of engines that run in sequence. The output is one unified protocol for your entire day.</div>
-    </div>
-    <div class="pipeline reveal">
-      <div class="pipe-step">
-        <div class="pipe-num">01</div>
-        <div><div class="pipe-name">Readiness Engine</div><div class="pipe-desc">Analyzes your sleep, energy, stress, and soreness to calculate a readiness score (1&ndash;100) and training capacity for the day.</div></div>
-      </div>
-      <div class="pipe-step">
-        <div class="pipe-num">02</div>
-        <div><div class="pipe-name">Workout Orchestrator</div><div class="pipe-desc">Selects exercises, sets, reps, and weight targets based on your program phase, readiness, volume history, and progression model.</div></div>
-      </div>
-      <div class="pipe-step">
-        <div class="pipe-num">03</div>
-        <div><div class="pipe-name">Supplement Engine</div><div class="pipe-desc">Builds your supplement stack across five time windows. Adjusts for training day, rest day, and recovery scenarios.</div></div>
-      </div>
-      <div class="pipe-step">
-        <div class="pipe-num">04</div>
-        <div><div class="pipe-name">Nutrition Engine</div><div class="pipe-desc">Calculates macro targets, meal timing, and hydration goals based on your training load, body composition, and readiness.</div></div>
-      </div>
-      <div class="pipe-step">
-        <div class="pipe-num">05</div>
-        <div><div class="pipe-name">Lifestyle Engines</div><div class="pipe-desc">Juice recipes, grooming routines, sleep protocol, dog care tasks, home maintenance, vehicle reminders &mdash; all generated in parallel.</div></div>
-      </div>
-      <div class="pipe-step">
-        <div class="pipe-num">06</div>
-        <div><div class="pipe-name">Coach Engine</div><div class="pipe-desc">Summarizes everything into focus areas, warnings, and quick wins. The AI coach layer adds context-aware guidance using your full history.</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== INTELLIGENCE ===== -->
-<div class="section" id="intelligence">
-  <div class="section-header reveal">
-    <div class="section-label">Cross-Domain Intelligence</div>
-    <div class="section-title">Everything Talks to Everything</div>
-  </div>
-  <div class="intel-list reveal">
-    <div class="intel-item">
-      <div class="intel-name"><span class="intel-marker"></span>Alcohol Recovery Protocol</div>
-      <div class="intel-desc">Log that you drank last night and every engine responds. Water targets increase, supplements adjust for liver support, workout intensity scales down, nutrition recalibrates for recovery, grooming accounts for dehydration. One input. System-wide adaptation.</div>
-    </div>
-    <div class="intel-item">
-      <div class="intel-name"><span class="intel-marker"></span>AI Coach &mdash; Claude Powered</div>
-      <div class="intel-desc">Three coaching styles: motivational, strict, or technical. The coach has full access to your readiness history, training trends, sleep patterns, nutrition adherence, and program context. Ask it anything &mdash; it knows your data.</div>
-    </div>
-    <div class="intel-item">
-      <div class="intel-name"><span class="intel-marker"></span>Readiness-Driven Autoregulation</div>
-      <div class="intel-desc">Your daily check-in generates a readiness score from sleep quality, fatigue, soreness, stress, and energy. Low readiness automatically reduces training volume, adjusts nutrition targets, and modifies recovery protocols.</div>
-    </div>
-    <div class="intel-item">
-      <div class="intel-name"><span class="intel-marker"></span>Bloodwork Intelligence</div>
-      <div class="intel-desc">Upload your lab results and the system maps biomarkers to supplement recommendations, flags nutritional deficiencies, and adjusts protocols based on your actual health data &mdash; not guesses.</div>
-    </div>
-    <div class="intel-item">
-      <div class="intel-name"><span class="intel-marker"></span>Predictive Analytics</div>
-      <div class="intel-desc">Injury risk scoring, overtraining detection, plateau prediction, optimal deload timing, and goal ETAs with confidence scores. The system warns you before problems happen, not after.</div>
-    </div>
-    <div class="intel-item">
-      <div class="intel-name"><span class="intel-marker"></span>Body Composition Tracking</div>
-      <div class="intel-desc">Progress photos with side-by-side comparison, weight trends, body measurements over time, and visual timeline of your transformation across weeks and months.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== WEARABLES ===== -->
-<div class="section-dark">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label">Integrations</div>
-      <div class="section-title">Your Wearables, Connected</div>
-      <div class="section-subtitle">Import real data from your devices. HRV, sleep stages, strain, recovery &mdash; fed directly into the readiness engine.</div>
-    </div>
-    <div class="wearables-row reveal">
-      <div class="wearable-item"><span class="wearable-dot"></span><div><div class="wearable-name">Whoop</div><div class="wearable-desc">Strain, recovery, HRV</div></div></div>
-      <div class="wearable-item"><span class="wearable-dot"></span><div><div class="wearable-name">Oura Ring</div><div class="wearable-desc">Sleep, readiness, HRV</div></div></div>
-      <div class="wearable-item"><span class="wearable-dot"></span><div><div class="wearable-name">Garmin</div><div class="wearable-desc">Workouts, stress, body battery</div></div></div>
-      <div class="wearable-item"><span class="wearable-dot"></span><div><div class="wearable-name">Apple Health</div><div class="wearable-desc">Steps, heart rate, sleep</div></div></div>
-      <div class="wearable-item"><span class="wearable-dot"></span><div><div class="wearable-name">Strava</div><div class="wearable-desc">Cycling, running, activities</div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== GAMIFICATION ===== -->
-<div class="section">
-  <div class="section-header reveal">
-    <div class="section-label">Gamification &amp; Community</div>
-    <div class="section-title">Earn Your Level</div>
-  </div>
-  <div class="xp-block reveal">
-    <p>Every action earns XP &mdash; completing workouts, logging meals, hitting macro targets, finishing grooming routines, taking care of your dogs, maintaining streaks. Your level reflects your commitment to the whole system, not just one piece.</p>
-    <div class="xp-levels">
-      <div class="xp-level"><div class="xp-level-num">10</div><div class="xp-level-name">Dedicated</div></div>
-      <div class="xp-level"><div class="xp-level-num">25</div><div class="xp-level-name">Committed</div></div>
-      <div class="xp-level"><div class="xp-level-num">50</div><div class="xp-level-name">Legend</div></div>
-    </div>
-    <div class="social-row">
-      <div class="social-item"><div class="social-name">Challenges</div><div class="social-desc">Official and custom challenges. Compete head-to-head or join community-wide events with real leaderboards.</div></div>
-      <div class="social-item"><div class="social-name">Leaderboards</div><div class="social-desc">Ranked by XP, streaks, domain compliance, and challenge performance. See where you stand.</div></div>
-      <div class="social-item"><div class="social-name">Activity Feed</div><div class="social-desc">Follow other users, share achievements, and see real progress from people on the same mission.</div></div>
-      <div class="social-item"><div class="social-name">Community</div><div class="social-desc">User discovery, profile previews, and a network of people building better lives across every domain.</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== PRICING ===== -->
-<div class="section-dark" id="pricing">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <div class="section-label">Investment</div>
-      <div class="section-title">One Price. Every Domain.</div>
-    </div>
-    <div class="pricing-center reveal">
-      <div class="price-display"><sup>$</sup>189</div>
-      <div class="price-period">Full Access Bundle</div>
-      <div class="price-includes">All domains included. Training, nutrition, supplements, grooming, dogs, home and auto, sleep, bloodwork intelligence, life planner, mental wellness &mdash; plus the AI coach, predictive analytics, wearable integrations, health reports, and community.</div>
-      <div class="price-tags">
-        <span class="price-tag">Performance</span>
-        <span class="price-tag">Nutrition</span>
-        <span class="price-tag">Supplements</span>
-        <span class="price-tag">Grooming</span>
-        <span class="price-tag">Dogs</span>
-        <span class="price-tag">Home &amp; Auto</span>
-        <span class="price-tag">Bloodwork</span>
-        <span class="price-tag">Life Planner</span>
-        <span class="price-tag">AI Coach</span>
-        <span class="price-tag">Wearables</span>
-      </div>
-      <div class="price-note">Individual domain subscriptions also available. Guided and custom modes for every domain.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== STATUS ===== -->
-<div class="section">
-  <div class="section-header reveal">
-    <div class="section-label">Development</div>
-    <div class="section-title">Where We&rsquo;re At</div>
-  </div>
-  <div class="status-bar reveal">
-    <div class="status-dot"></div>
-    <div class="status-text">Currently in <span>private testing</span> with 54 engines live. Public launch coming soon on iOS and Android.</div>
-  </div>
+<!-- ===== SUBPAGE LINKS ===== -->
+<div class="section" style="text-align:center;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+  <a href="/mmi103-engine.html" class="reveal" style="display:inline-block;padding:14px 40px;border:1px solid rgba(59,130,246,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;background:rgba(59,130,246,0.04);transition:all 0.3s;">The Engine &amp; Intelligence &rarr;</a>
+  <a href="/mmi103-pricing.html" class="reveal" style="display:inline-block;padding:14px 40px;border:1px solid rgba(59,130,246,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;background:rgba(59,130,246,0.04);transition:all 0.3s;">Pricing &amp; Community &rarr;</a>
 </div>
 
 <!-- ===== CONTACT ===== -->

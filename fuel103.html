@@ -149,6 +149,15 @@
     overflow: hidden;
   }
 
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.90) 0%, rgba(10,10,10,0.85) 40%, rgba(10,10,10,0.95) 100%);
+  }
+
   .signal-field {
     position: absolute;
     top: 50%;
@@ -799,19 +808,7 @@
     .signal-field { width: 500px; height: 500px; }
   }
 
-  /* ===== ORNAMENTAL ARCH ===== */
-  .hero-arch {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -48%);
-    width: clamp(280px, 50vw, 550px);
-    height: auto;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    animation: archReveal 2s ease 0.5s forwards;
-  }
-  @keyframes archReveal { to { opacity: 1; } }
+
 </style>
 </head>
 <body>
@@ -848,23 +845,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <svg class="hero-arch" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 50,350 L 50,180 Q 50,10 250,10 Q 450,10 450,180 L 450,350" stroke="#F59E0B" stroke-width="1.2" opacity="0.2"/>
-    <path d="M 70,350 L 70,195 Q 70,30 250,30 Q 430,30 430,195 L 430,350" stroke="#F59E0B" stroke-width="0.5" opacity="0.1"/>
-    <path d="M 35,350 L 35,175 Q 35,-5 250,-5 Q 465,-5 465,175 L 465,350" stroke="#F59E0B" stroke-width="0.3" opacity="0.06"/>
-    <path d="M 243,12 L 250,0 L 257,12" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-    <circle cx="250" cy="0" r="2.5" fill="#F59E0B" fill-opacity="0.15"/>
-    <path d="M 50,260 C 28,260 18,242 28,225 C 38,208 25,195 25,186" stroke="#F59E0B" stroke-width="0.7" opacity="0.15"/>
-    <path d="M 25,186 C 24,182 27,179 30,183" stroke="#F59E0B" stroke-width="0.5" opacity="0.12"/>
-    <path d="M 50,310 C 32,310 24,298 32,283 C 40,268 30,258 30,250" stroke="#F59E0B" stroke-width="0.6" opacity="0.12"/>
-    <path d="M 30,250 C 29,247 32,244 35,248" stroke="#F59E0B" stroke-width="0.4" opacity="0.08"/>
-    <path d="M 450,260 C 472,260 482,242 472,225 C 462,208 475,195 475,186" stroke="#F59E0B" stroke-width="0.7" opacity="0.15"/>
-    <path d="M 475,186 C 476,182 473,179 470,183" stroke="#F59E0B" stroke-width="0.5" opacity="0.12"/>
-    <path d="M 450,310 C 468,310 476,298 468,283 C 460,268 470,258 470,250" stroke="#F59E0B" stroke-width="0.6" opacity="0.12"/>
-    <path d="M 470,250 C 471,247 468,244 465,248" stroke="#F59E0B" stroke-width="0.4" opacity="0.08"/>
-    <line x1="80" y1="290" x2="420" y2="290" stroke="#F59E0B" stroke-width="0.4" opacity="0.08"/>
-    <circle cx="250" cy="175" r="25" stroke="#F59E0B" stroke-width="0.5" opacity="0.1"/>
-  </svg>
+  <div class="hero-bg"></div>
   <div class="signal-field">
     <div class="signal-ring"></div>
     <div class="signal-ring"></div>
@@ -1026,164 +1007,9 @@
   </div>
 </div>
 
-<!-- FORMATS -->
-<div class="formats" id="formats">
-  <div class="formats-header reveal">
-    <div class="prog-label">Content Formats</div>
-    <div class="prog-title">How We Deliver It</div>
-    <div class="prog-subtitle">Different formats for different depths. Every piece maps back to the app.</div>
-  </div>
-
-  <div class="format-list">
-    <div class="format-item reveal">
-      <div class="format-num">01</div>
-      <div class="format-content">
-        <div class="format-name">Long-Form (YouTube)</div>
-        <div class="format-desc">Full training sessions, deep dives into supplement science, complete meal prep walkthroughs, and multi-domain daily routine breakdowns. The in-depth content that explains the why.</div>
-      </div>
-    </div>
-    <div class="format-item reveal">
-      <div class="format-num">02</div>
-      <div class="format-content">
-        <div class="format-name">Shorts &amp; Reels</div>
-        <div class="format-desc">Quick tips, single-exercise form checks, 60-second recipes, product reviews, and daily routine clips. High-frequency touchpoints across every domain.</div>
-      </div>
-    </div>
-    <div class="format-item reveal">
-      <div class="format-num">03</div>
-      <div class="format-content">
-        <div class="format-name">Day-in-the-Life</div>
-        <div class="format-desc">Full daily protocol captured on camera &mdash; morning check-in, workout, meals, supplements, grooming, dog care, home tasks, wind-down. All domains in real time.</div>
-      </div>
-    </div>
-    <div class="format-item reveal">
-      <div class="format-num">04</div>
-      <div class="format-content">
-        <div class="format-name">App Walkthroughs</div>
-        <div class="format-desc">Screen recordings and tutorials showing exactly how MMI 103 works &mdash; how the engines build your day, how logging works, how the AI coach responds to your data.</div>
-      </div>
-    </div>
-    <div class="format-item reveal">
-      <div class="format-num">05</div>
-      <div class="format-content">
-        <div class="format-name">Reviews &amp; Comparisons</div>
-        <div class="format-desc">Honest product reviews across supplements, grooming, fitness equipment, and home tools. No sponsorships. No bias. Just what works and what doesn't.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CONNECTION -->
-<div class="connection" id="connection">
-  <div class="connection-header reveal">
-    <div class="prog-label">Powered By MMI 103</div>
-    <div class="prog-title">Watch It. Live It.</div>
-    <div class="prog-subtitle">Every piece of content connects back to the app. The channel shows you how. The app makes it happen.</div>
-  </div>
-  <div class="connection-inner reveal">
-    <p class="connection-text">Fuel 103 isn't a standalone channel &mdash; it's the <strong>content layer of MMI 103</strong>, the all-in-one life management app with 54 engines across 10 domains. See a workout on the channel? It's in the app. Watch a meal prep video? Log it and track your macros in one tap. Learn a grooming routine? The app schedules it for you.</p>
-    <div class="connection-grid">
-      <div class="conn-card">
-        <div class="conn-card-label">Content</div>
-        <div class="conn-card-title">Watch a Training Session</div>
-        <div class="conn-card-desc">The workout you see on camera was generated by the <span>MMI 103 workout engine</span>. Same progressive overload, same RPE targets, same program logic.</div>
-      </div>
-      <div class="conn-card">
-        <div class="conn-card-label">Content</div>
-        <div class="conn-card-title">See a Meal Prep</div>
-        <div class="conn-card-desc">The macros in the video match <span>real nutrition targets</span> calculated from training load and body composition.</div>
-      </div>
-      <div class="conn-card">
-        <div class="conn-card-label">Content</div>
-        <div class="conn-card-title">Learn a Protocol</div>
-        <div class="conn-card-desc">The 5-window stacking system shown on camera is the <span>same engine</span> that builds your daily supplement schedule inside MMI 103.</div>
-      </div>
-      <div class="conn-card">
-        <div class="conn-card-label">Content</div>
-        <div class="conn-card-title">Follow a Daily Routine</div>
-        <div class="conn-card-desc">Day-in-the-life content is a real <span>MMI 103 daily protocol</span> in action &mdash; readiness check, training, nutrition, grooming, wind-down.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PLATFORMS -->
-<div class="platforms" id="platforms">
-  <div class="platforms-header reveal">
-    <div class="prog-label">Where to Watch</div>
-    <div class="prog-title">Every Platform</div>
-    <div class="prog-subtitle">Same content ecosystem, optimized for each platform's format and audience.</div>
-  </div>
-
-  <div class="platform-row reveal">
-    <div class="platform">
-      <div class="platform-name">YouTube</div>
-      <div class="platform-type">Long-Form Home</div>
-      <div class="platform-desc">Full training sessions, deep dives, day-in-the-life content, and app walkthroughs. The primary platform for in-depth content.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">Instagram</div>
-      <div class="platform-type">Reels + Stories</div>
-      <div class="platform-desc">Quick tips, form checks, product shots, daily routine clips, and behind-the-scenes content across all 8 domains.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">TikTok</div>
-      <div class="platform-type">Short-Form</div>
-      <div class="platform-desc">60-second recipes, supplement breakdowns, grooming tips, workout clips, and fast-hit content optimized for discovery.</div>
-    </div>
-    <div class="platform">
-      <div class="platform-name">YouTube Shorts</div>
-      <div class="platform-type">Vertical Clips</div>
-      <div class="platform-desc">Repurposed highlights, single-exercise breakdowns, quick reviews, and daily protocol snapshots for the Shorts feed.</div>
-    </div>
-  </div>
-</div>
-
-<!-- VALUES -->
-<div class="values" id="values">
-  <div class="values-header reveal">
-    <div class="prog-label">Philosophy</div>
-    <div class="prog-title">What We Stand For</div>
-  </div>
-
-  <div class="value-list">
-    <div class="value-item reveal">
-      <div class="value-dot"></div>
-      <div class="value-content">
-        <div class="value-name">No Sponsorship Bias</div>
-        <div class="value-desc">Every product review, supplement recommendation, and equipment mention is based on what actually works. No paid placements. No affiliate-driven opinions.</div>
-      </div>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-dot"></div>
-      <div class="value-content">
-        <div class="value-name">Connected to the App</div>
-        <div class="value-desc">This isn't content for content's sake. Every video maps back to something you can do, track, or build inside MMI 103. Watch it, then live it.</div>
-      </div>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-dot"></div>
-      <div class="value-content">
-        <div class="value-name">Every Domain, Not Just One</div>
-        <div class="value-desc">Most channels cover fitness or nutrition. We cover training, nutrition, supplements, grooming, dogs, home, sleep, and mental wellness &mdash; because they're all connected.</div>
-      </div>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-dot"></div>
-      <div class="value-content">
-        <div class="value-name">Substance Over Style</div>
-        <div class="value-desc">Real programming logic, real macro targets, real protocols. The content is built on the same engines and data that power the app &mdash; not surface-level fitness trends.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- STATUS -->
-<div class="status reveal">
-  <div class="status-bar">
-    <div class="status-indicator"></div>
-    <div class="status-text">Currently in <span>pre-production</span>. Content launches across all platforms alongside the MMI 103 public release.</div>
-  </div>
+<!-- LINK TO MORE -->
+<div style="padding:80px 48px;text-align:center;">
+  <a href="/fuel103-more.html" class="reveal" style="display:inline-block;padding:14px 40px;border:1px solid rgba(245,158,11,0.3);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#F59E0B;text-decoration:none;background:rgba(245,158,11,0.04);transition:all 0.3s;">Formats, Platforms &amp; Philosophy &rarr;</a>
 </div>
 
 <!-- CONTACT -->
