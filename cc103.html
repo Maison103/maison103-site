@@ -575,6 +575,20 @@
     .section { padding: 32px 24px; }
     .cc-contact { padding: 24px; }
   }
+
+  /* ===== ORNAMENTAL ARCH ===== */
+  .hero-arch {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -48%);
+    width: clamp(280px, 50vw, 550px);
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: archReveal 2s ease 0.5s forwards;
+  }
+  @keyframes archReveal { to { opacity: 1; } }
 </style>
 </head>
 <body style="background-color: #0A0A0A; color: #FAFAFA;">
@@ -607,6 +621,23 @@
 
 <!-- ==================== HERO ==================== -->
 <section class="hero" style="background-color: #0A0A0A;">
+  <svg class="hero-arch" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 50,350 L 50,180 Q 50,10 250,10 Q 450,10 450,180 L 450,350" stroke="#06B6D4" stroke-width="1.2" opacity="0.2"/>
+    <path d="M 70,350 L 70,195 Q 70,30 250,30 Q 430,30 430,195 L 430,350" stroke="#06B6D4" stroke-width="0.5" opacity="0.1"/>
+    <path d="M 35,350 L 35,175 Q 35,-5 250,-5 Q 465,-5 465,175 L 465,350" stroke="#06B6D4" stroke-width="0.3" opacity="0.06"/>
+    <path d="M 243,12 L 250,0 L 257,12" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
+    <circle cx="250" cy="0" r="2.5" fill="#06B6D4" fill-opacity="0.15"/>
+    <path d="M 50,260 C 28,260 18,242 28,225 C 38,208 25,195 25,186" stroke="#06B6D4" stroke-width="0.7" opacity="0.15"/>
+    <path d="M 25,186 C 24,182 27,179 30,183" stroke="#06B6D4" stroke-width="0.5" opacity="0.12"/>
+    <path d="M 50,310 C 32,310 24,298 32,283 C 40,268 30,258 30,250" stroke="#06B6D4" stroke-width="0.6" opacity="0.12"/>
+    <path d="M 30,250 C 29,247 32,244 35,248" stroke="#06B6D4" stroke-width="0.4" opacity="0.08"/>
+    <path d="M 450,260 C 472,260 482,242 472,225 C 462,208 475,195 475,186" stroke="#06B6D4" stroke-width="0.7" opacity="0.15"/>
+    <path d="M 475,186 C 476,182 473,179 470,183" stroke="#06B6D4" stroke-width="0.5" opacity="0.12"/>
+    <path d="M 450,310 C 468,310 476,298 468,283 C 460,268 470,258 470,250" stroke="#06B6D4" stroke-width="0.6" opacity="0.12"/>
+    <path d="M 470,250 C 471,247 468,244 465,248" stroke="#06B6D4" stroke-width="0.4" opacity="0.08"/>
+    <line x1="80" y1="290" x2="420" y2="290" stroke="#06B6D4" stroke-width="0.4" opacity="0.08"/>
+    <circle cx="250" cy="175" r="25" stroke="#06B6D4" stroke-width="0.5" opacity="0.1"/>
+  </svg>
   <div class="hero-division">
     <div class="hero-division-name">CC-103</div>
     <div class="hero-division-sub">Commercial Consulting Division</div>
