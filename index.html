@@ -57,9 +57,8 @@
 
   /* ===== HERO ===== */
   .hero {
-    min-height: 100vh; position: relative;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 89px 48px 0; overflow: hidden;
+    height: 100vh; position: relative;
+    overflow: hidden;
   }
 
   /* Hero background image */
@@ -72,16 +71,18 @@
     background: linear-gradient(to bottom, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.88) 50%, rgba(10,10,10,0.95) 100%);
   }
 
-  /* Sun glow */
+  /* Sun glow — centered via JS like orbit */
   .sun-glow {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 360px; height: 360px; border-radius: 50%; pointer-events: none; z-index: 1;
+    position: absolute; width: 360px; height: 360px; border-radius: 50%;
+    pointer-events: none; z-index: 1;
+    transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(201,169,110,0.10) 0%, rgba(201,169,110,0.03) 45%, transparent 70%);
     animation: sun-pulse 6s ease-in-out infinite;
   }
   .sun-glow-inner {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 140px; height: 140px; border-radius: 50%; pointer-events: none; z-index: 1;
+    position: absolute; width: 140px; height: 140px; border-radius: 50%;
+    pointer-events: none; z-index: 1;
+    transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(201,169,110,0.18) 0%, rgba(201,169,110,0.05) 50%, transparent 80%);
     animation: sun-pulse 6s ease-in-out 1.5s infinite;
   }
@@ -199,12 +200,12 @@
 
   /* ===== HERO CENTER TEXT ===== */
   .hero-center {
-    position: relative; z-index: 5;
+    position: absolute; z-index: 5;
     display: flex; flex-direction: column; align-items: center; text-align: center;
-    gap: 0;
+    transform: translate(-50%, -50%);
   }
-  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; margin: 0; overflow: hidden; }
-  .hero-logo img { height: clamp(140px, 25vw, 240px); width: auto; opacity: 0.9; display: block; margin-bottom: -15%; }
+  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; }
+  .hero-logo img { height: clamp(140px, 25vw, 240px); width: auto; opacity: 0.9; display: block; }
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 56px); font-weight: 300;
@@ -303,10 +304,11 @@
     nav.scrolled { padding: 12px 24px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
-    .hero { padding: 73px 24px 0; min-height: 100vh; }
+    .hero { height: 100vh; }
     .hero-logo img { height: clamp(100px, 28vw, 160px); }
     .hero-statement { font-size: 9px; letter-spacing: 2px; bottom: 24px; }
-    .sun-glow, .sun-glow-inner { display: none; }
+    .sun-glow { width: 200px; height: 200px; }
+    .sun-glow-inner { width: 80px; height: 80px; }
     .orbit-planet { width: 26px; height: 26px; }
     .orbit-planet::after { top: 3px; left: 4px; width: 8px; height: 5px; }
     .orbit-node::before { width: 36px; height: 36px; }
@@ -458,37 +460,57 @@
   });
 
   const heroCenter = document.getElementById('heroCenter');
+  const heroEl = document.querySelector('.hero');
+  const sunGlow = document.querySelector('.sun-glow');
+  const sunGlowInner = document.querySelector('.sun-glow-inner');
+
+  // One center point for everything: visual center of viewport below nav
+  // Nav: 89px desktop, 73px mobile
+  function getCenter() {
+    const navH = window.innerWidth <= 768 ? 73 : 89;
+    const vh = heroEl.offsetHeight;
+    const cx = heroEl.offsetWidth / 2;
+    const cy = navH + (vh - navH) / 2;
+    return { x: cx, y: cy };
+  }
+
   function getRadius() {
     const rect = heroCenter.getBoundingClientRect();
-    const heroRect = document.querySelector('.hero').getBoundingClientRect();
-    // Use the larger of half-height or half-width so the ring clears both
     const halfH = rect.height / 2;
     const halfW = rect.width / 2;
     const padding = window.innerWidth <= 768 ? 20 : 30;
     const contentR = Math.max(halfH, halfW) + padding;
-    // Cap so ring stays within the hero
-    const centerY = rect.top + rect.height / 2 - heroRect.top;
-    const spaceTop = centerY - 50;
-    const spaceBottom = heroRect.height - centerY - 50;
-    const spaceLeft = (heroRect.width / 2) - 50;
+    // Cap to fit in hero
+    const c = getCenter();
+    const navH = window.innerWidth <= 768 ? 73 : 89;
+    const spaceTop = c.y - navH - 40;
+    const spaceBottom = heroEl.offsetHeight - c.y - 40;
+    const spaceLeft = c.x - 40;
     const maxR = Math.min(spaceTop, spaceBottom, spaceLeft);
     return Math.min(contentR, maxR);
   }
 
   function updateOrbit() {
+    const c = getCenter();
     const r = getRadius();
     const diameter = r * 2;
-    // Position orbit centered on the actual content
-    const heroRect = document.querySelector('.hero').getBoundingClientRect();
-    const centerRect = heroCenter.getBoundingClientRect();
-    const cx = centerRect.left + centerRect.width / 2 - heroRect.left;
-    const cy = centerRect.top + centerRect.height / 2 - heroRect.top;
+
+    // Position everything at the same center
+    heroCenter.style.left = c.x + 'px';
+    heroCenter.style.top = c.y + 'px';
+
     container.style.width = diameter + 'px';
     container.style.height = diameter + 'px';
-    container.style.left = (cx - r) + 'px';
-    container.style.top = (cy - r) + 'px';
+    container.style.left = (c.x - r) + 'px';
+    container.style.top = (c.y - r) + 'px';
+
     ring.style.width = diameter + 'px';
     ring.style.height = diameter + 'px';
+
+    sunGlow.style.left = c.x + 'px';
+    sunGlow.style.top = c.y + 'px';
+    sunGlowInner.style.left = c.x + 'px';
+    sunGlowInner.style.top = c.y + 'px';
 
     const step = (2 * Math.PI) / divisions.length;
     nodes.forEach((node, i) => {
