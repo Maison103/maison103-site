@@ -657,7 +657,7 @@
 
     const step = (2 * Math.PI) / divisions.length;
     // Wing-tip angles: left (~π) and right (~0/2π), slightly above center (~-0.15 rad)
-    const wingAngles = [-0.15, Math.PI + 0.15];
+    const wingAngles = [-0.15, Math.PI + 0.35];
     const wingThreshold = 0.25; // radians of proximity to trigger effect
     nodes.forEach((node, i) => {
       const a = angle + i * step;
