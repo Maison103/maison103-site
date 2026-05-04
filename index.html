@@ -462,16 +462,16 @@
   function getRadius() {
     const rect = heroCenter.getBoundingClientRect();
     const heroRect = document.querySelector('.hero').getBoundingClientRect();
+    // Use the larger of half-height or half-width so the ring clears both
     const halfH = rect.height / 2;
     const halfW = rect.width / 2;
-    const diagonal = Math.sqrt(halfH * halfH + halfW * halfW);
-    const padding = window.innerWidth <= 768 ? 15 : 25;
-    const contentR = diagonal + padding;
-    // Cap so ring stays within the hero with margin for planet labels
+    const padding = window.innerWidth <= 768 ? 20 : 30;
+    const contentR = Math.max(halfH, halfW) + padding;
+    // Cap so ring stays within the hero
     const centerY = rect.top + rect.height / 2 - heroRect.top;
-    const spaceTop = centerY - 60;
-    const spaceBottom = heroRect.height - centerY - 60;
-    const spaceLeft = (heroRect.width / 2) - 60;
+    const spaceTop = centerY - 50;
+    const spaceBottom = heroRect.height - centerY - 50;
+    const spaceLeft = (heroRect.width / 2) - 50;
     const maxR = Math.min(spaceTop, spaceBottom, spaceLeft);
     return Math.min(contentR, maxR);
   }
