@@ -102,9 +102,15 @@
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 1.5px solid rgba(201,169,110,0.35);
-    box-shadow: 0 0 20px rgba(201,169,110,0.08), inset 0 0 20px rgba(201,169,110,0.04);
+    border: 1px solid rgba(201,169,110,0.25);
+    box-shadow:
+      0 0 6px rgba(201,169,110,0.15),
+      0 0 20px rgba(201,169,110,0.08),
+      0 0 60px rgba(201,169,110,0.04),
+      inset 0 0 6px rgba(201,169,110,0.08),
+      inset 0 0 30px rgba(201,169,110,0.03);
     pointer-events: none;
+    background: radial-gradient(circle, transparent 98%, rgba(201,169,110,0.02) 100%);
   }
 
   .orbit-node {
@@ -122,22 +128,62 @@
   .orbit-node.dragging { cursor: grabbing; }
 
   .orbit-planet {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, var(--color-light), var(--color) 60%, var(--color-dark));
-    box-shadow: 0 0 20px var(--color), 0 0 50px rgba(201,169,110,0.1), inset -4px -4px 8px rgba(0,0,0,0.4);
+    width: 44px; height: 44px; border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 50%),
+      linear-gradient(170deg, var(--color-light) 0%, var(--color) 40%, var(--color-dark) 100%);
+    box-shadow:
+      0 0 16px var(--color),
+      0 0 40px rgba(0,0,0,0.3),
+      inset -6px -4px 10px rgba(0,0,0,0.5),
+      inset 2px 2px 6px rgba(255,255,255,0.1);
     transition: all 0.3s;
     position: relative;
+    overflow: hidden;
   }
+  /* Surface bands */
+  .orbit-planet::before {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    background:
+      linear-gradient(0deg,
+        transparent 15%,
+        rgba(255,255,255,0.06) 20%,
+        transparent 25%,
+        transparent 40%,
+        rgba(0,0,0,0.08) 45%,
+        transparent 50%,
+        transparent 65%,
+        rgba(255,255,255,0.04) 70%,
+        transparent 75%
+      );
+  }
+  /* Specular highlight */
   .orbit-planet::after {
-    content: ''; position: absolute; top: 6px; left: 8px;
-    width: 10px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-    filter: blur(2px);
+    content: ''; position: absolute; top: 4px; left: 7px;
+    width: 14px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    filter: blur(3px);
+  }
+  /* Atmosphere glow */
+  .orbit-node::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px; height: 56px; border-radius: 50%;
+    background: radial-gradient(circle, var(--color) 0%, transparent 70%);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
   }
   .orbit-node:hover .orbit-planet {
-    transform: scale(1.3);
-    box-shadow: 0 0 30px var(--color), 0 0 60px var(--color);
+    transform: scale(1.25);
+    box-shadow:
+      0 0 24px var(--color),
+      0 0 60px var(--color),
+      inset -6px -4px 10px rgba(0,0,0,0.5),
+      inset 2px 2px 6px rgba(255,255,255,0.1);
   }
+  .orbit-node:hover::before { opacity: 0.3; }
 
   .orbit-code {
     font-family: 'Space Mono', monospace;
@@ -260,11 +306,11 @@
     .hero-dynasty { font-size: clamp(14px, 3vw, 20px); letter-spacing: 3px; }
     .hero-statement { font-size: 14px; max-width: 300px; }
     .sun-glow, .sun-glow-inner { display: none; }
-    .orbit-planet { width: 28px; height: 28px; }
-    .orbit-planet::after { top: 4px; left: 6px; width: 7px; height: 4px; }
+    .orbit-planet { width: 32px; height: 32px; }
+    .orbit-planet::after { top: 3px; left: 5px; width: 10px; height: 6px; }
+    .orbit-node::before { width: 42px; height: 42px; }
     .orbit-code { display: none; }
     .orbit-name { font-size: 9px; }
-    .orbit-ring { border-width: 1px; }
     .story { padding: 80px 24px; }
     .story::before { height: 50px; }
     .cred-strip { gap: 24px; padding: 36px 24px; }
@@ -411,9 +457,11 @@
 
   function getRadius() {
     const vw = window.innerWidth;
-    if (vw <= 768) return Math.min(vw * 0.35, 280);
-    if (vw <= 1100) return Math.min(vw * 0.28, 320);
-    return Math.min(vw * 0.22, 340);
+    const vh = window.innerHeight;
+    if (vw <= 480) return Math.min(vw * 0.40, vh * 0.35, 160);
+    if (vw <= 768) return Math.min(vw * 0.40, vh * 0.35, 240);
+    if (vw <= 1100) return Math.min(vw * 0.32, 340);
+    return Math.min(vw * 0.28, 380);
   }
 
   function updateOrbit() {
