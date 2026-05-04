@@ -487,7 +487,7 @@
     const spaceBottom = heroEl.offsetHeight - c.y - 50;
     const spaceLeft = c.x - 50;
     const maxR = Math.min(spaceTop, spaceBottom, spaceLeft);
-    return Math.min(contentR, maxR) * 0.85;
+    return Math.min(contentR, maxR);
   }
 
   function updateOrbit() {
