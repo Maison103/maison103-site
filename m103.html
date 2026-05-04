@@ -146,7 +146,7 @@
 
   .hero-bg {
     position: absolute; inset: 0; z-index: 0;
-    background: url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   }
   .hero-bg::after {
     content: ''; position: absolute; inset: 0;
@@ -368,6 +368,276 @@
     width: 220px;
     height: auto;
     filter: drop-shadow(0 4px 24px rgba(201,169,110,0.08));
+  }
+
+  /* === Realistic product mockups === */
+  .mockup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mockup-reflection {
+    width: 70%;
+    height: 30px;
+    margin-top: -2px;
+    background: radial-gradient(ellipse, rgba(201,169,110,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(6px);
+  }
+  .mockup-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    pointer-events: none;
+  }
+  .mockup-label-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: rgba(201,169,110,0.75);
+    text-transform: uppercase;
+  }
+  .mockup-label-line {
+    width: 30px;
+    height: 1px;
+    background: rgba(201,169,110,0.25);
+  }
+  .mockup-label-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(245,240,232,0.9);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .mockup-label-size {
+    font-family: 'Space Mono', monospace;
+    font-size: 6px;
+    letter-spacing: 2px;
+    color: rgba(201,169,110,0.4);
+    margin-top: 2px;
+  }
+
+  /* Dropper bottle */
+  .bottle-dropper {
+    position: relative;
+    width: 68px;
+    height: 240px;
+  }
+  .bottle-dropper-cap {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 24px; height: 28px;
+    background: linear-gradient(180deg, #3A3530 0%, #2A2520 40%, #1E1A16 100%);
+    border-radius: 4px 4px 2px 2px;
+    box-shadow: inset 1px 1px 2px rgba(255,255,255,0.08), inset -1px 0 2px rgba(0,0,0,0.3);
+  }
+  .bottle-dropper-cap::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 50%;
+    transform: translateX(-50%);
+    width: 18px; height: 6px;
+    background: linear-gradient(180deg, #2A2520, #1A1510);
+    border-radius: 0 0 2px 2px;
+  }
+  .bottle-dropper-neck {
+    position: absolute;
+    top: 32px; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 14px;
+    background: linear-gradient(180deg, #1E1A16 0%, #1A1510 100%);
+    border-radius: 2px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  }
+  .bottle-dropper-body {
+    position: absolute;
+    top: 44px; left: 50%;
+    transform: translateX(-50%);
+    width: 52px; height: 190px;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0.3) 0%,
+        rgba(201,169,110,0.06) 15%,
+        rgba(201,169,110,0.08) 30%,
+        rgba(255,255,255,0.04) 35%,
+        rgba(201,169,110,0.04) 50%,
+        rgba(0,0,0,0.1) 80%,
+        rgba(0,0,0,0.25) 100%
+      ),
+      linear-gradient(180deg, #1E1A16 0%, #161210 30%, #1A1510 70%, #161210 100%);
+    border-radius: 6px 6px 10px 10px;
+    box-shadow:
+      -2px 0 8px rgba(0,0,0,0.4),
+      2px 0 6px rgba(0,0,0,0.3),
+      0 8px 20px rgba(0,0,0,0.5),
+      inset 1px 0 0 rgba(201,169,110,0.08);
+    border: 0.5px solid rgba(201,169,110,0.12);
+  }
+  .bottle-dropper-body::before {
+    content: '';
+    position: absolute;
+    top: 60%; left: 4px;
+    width: 3px; height: 30%;
+    background: linear-gradient(180deg, rgba(201,169,110,0.04), rgba(201,169,110,0.08), rgba(201,169,110,0.02));
+    border-radius: 2px;
+    filter: blur(1px);
+  }
+  .bottle-dropper .mockup-label {
+    top: 82px; left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+  }
+
+  /* Jar */
+  .bottle-jar {
+    position: relative;
+    width: 100px;
+    height: 140px;
+  }
+  .bottle-jar-lid {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 88px; height: 24px;
+    background: linear-gradient(180deg, #3A3530 0%, #2A2520 50%, #222 100%);
+    border-radius: 6px 6px 2px 2px;
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,0.1),
+      inset 0 -1px 1px rgba(0,0,0,0.3),
+      0 2px 4px rgba(0,0,0,0.3);
+    border: 0.5px solid rgba(201,169,110,0.1);
+  }
+  .bottle-jar-lid::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 8px; right: 8px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,169,110,0.15), transparent);
+  }
+  .bottle-jar-body {
+    position: absolute;
+    top: 22px; left: 50%;
+    transform: translateX(-50%);
+    width: 94px; height: 105px;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0.3) 0%,
+        rgba(201,169,110,0.05) 12%,
+        rgba(201,169,110,0.07) 25%,
+        rgba(255,255,255,0.04) 30%,
+        rgba(201,169,110,0.03) 50%,
+        rgba(0,0,0,0.1) 75%,
+        rgba(0,0,0,0.3) 100%
+      ),
+      linear-gradient(180deg, #1E1A16 0%, #161210 50%, #1A1510 100%);
+    border-radius: 8px;
+    box-shadow:
+      -3px 0 10px rgba(0,0,0,0.4),
+      3px 0 8px rgba(0,0,0,0.3),
+      0 8px 24px rgba(0,0,0,0.5),
+      inset 1px 0 0 rgba(201,169,110,0.06);
+    border: 0.5px solid rgba(201,169,110,0.12);
+  }
+  .bottle-jar-body::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 5px;
+    width: 3px; height: 50%;
+    background: linear-gradient(180deg, rgba(201,169,110,0.03), rgba(201,169,110,0.07), rgba(201,169,110,0.02));
+    border-radius: 2px;
+    filter: blur(1px);
+  }
+  .bottle-jar .mockup-label {
+    top: 42px; left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+  }
+
+  /* Pump bottle */
+  .bottle-pump {
+    position: relative;
+    width: 72px;
+    height: 250px;
+  }
+  .bottle-pump-head {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 36px; height: 12px;
+    background: linear-gradient(180deg, #3A3530, #2A2520);
+    border-radius: 3px 3px 1px 1px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.08);
+  }
+  .bottle-pump-nozzle {
+    position: absolute;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 14px;
+    background: linear-gradient(180deg, #2A2520, #1E1A16);
+    border-radius: 0 0 2px 2px;
+  }
+  .bottle-pump-collar {
+    position: absolute;
+    top: 24px; left: 50%;
+    transform: translateX(-50%);
+    width: 34px; height: 10px;
+    background: linear-gradient(180deg, #3A3530 0%, #2A2520 100%);
+    border-radius: 4px;
+    box-shadow:
+      inset 0 1px 1px rgba(255,255,255,0.06),
+      0 1px 2px rgba(0,0,0,0.3);
+    border: 0.5px solid rgba(201,169,110,0.1);
+  }
+  .bottle-pump-stem {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 16px;
+    background: linear-gradient(90deg, #1E1A16, #2A2520, #1E1A16);
+  }
+  .bottle-pump-body {
+    position: absolute;
+    top: 34px; left: 50%;
+    transform: translateX(-50%);
+    width: 56px; height: 210px;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0.3) 0%,
+        rgba(201,169,110,0.06) 12%,
+        rgba(201,169,110,0.08) 28%,
+        rgba(255,255,255,0.04) 33%,
+        rgba(201,169,110,0.04) 50%,
+        rgba(0,0,0,0.1) 80%,
+        rgba(0,0,0,0.25) 100%
+      ),
+      linear-gradient(180deg, #1E1A16 0%, #161210 40%, #1A1510 80%, #161210 100%);
+    border-radius: 4px 4px 12px 12px;
+    box-shadow:
+      -2px 0 8px rgba(0,0,0,0.4),
+      2px 0 6px rgba(0,0,0,0.3),
+      0 8px 20px rgba(0,0,0,0.5),
+      inset 1px 0 0 rgba(201,169,110,0.06);
+    border: 0.5px solid rgba(201,169,110,0.12);
+  }
+  .bottle-pump-body::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 4px;
+    width: 3px; height: 30%;
+    background: linear-gradient(180deg, rgba(201,169,110,0.03), rgba(201,169,110,0.07), rgba(201,169,110,0.02));
+    border-radius: 2px;
+    filter: blur(1px);
+  }
+  .bottle-pump .mockup-label {
+    top: 80px; left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
   }
 
   .product-text {
@@ -755,31 +1025,20 @@
   <!-- Product 01 -->
   <div class="product reveal">
     <div class="product-visual">
-      <svg viewBox="0 0 200 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Dropper cap -->
-        <rect x="85" y="0" width="30" height="18" rx="3" fill="#2A2520"/>
-        <rect x="90" y="18" width="20" height="12" rx="1" fill="#1E1A16"/>
-        <!-- Neck -->
-        <rect x="82" y="30" width="36" height="20" rx="2" fill="#1A1510"/>
-        <rect x="82" y="30" width="36" height="20" rx="2" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
-        <!-- Bottle body -->
-        <path d="M78 50 Q78 50 72 70 L72 320 Q72 340 90 340 L110 340 Q128 340 128 320 L128 70 Q122 50 122 50 Z" fill="#1A1510"/>
-        <path d="M78 50 Q78 50 72 70 L72 320 Q72 340 90 340 L110 340 Q128 340 128 320 L128 70 Q122 50 122 50 Z" stroke="rgba(201,169,110,0.25)" stroke-width="0.8"/>
-        <!-- Highlight -->
-        <path d="M82 70 L82 310 Q82 330 92 330" stroke="rgba(201,169,110,0.06)" stroke-width="8" stroke-linecap="round"/>
-        <!-- Label area -->
-        <rect x="78" y="140" width="44" height="110" rx="2" fill="rgba(201,169,110,0.04)" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
-        <!-- Label text -->
-        <text x="100" y="165" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="600" letter-spacing="2" fill="rgba(201,169,110,0.7)">M 103</text>
-        <line x1="86" y1="172" x2="114" y2="172" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
-        <text x="100" y="188" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Anti-Aging</text>
-        <text x="100" y="202" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Night Serum</text>
-        <text x="100" y="220" text-anchor="middle" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5" fill="rgba(201,169,110,0.4)">30 ML</text>
-        <!-- Liquid fill hint -->
-        <rect x="76" y="230" width="48" height="100" rx="0" fill="rgba(201,169,110,0.03)"/>
-        <!-- Bottom reflection -->
-        <ellipse cx="100" cy="355" rx="32" ry="6" fill="rgba(201,169,110,0.04)"/>
-      </svg>
+      <div class="mockup">
+        <div class="bottle-dropper">
+          <div class="bottle-dropper-cap"></div>
+          <div class="bottle-dropper-neck"></div>
+          <div class="bottle-dropper-body"></div>
+          <div class="mockup-label">
+            <span class="mockup-label-brand">M 103</span>
+            <span class="mockup-label-line"></span>
+            <span class="mockup-label-name">Anti-Aging<br>Night Serum</span>
+            <span class="mockup-label-size">30 ML</span>
+          </div>
+        </div>
+        <div class="mockup-reflection"></div>
+      </div>
     </div>
     <div class="product-text">
       <div class="product-category">Serum &middot; First to Launch</div>
@@ -810,29 +1069,19 @@
   <!-- Product 02 -->
   <div class="product reveal">
     <div class="product-visual">
-      <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Jar lid -->
-        <rect x="55" y="0" width="90" height="24" rx="4" fill="#2A2520"/>
-        <rect x="55" y="0" width="90" height="24" rx="4" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
-        <rect x="58" y="20" width="84" height="4" rx="1" fill="#1E1A16"/>
-        <!-- Jar body -->
-        <rect x="50" y="24" width="100" height="120" rx="8" fill="#1A1510"/>
-        <rect x="50" y="24" width="100" height="120" rx="8" stroke="rgba(201,169,110,0.25)" stroke-width="0.8"/>
-        <!-- Highlight -->
-        <path d="M58 34 L58 130 Q58 138 62 138" stroke="rgba(201,169,110,0.06)" stroke-width="6" stroke-linecap="round"/>
-        <!-- Label area -->
-        <rect x="58" y="48" width="84" height="76" rx="2" fill="rgba(201,169,110,0.04)" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
-        <!-- Label text -->
-        <text x="100" y="68" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="600" letter-spacing="2" fill="rgba(201,169,110,0.7)">M 103</text>
-        <line x1="72" y1="74" x2="128" y2="74" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
-        <text x="100" y="90" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="10" font-weight="400" fill="#F5F0E8">Peptide</text>
-        <text x="100" y="104" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="10" font-weight="400" fill="#F5F0E8">Eye Cream</text>
-        <text x="100" y="118" text-anchor="middle" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5" fill="rgba(201,169,110,0.4)">15 ML</text>
-        <!-- Bottom base -->
-        <rect x="52" y="140" width="96" height="6" rx="3" fill="#1E1A16"/>
-        <!-- Bottom reflection -->
-        <ellipse cx="100" cy="160" rx="46" ry="6" fill="rgba(201,169,110,0.04)"/>
-      </svg>
+      <div class="mockup">
+        <div class="bottle-jar">
+          <div class="bottle-jar-lid"></div>
+          <div class="bottle-jar-body"></div>
+          <div class="mockup-label">
+            <span class="mockup-label-brand">M 103</span>
+            <span class="mockup-label-line"></span>
+            <span class="mockup-label-name">Peptide<br>Eye Cream</span>
+            <span class="mockup-label-size">15 ML</span>
+          </div>
+        </div>
+        <div class="mockup-reflection"></div>
+      </div>
     </div>
     <div class="product-text">
       <div class="product-category">Eyes</div>
@@ -863,32 +1112,22 @@
   <!-- Product 03 -->
   <div class="product reveal">
     <div class="product-visual">
-      <svg viewBox="0 0 200 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Pump top -->
-        <rect x="93" y="0" width="14" height="20" rx="2" fill="#2A2520"/>
-        <rect x="88" y="20" width="24" height="8" rx="2" fill="#1E1A16"/>
-        <!-- Pump neck -->
-        <rect x="92" y="28" width="16" height="16" rx="1" fill="#1A1510" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
-        <!-- Pump collar -->
-        <rect x="80" y="44" width="40" height="10" rx="3" fill="#2A2520" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
-        <!-- Bottle body -->
-        <path d="M72 54 L68 80 L68 280 Q68 300 86 300 L114 300 Q132 300 132 280 L132 80 L128 54 Z" fill="#1A1510"/>
-        <path d="M72 54 L68 80 L68 280 Q68 300 86 300 L114 300 Q132 300 132 280 L132 80 L128 54 Z" stroke="rgba(201,169,110,0.25)" stroke-width="0.8"/>
-        <!-- Highlight -->
-        <path d="M76 80 L76 270 Q76 290 88 290" stroke="rgba(201,169,110,0.06)" stroke-width="8" stroke-linecap="round"/>
-        <!-- Label area -->
-        <rect x="74" y="110" width="52" height="100" rx="2" fill="rgba(201,169,110,0.04)" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
-        <!-- Label text -->
-        <text x="100" y="132" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="600" letter-spacing="2" fill="rgba(201,169,110,0.7)">M 103</text>
-        <line x1="82" y1="138" x2="118" y2="138" stroke="rgba(201,169,110,0.2)" stroke-width="0.5"/>
-        <text x="100" y="155" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Repair Night</text>
-        <text x="100" y="169" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9.5" font-weight="400" fill="#F5F0E8">Moisturizer</text>
-        <text x="100" y="188" text-anchor="middle" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5" fill="rgba(201,169,110,0.4)">50 ML</text>
-        <!-- Cream fill hint -->
-        <rect x="72" y="200" width="56" height="90" rx="0" fill="rgba(201,169,110,0.03)"/>
-        <!-- Bottom reflection -->
-        <ellipse cx="100" cy="315" rx="36" ry="6" fill="rgba(201,169,110,0.04)"/>
-      </svg>
+      <div class="mockup">
+        <div class="bottle-pump">
+          <div class="bottle-pump-head"></div>
+          <div class="bottle-pump-stem"></div>
+          <div class="bottle-pump-nozzle"></div>
+          <div class="bottle-pump-collar"></div>
+          <div class="bottle-pump-body"></div>
+          <div class="mockup-label">
+            <span class="mockup-label-brand">M 103</span>
+            <span class="mockup-label-line"></span>
+            <span class="mockup-label-name">Repair Night<br>Moisturizer</span>
+            <span class="mockup-label-size">50 ML</span>
+          </div>
+        </div>
+        <div class="mockup-reflection"></div>
+      </div>
     </div>
     <div class="product-text">
       <div class="product-category">Night</div>
