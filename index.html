@@ -204,7 +204,7 @@
     display: flex; flex-direction: column; align-items: center; text-align: center;
     transform: translate(-50%, -50%);
   }
-  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; line-height: 0; overflow: hidden; height: clamp(90px, 15vw, 160px); }
+  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; line-height: 0; overflow: hidden; height: clamp(120px, 20vw, 200px); }
   .hero-logo img {
     height: clamp(240px, 42vw, 400px); width: auto; opacity: 0.9; display: block;
     object-fit: cover; object-position: center 30%;
@@ -309,7 +309,7 @@
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
     .hero { height: 100vh; }
-    .hero-logo { height: clamp(60px, 14vw, 90px); }
+    .hero-logo { height: clamp(80px, 18vw, 120px); }
     .hero-logo img { height: clamp(160px, 38vw, 260px); }
     .hero-statement { font-size: 9px; letter-spacing: 2px; bottom: 24px; }
     .sun-glow { width: 200px; height: 200px; }
@@ -483,16 +483,16 @@
     const rect = heroCenter.getBoundingClientRect();
     const halfH = rect.height / 2;
     const halfW = rect.width / 2;
-    const padding = window.innerWidth <= 768 ? 20 : 30;
+    const padding = window.innerWidth <= 768 ? 15 : 20;
     const contentR = Math.max(halfH, halfW) + padding;
     // Cap to fit in hero
     const c = getCenter();
     const navH = window.innerWidth <= 768 ? 73 : 89;
-    const spaceTop = c.y - navH - 40;
-    const spaceBottom = heroEl.offsetHeight - c.y - 40;
-    const spaceLeft = c.x - 40;
+    const spaceTop = c.y - navH - 50;
+    const spaceBottom = heroEl.offsetHeight - c.y - 50;
+    const spaceLeft = c.x - 50;
     const maxR = Math.min(spaceTop, spaceBottom, spaceLeft);
-    return Math.min(contentR, maxR);
+    return Math.min(contentR, maxR) * 0.85;
   }
 
   function updateOrbit() {
