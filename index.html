@@ -202,8 +202,8 @@
     position: relative; z-index: 5;
     display: flex; flex-direction: column; align-items: center; text-align: center;
   }
-  .hero-logo { margin-bottom: 16px; opacity: 0; animation: fadeUp 1s ease forwards; }
-  .hero-logo img { height: clamp(60px, 10vw, 90px); width: auto; opacity: 0.85; }
+  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; }
+  .hero-logo img { height: clamp(100px, 20vw, 180px); width: auto; opacity: 0.9; }
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 56px); font-weight: 300;
@@ -302,9 +302,7 @@
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
     .hero { padding: 73px 24px 0; min-height: 100vh; }
-    .hero-logo img { height: clamp(50px, 14vw, 70px); }
-    .hero-name { font-size: clamp(24px, 7vw, 36px); letter-spacing: 4px; }
-    .hero-dynasty { font-size: clamp(11px, 2.5vw, 16px); letter-spacing: 3px; }
+    .hero-logo img { height: clamp(80px, 22vw, 120px); }
     .hero-statement { font-size: 9px; letter-spacing: 2px; bottom: 24px; }
     .sun-glow, .sun-glow-inner { display: none; }
     .orbit-planet { width: 26px; height: 26px; }
@@ -353,8 +351,6 @@
   <!-- Center: The Sun -->
   <div class="hero-center" id="heroCenter">
     <div class="hero-logo"><img src="/assets/logo-maison103-light.png" alt="Maison 103"></div>
-    <h1 class="hero-name">Maison 103</h1>
-    <p class="hero-dynasty">The Dynasty</p>
   </div>
 
   <p class="hero-statement">Seven divisions &middot; One founder &middot; No ceiling</p>
