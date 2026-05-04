@@ -203,8 +203,8 @@
     display: flex; flex-direction: column; align-items: center; text-align: center;
     gap: 0;
   }
-  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; margin: 0; }
-  .hero-logo img { height: clamp(140px, 25vw, 240px); width: auto; opacity: 0.9; }
+  .hero-logo { opacity: 0; animation: fadeUp 1s ease forwards; margin: 0; overflow: hidden; }
+  .hero-logo img { height: clamp(140px, 25vw, 240px); width: auto; opacity: 0.9; display: block; margin-bottom: -15%; }
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 56px); font-weight: 300;
@@ -216,7 +216,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(14px, 1.8vw, 20px); font-weight: 400; font-style: italic;
     letter-spacing: 6px; text-transform: uppercase; color: var(--gold);
-    margin-top: -60px;
+    margin-top: 4px;
     opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
   }
   .hero-line { display: none; }
