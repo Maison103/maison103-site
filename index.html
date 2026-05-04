@@ -458,16 +458,20 @@
 
   const heroCenter = document.getElementById('heroCenter');
   function getRadius() {
-    // Measure center content, compute diagonal half-distance + padding
     const rect = heroCenter.getBoundingClientRect();
+    const heroRect = document.querySelector('.hero').getBoundingClientRect();
     const halfH = rect.height / 2;
     const halfW = rect.width / 2;
     const diagonal = Math.sqrt(halfH * halfH + halfW * halfW);
-    const padding = window.innerWidth <= 768 ? 30 : 50;
-    const minR = diagonal + padding;
-    // Also cap by viewport so it doesn't overflow
-    const maxR = Math.min(window.innerWidth * 0.45, window.innerHeight * 0.42);
-    return Math.max(minR, 140); // floor so ring is never tiny
+    const padding = window.innerWidth <= 768 ? 20 : 40;
+    const contentR = diagonal + padding;
+    // Cap so ring stays within the hero with margin for planet labels
+    const centerY = rect.top + rect.height / 2 - heroRect.top;
+    const spaceTop = centerY - 60;
+    const spaceBottom = heroRect.height - centerY - 60;
+    const spaceLeft = (heroRect.width / 2) - 60;
+    const maxR = Math.min(spaceTop, spaceBottom, spaceLeft);
+    return Math.min(contentR, maxR);
   }
 
   function updateOrbit() {
