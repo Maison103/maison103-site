@@ -184,25 +184,7 @@
   }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ===== MOBILE DIVISIONS ===== */
-  .mobile-divisions {
-    display: none;
-    position: relative; z-index: 5;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px 16px;
-    margin-top: 48px;
-    width: 100%; max-width: 360px;
-  }
-  .mobile-div {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none; padding: 14px 0;
-    transition: opacity 0.3s;
-  }
-  .mobile-div:hover { opacity: 0.7; }
-  .mobile-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px var(--color); background: var(--color); }
-  .mobile-div-text { display: flex; flex-direction: column; gap: 2px; }
-  .mobile-div-code { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(201,169,110,0.5); }
-  .mobile-div-name { font-size: 14px; font-weight: 400; color: var(--white); }
+  /* mobile-divisions removed — orbit shows on all sizes */
 
   /* ===== STORY ===== */
   .story {
@@ -272,11 +254,17 @@
     nav.scrolled { padding: 12px 24px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
-    .hero { padding: 100px 24px 60px; min-height: auto; }
-    .hero-name { letter-spacing: 6px; }
-    .hero-dynasty { letter-spacing: 4px; }
+    .hero { padding: 100px 24px 60px; min-height: 100vh; }
+    .hero-logo img { height: clamp(80px, 20vw, 140px); }
+    .hero-name { font-size: clamp(32px, 8vw, 52px); letter-spacing: 4px; }
+    .hero-dynasty { font-size: clamp(14px, 3vw, 20px); letter-spacing: 3px; }
+    .hero-statement { font-size: 14px; max-width: 300px; }
     .sun-glow, .sun-glow-inner { display: none; }
-    .mobile-divisions { display: grid; }
+    .orbit-planet { width: 28px; height: 28px; }
+    .orbit-planet::after { top: 4px; left: 6px; width: 7px; height: 4px; }
+    .orbit-code { display: none; }
+    .orbit-name { font-size: 9px; }
+    .orbit-ring { border-width: 1px; }
     .story { padding: 80px 24px; }
     .story::before { height: 50px; }
     .cred-strip { gap: 24px; padding: 36px 24px; }
@@ -322,16 +310,6 @@
   <div class="hero-line"></div>
   <p class="hero-statement">Seven divisions. One founder. No investors, no board, no ceiling.</p>
 
-  <!-- Mobile fallback -->
-  <div class="mobile-divisions">
-    <a href="/mmi103.html" class="mobile-div"><span class="mobile-dot" style="--color:#3B82F6"></span><div class="mobile-div-text"><span class="mobile-div-code">MMI 103</span><span class="mobile-div-name">Me, Myself, and I</span></div></a>
-    <a href="/fuel103.html" class="mobile-div"><span class="mobile-dot" style="--color:#F59E0B"></span><div class="mobile-div-text"><span class="mobile-div-code">Fuel 103</span><span class="mobile-div-name">Wellness Content</span></div></a>
-    <a href="/m103.html" class="mobile-div"><span class="mobile-dot" style="--color:#C9A96E"></span><div class="mobile-div-text"><span class="mobile-div-code">M 103</span><span class="mobile-div-name">Maison Skincare</span></div></a>
-    <a href="/film103.html" class="mobile-div"><span class="mobile-dot" style="--color:#EF4444"></span><div class="mobile-div-text"><span class="mobile-div-code">Film 103</span><span class="mobile-div-name">Film &amp; Production</span></div></a>
-    <a href="/sl103.html" class="mobile-div"><span class="mobile-dot" style="--color:#8B5CF6"></span><div class="mobile-div-text"><span class="mobile-div-code">SL 103</span><span class="mobile-div-name">SoundLab</span></div></a>
-    <a href="/fc103.html" class="mobile-div"><span class="mobile-dot" style="--color:#10B981"></span><div class="mobile-div-text"><span class="mobile-div-code">FC 103</span><span class="mobile-div-name">Federal Contracting</span></div></a>
-    <a href="/cc103.html" class="mobile-div"><span class="mobile-dot" style="--color:#06B6D4"></span><div class="mobile-div-text"><span class="mobile-div-code">CC 103</span><span class="mobile-div-name">Commercial Consulting</span></div></a>
-  </div>
 </section>
 
 <!-- ===== STORY ===== -->
@@ -533,13 +511,7 @@
     requestAnimationFrame(tick);
   }
 
-  // Hide orbit on small screens (mobile-divisions grid takes over)
-  function checkMobile() {
-    const isMobile = window.innerWidth <= 768;
-    container.style.display = isMobile ? 'none' : '';
-  }
-  window.addEventListener('resize', checkMobile);
-  checkMobile();
+  window.addEventListener('resize', updateOrbit);
   tick();
 
   // Scroll reveal
