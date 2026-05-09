@@ -110,7 +110,7 @@
       inset 0 0 6px rgba(201,169,110,0.08),
       inset 0 0 30px rgba(201,169,110,0.03);
     pointer-events: none;
-    background: radial-gradient(circle, transparent 98%, rgba(201,169,110,0.02) 100%);
+    background: radial-gradient(ellipse, transparent 98%, rgba(201,169,110,0.02) 100%);
   }
 
   .orbit-node {
@@ -634,62 +634,73 @@
   const sunGlow = document.querySelector('.sun-glow');
   const sunGlowInner = document.querySelector('.sun-glow-inner');
 
-  // One center point for everything: visual center of viewport below nav
-  // Nav: 89px desktop, 73px mobile
-  function getCenter() {
+  // Logo center: visual center of viewport below nav
+  function getLogoCenter() {
     const navH = window.innerWidth <= 768 ? 73 : 89;
     const vh = heroEl.offsetHeight;
     const cx = heroEl.offsetWidth / 2;
-    const cy = navH + (vh - navH) / 2;
+    const cy = navH + (vh - navH) * 0.38;
     return { x: cx, y: cy };
   }
 
-  function getRadius() {
-    const rect = heroCenter.getBoundingClientRect();
-    const halfH = rect.height / 2;
-    const halfW = rect.width / 2;
-    const padding = window.innerWidth <= 768 ? 15 : 20;
-    const contentR = Math.max(halfH, halfW) + padding;
-    // Cap to fit in hero
-    const c = getCenter();
-    const navH = window.innerWidth <= 768 ? 73 : 89;
-    const spaceTop = c.y - navH - 50;
-    const spaceBottom = heroEl.offsetHeight - c.y - 50;
-    const spaceLeft = c.x - 50;
-    const maxR = Math.min(spaceTop, spaceBottom, spaceLeft);
-    return Math.min(contentR, maxR) * 1.5;
+  // Orbit center: below the logo
+  function getOrbitCenter() {
+    const lc = getLogoCenter();
+    const logoRect = heroCenter.getBoundingClientRect();
+    const heroRect = heroEl.getBoundingClientRect();
+    const logoBottom = logoRect.bottom - heroRect.top;
+    const orbitY = logoBottom + (window.innerWidth <= 768 ? 15 : 25);
+    return { x: lc.x, y: orbitY };
+  }
+
+  function getOrbitSize() {
+    const oc = getOrbitCenter();
+    const w = heroEl.offsetWidth;
+    const h = heroEl.offsetHeight;
+    // Horizontal radius: wide, filling most of viewport width
+    const maxRx = (w / 2) - (window.innerWidth <= 768 ? 40 : 60);
+    const rx = Math.min(maxRx, window.innerWidth <= 768 ? 160 : 320);
+    // Vertical radius: compressed for 3D perspective feel
+    const ry = rx * (window.innerWidth <= 768 ? 0.32 : 0.35);
+    // Cap so it doesn't overflow bottom
+    const spaceBelow = h - oc.y - 60;
+    const finalRy = Math.min(ry, spaceBelow);
+    return { rx: rx, ry: finalRy };
   }
 
   function updateOrbit() {
-    const c = getCenter();
-    const r = getRadius();
-    const diameter = r * 2;
+    const lc = getLogoCenter();
+    const oc = getOrbitCenter();
+    const { rx, ry } = getOrbitSize();
 
-    // Position everything at the same center
-    heroCenter.style.left = c.x + 'px';
-    heroCenter.style.top = c.y + 'px';
+    // Position logo at its center
+    heroCenter.style.left = lc.x + 'px';
+    heroCenter.style.top = lc.y + 'px';
 
-    container.style.width = diameter + 'px';
-    container.style.height = diameter + 'px';
-    container.style.left = (c.x - r) + 'px';
-    container.style.top = (c.y - r) + 'px';
+    // Sun glow behind logo
+    sunGlow.style.left = lc.x + 'px';
+    sunGlow.style.top = lc.y + 'px';
+    sunGlowInner.style.left = lc.x + 'px';
+    sunGlowInner.style.top = lc.y + 'px';
 
-    ring.style.width = diameter + 'px';
-    ring.style.height = diameter + 'px';
+    // Orbit container sized to the ellipse
+    container.style.width = (rx * 2) + 'px';
+    container.style.height = (ry * 2) + 'px';
+    container.style.left = (oc.x - rx) + 'px';
+    container.style.top = (oc.y - ry) + 'px';
 
-    sunGlow.style.left = c.x + 'px';
-    sunGlow.style.top = c.y + 'px';
-    sunGlowInner.style.left = c.x + 'px';
-    sunGlowInner.style.top = c.y + 'px';
+    // Ring matches the ellipse
+    ring.style.width = (rx * 2) + 'px';
+    ring.style.height = (ry * 2) + 'px';
 
     const step = (2 * Math.PI) / divisions.length;
-    // Wing-tip angles: left (~π) and right (~0/2π), slightly above center (~-0.15 rad)
-    const wingAngles = [-0.15, Math.PI + 0.35];
-    const wingThreshold = 0.25; // radians of proximity to trigger effect
+    // Wing-tip flare at left and right of ellipse
+    const wingAngles = [0, Math.PI];
+    const wingThreshold = 0.25;
     nodes.forEach((node, i) => {
       const a = angle + i * step;
-      const x = r + Math.cos(a) * r;
-      const y = r + Math.sin(a) * r;
+      const x = rx + Math.cos(a) * rx;
+      const y = ry + Math.sin(a) * ry;
       node.style.left = x + 'px';
       node.style.top = y + 'px';
       // Check proximity to wing tips
@@ -736,10 +747,10 @@
     const c = getCenterOfContainer();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const { rx } = getOrbitSize();
     const dist = Math.sqrt((clientX - c.x) ** 2 + (clientY - c.y) ** 2);
-    const r = getRadius();
-    // Only initiate drag if within 80px of the ring
-    if (dist < r - 80) return;
+    // Only initiate drag if near the ring
+    if (dist < rx * 0.4) return;
     if (e.touches) e.preventDefault();
     isDragging = true;
     isIdle = false;
