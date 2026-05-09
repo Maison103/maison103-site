@@ -116,16 +116,37 @@
   .orbit-node {
     pointer-events: all;
     position: absolute;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
     text-decoration: none; cursor: pointer;
     transform: translate(-50%, -50%);
     transition: filter 0.3s;
     z-index: 4;
     user-select: none;
     -webkit-user-select: none;
+    padding: 10px;
   }
-  .orbit-node:hover { z-index: 10; filter: brightness(1.3); }
+  .orbit-node:hover { z-index: 10; filter: brightness(1.15); }
   .orbit-node.dragging { cursor: grabbing; }
+
+  /* Hover explore prompt */
+  .orbit-node .orbit-hint {
+    position: absolute;
+    bottom: -8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .orbit-node:hover .orbit-hint {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
 
   .orbit-planet {
     width: 44px; height: 44px; border-radius: 50%;
@@ -319,14 +340,17 @@
   }
 
   .orbit-node:hover .orbit-planet {
-    transform: scale(1.25);
+    transform: scale(1.2);
     box-shadow:
-      0 0 24px var(--color),
-      0 0 60px var(--color),
+      0 0 20px var(--color),
+      0 0 48px var(--color),
       inset -6px -4px 10px rgba(0,0,0,0.5),
       inset 2px 2px 6px rgba(255,255,255,0.1);
+    cursor: pointer;
   }
-  .orbit-node:hover::before { opacity: 0.3; }
+  .orbit-node:hover::before { opacity: 0.35; width: 64px; height: 64px; }
+  .orbit-node:hover .orbit-name { color: var(--white); }
+  .orbit-node:hover .orbit-code { color: var(--gold); }
 
   .orbit-code {
     font-family: 'Space Mono', monospace;
@@ -452,11 +476,13 @@
     .hero-statement { font-size: 9px; letter-spacing: 2px; bottom: 24px; }
     .sun-glow { width: 200px; height: 200px; }
     .sun-glow-inner { width: 80px; height: 80px; }
-    .orbit-planet { width: 26px; height: 26px; }
+    .orbit-planet { width: 32px; height: 32px; }
     .orbit-planet::after { top: 3px; left: 4px; width: 8px; height: 5px; }
-    .orbit-node::before { width: 36px; height: 36px; }
+    .orbit-node { padding: 8px; }
+    .orbit-node::before { width: 42px; height: 42px; }
     .orbit-code { display: none; }
     .orbit-name { font-size: 9px; }
+    .orbit-hint { display: none; }
     .story { padding: 80px 24px; }
     .story::before { height: 50px; }
     .cred-strip { gap: 24px; padding: 36px 24px; }
@@ -594,9 +620,10 @@
       <span class="orbit-planet planet-${div.type}"></span>
       <span class="orbit-code">${div.code}</span>
       <span class="orbit-name">${div.name}</span>
+      <span class="orbit-hint">explore →</span>
     `;
     a.addEventListener('click', (e) => {
-      if (pointerTravel > 5) e.preventDefault();
+      if (pointerTravel > 15) e.preventDefault();
     });
     container.appendChild(a);
     nodes.push(a);
