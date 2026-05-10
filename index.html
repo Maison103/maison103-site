@@ -157,79 +157,97 @@
     50% { opacity: 0.6; }
   }
 
-  /* Nucleus — bright focal point above the orbit */
+  /* Nucleus — radiant core at orbit center */
   .nucleus {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 6px; height: 6px;
+    width: 4px; height: 4px;
     border-radius: 50%;
     z-index: 3;
     pointer-events: none;
-    background: rgba(255,230,170,0.9);
+    background: #fff;
     box-shadow:
-      0 0 4px rgba(255,230,170,1),
-      0 0 12px rgba(255,220,160,0.8),
-      0 0 30px rgba(201,169,110,0.5),
-      0 0 60px rgba(201,169,110,0.25),
-      0 0 120px rgba(201,169,110,0.1);
-    animation: nucleus-pulse 4s ease-in-out infinite;
+      0 0 3px rgba(255,255,255,1),
+      0 0 8px rgba(255,230,170,0.9),
+      0 0 20px rgba(255,220,150,0.6),
+      0 0 50px rgba(201,169,110,0.35),
+      0 0 100px rgba(201,169,110,0.15),
+      0 0 180px rgba(201,169,110,0.06);
+    animation: nucleus-breathe 5s ease-in-out infinite;
   }
-  /* Expanding ring 1 */
+  /* Inner halo — warm soft glow */
+  .nucleus-halo {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle,
+      rgba(255,230,170,0.12) 0%,
+      rgba(201,169,110,0.06) 40%,
+      transparent 70%
+    );
+    animation: nucleus-breathe 5s ease-in-out infinite;
+  }
+  /* Outer halo — wide ambient warmth */
+  .nucleus-halo-outer {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle,
+      rgba(201,169,110,0.05) 0%,
+      rgba(201,169,110,0.02) 50%,
+      transparent 70%
+    );
+    animation: nucleus-breathe 5s ease-in-out 1s infinite;
+  }
+  /* Ring ripple 1 */
   .nucleus::before {
     content: '';
     position: absolute;
     top: 50%; left: 50%;
-    width: 40px; height: 40px;
+    width: 10px; height: 10px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 1px solid rgba(201,169,110,0.3);
-    box-shadow:
-      0 0 8px rgba(201,169,110,0.15),
-      inset 0 0 8px rgba(201,169,110,0.1);
-    animation: ring-expand 4s ease-out infinite;
+    border: 0.5px solid rgba(201,169,110,0.4);
+    box-shadow: 0 0 6px rgba(201,169,110,0.1);
+    animation: ring-ripple 5s ease-out infinite;
   }
-  /* Expanding ring 2 — offset timing */
+  /* Ring ripple 2 */
   .nucleus::after {
     content: '';
     position: absolute;
     top: 50%; left: 50%;
-    width: 40px; height: 40px;
+    width: 10px; height: 10px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 1px solid rgba(201,169,110,0.2);
-    box-shadow:
-      0 0 6px rgba(201,169,110,0.1),
-      inset 0 0 6px rgba(201,169,110,0.06);
-    animation: ring-expand 4s ease-out 2s infinite;
+    border: 0.5px solid rgba(201,169,110,0.3);
+    box-shadow: 0 0 4px rgba(201,169,110,0.08);
+    animation: ring-ripple 5s ease-out 1.67s infinite;
   }
-  @keyframes nucleus-pulse {
-    0%, 100% {
-      box-shadow:
-        0 0 4px rgba(255,230,170,1),
-        0 0 12px rgba(255,220,160,0.8),
-        0 0 30px rgba(201,169,110,0.5),
-        0 0 60px rgba(201,169,110,0.25),
-        0 0 120px rgba(201,169,110,0.1);
-    }
-    50% {
-      box-shadow:
-        0 0 6px rgba(255,230,170,1),
-        0 0 18px rgba(255,220,160,0.9),
-        0 0 40px rgba(201,169,110,0.6),
-        0 0 80px rgba(201,169,110,0.3),
-        0 0 150px rgba(201,169,110,0.15);
-    }
+  @keyframes nucleus-breathe {
+    0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
   }
-  @keyframes ring-expand {
+  @keyframes ring-ripple {
     0% {
-      width: 10px; height: 10px;
-      opacity: 0.8;
-      border-color: rgba(201,169,110,0.5);
+      width: 8px; height: 8px;
+      opacity: 0.6;
+      border-color: rgba(255,230,170,0.5);
+      box-shadow: 0 0 4px rgba(255,230,170,0.2);
+    }
+    70% {
+      opacity: 0.15;
     }
     100% {
-      width: 120px; height: 120px;
+      width: 100px; height: 100px;
       opacity: 0;
       border-color: rgba(201,169,110,0);
+      box-shadow: 0 0 0 transparent;
     }
   }
 
@@ -731,7 +749,10 @@
   <div class="sun-glow"></div>
   <div class="sun-glow-inner"></div>
   <div class="sun-line" id="sunLine"></div>
-  <div class="nucleus" id="nucleus"></div>
+  <div class="nucleus" id="nucleus">
+    <div class="nucleus-halo"></div>
+    <div class="nucleus-halo-outer"></div>
+  </div>
 
   <!-- Interactive orbit — built by JS -->
   <div class="orbit-container" id="orbitContainer">
