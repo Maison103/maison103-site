@@ -545,7 +545,7 @@
     .menu-toggle { display: flex; }
     .hero { height: 100vh; }
     .hero-logo img { height: clamp(80px, 18vw, 120px); }
-    .hero-dynasty { display: none; }
+    .hero-dynasty { font-size: 10px; letter-spacing: 4px; }
     .hero-statement { font-size: 9px; letter-spacing: 2px; bottom: 24px; }
     .sun-glow { width: 200px; height: 200px; }
     .sun-glow-inner { width: 80px; height: 80px; }
@@ -714,7 +714,7 @@
     const navH = window.innerWidth <= 768 ? 73 : 89;
     const vh = heroEl.offsetHeight;
     const cx = heroEl.offsetWidth / 2;
-    const cy = navH + (vh - navH) * 0.38;
+    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.32 : 0.38);
     return { x: cx, y: cy };
   }
 
