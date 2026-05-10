@@ -91,72 +91,70 @@
     50% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.6; }
   }
 
-  /* Nucleus light line — horizontal flare */
+  /* Nucleus light beams — horizontal flare */
   .sun-line {
     position: absolute;
-    height: 1px;
+    height: 2px;
     left: 0; right: 0;
     transform: translateY(-50%);
     z-index: 2;
     pointer-events: none;
     background: linear-gradient(90deg,
       transparent 0%,
-      transparent 10%,
-      rgba(201,169,110,0.03) 20%,
-      rgba(201,169,110,0.12) 35%,
-      rgba(201,169,110,0.4) 45%,
-      rgba(201,169,110,0.7) 48%,
-      rgba(255,220,160,0.9) 50%,
-      rgba(201,169,110,0.7) 52%,
-      rgba(201,169,110,0.4) 55%,
-      rgba(201,169,110,0.12) 65%,
-      rgba(201,169,110,0.03) 80%,
-      transparent 90%,
+      rgba(201,169,110,0.05) 5%,
+      rgba(201,169,110,0.15) 15%,
+      rgba(201,169,110,0.35) 30%,
+      rgba(201,169,110,0.7) 42%,
+      rgba(255,230,170,1) 50%,
+      rgba(201,169,110,0.7) 58%,
+      rgba(201,169,110,0.35) 70%,
+      rgba(201,169,110,0.15) 85%,
+      rgba(201,169,110,0.05) 95%,
       transparent 100%
     );
     animation: line-breathe 6s ease-in-out infinite;
   }
+  /* Mid glow layer */
   .sun-line::before {
     content: '';
     position: absolute;
-    top: -2px; left: 0; right: 0;
-    height: 5px;
+    top: -6px; left: 0; right: 0;
+    height: 14px;
     background: linear-gradient(90deg,
       transparent 0%,
-      transparent 15%,
-      rgba(201,169,110,0.02) 25%,
-      rgba(201,169,110,0.06) 38%,
-      rgba(201,169,110,0.15) 46%,
-      rgba(255,220,160,0.25) 50%,
-      rgba(201,169,110,0.15) 54%,
-      rgba(201,169,110,0.06) 62%,
-      rgba(201,169,110,0.02) 75%,
-      transparent 85%,
+      rgba(201,169,110,0.03) 10%,
+      rgba(201,169,110,0.1) 25%,
+      rgba(201,169,110,0.25) 40%,
+      rgba(255,220,160,0.45) 50%,
+      rgba(201,169,110,0.25) 60%,
+      rgba(201,169,110,0.1) 75%,
+      rgba(201,169,110,0.03) 90%,
       transparent 100%
     );
-    filter: blur(3px);
+    filter: blur(6px);
   }
+  /* Wide ambient glow */
   .sun-line::after {
     content: '';
     position: absolute;
-    top: -8px; left: 0; right: 0;
-    height: 17px;
+    top: -20px; left: 0; right: 0;
+    height: 42px;
     background: linear-gradient(90deg,
       transparent 0%,
-      transparent 25%,
-      rgba(201,169,110,0.02) 35%,
-      rgba(201,169,110,0.05) 44%,
-      rgba(201,169,110,0.08) 50%,
-      rgba(201,169,110,0.05) 56%,
-      rgba(201,169,110,0.02) 65%,
-      transparent 75%,
+      rgba(201,169,110,0.02) 10%,
+      rgba(201,169,110,0.06) 25%,
+      rgba(201,169,110,0.14) 40%,
+      rgba(201,169,110,0.2) 50%,
+      rgba(201,169,110,0.14) 60%,
+      rgba(201,169,110,0.06) 75%,
+      rgba(201,169,110,0.02) 90%,
       transparent 100%
     );
-    filter: blur(8px);
+    filter: blur(16px);
   }
   @keyframes line-breathe {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+    50% { opacity: 0.65; }
   }
 
   /* ===== INTERACTIVE ORBIT ===== */
@@ -784,7 +782,7 @@
     const navH = window.innerWidth <= 768 ? 73 : 89;
     const vh = heroEl.offsetHeight;
     const cx = heroEl.offsetWidth / 2;
-    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.25 : 0.28);
+    const cy = navH + (window.innerWidth <= 768 ? 60 : 80);
     return { x: cx, y: cy };
   }
 
