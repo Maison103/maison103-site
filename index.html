@@ -157,6 +157,82 @@
     50% { opacity: 0.6; }
   }
 
+  /* Nucleus — bright focal point above the orbit */
+  .nucleus {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+    background: rgba(255,230,170,0.9);
+    box-shadow:
+      0 0 4px rgba(255,230,170,1),
+      0 0 12px rgba(255,220,160,0.8),
+      0 0 30px rgba(201,169,110,0.5),
+      0 0 60px rgba(201,169,110,0.25),
+      0 0 120px rgba(201,169,110,0.1);
+    animation: nucleus-pulse 4s ease-in-out infinite;
+  }
+  /* Expanding ring 1 */
+  .nucleus::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 40px; height: 40px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.3);
+    box-shadow:
+      0 0 8px rgba(201,169,110,0.15),
+      inset 0 0 8px rgba(201,169,110,0.1);
+    animation: ring-expand 4s ease-out infinite;
+  }
+  /* Expanding ring 2 — offset timing */
+  .nucleus::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 40px; height: 40px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.2);
+    box-shadow:
+      0 0 6px rgba(201,169,110,0.1),
+      inset 0 0 6px rgba(201,169,110,0.06);
+    animation: ring-expand 4s ease-out 2s infinite;
+  }
+  @keyframes nucleus-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 4px rgba(255,230,170,1),
+        0 0 12px rgba(255,220,160,0.8),
+        0 0 30px rgba(201,169,110,0.5),
+        0 0 60px rgba(201,169,110,0.25),
+        0 0 120px rgba(201,169,110,0.1);
+    }
+    50% {
+      box-shadow:
+        0 0 6px rgba(255,230,170,1),
+        0 0 18px rgba(255,220,160,0.9),
+        0 0 40px rgba(201,169,110,0.6),
+        0 0 80px rgba(201,169,110,0.3),
+        0 0 150px rgba(201,169,110,0.15);
+    }
+  }
+  @keyframes ring-expand {
+    0% {
+      width: 10px; height: 10px;
+      opacity: 0.8;
+      border-color: rgba(201,169,110,0.5);
+    }
+    100% {
+      width: 120px; height: 120px;
+      opacity: 0;
+      border-color: rgba(201,169,110,0);
+    }
+  }
+
   /* ===== INTERACTIVE ORBIT ===== */
   .orbit-container {
     position: absolute;
@@ -655,6 +731,7 @@
   <div class="sun-glow"></div>
   <div class="sun-glow-inner"></div>
   <div class="sun-line" id="sunLine"></div>
+  <div class="nucleus" id="nucleus"></div>
 
   <!-- Interactive orbit — built by JS -->
   <div class="orbit-container" id="orbitContainer">
@@ -775,6 +852,7 @@
   const sunGlow = document.querySelector('.sun-glow');
   const sunGlowInner = document.querySelector('.sun-glow-inner');
   const sunLine = document.getElementById('sunLine');
+  const nucleus = document.getElementById('nucleus');
   const dust = document.getElementById('orbitDust');
 
   // Logo center: visual center of viewport below nav
@@ -827,6 +905,10 @@
 
     // Vertical beam through center
     sunLine.style.left = lc.x + 'px';
+
+    // Nucleus point — just above the orbit top
+    nucleus.style.left = oc.x + 'px';
+    nucleus.style.top = (oc.y - ry - 15) + 'px';
 
     // Orbit container sized to the ellipse
     container.style.width = (rx * 2) + 'px';
