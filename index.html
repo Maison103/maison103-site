@@ -91,6 +91,74 @@
     50% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.6; }
   }
 
+  /* Nucleus light line — horizontal flare */
+  .sun-line {
+    position: absolute;
+    height: 1px;
+    left: 0; right: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      transparent 10%,
+      rgba(201,169,110,0.03) 20%,
+      rgba(201,169,110,0.12) 35%,
+      rgba(201,169,110,0.4) 45%,
+      rgba(201,169,110,0.7) 48%,
+      rgba(255,220,160,0.9) 50%,
+      rgba(201,169,110,0.7) 52%,
+      rgba(201,169,110,0.4) 55%,
+      rgba(201,169,110,0.12) 65%,
+      rgba(201,169,110,0.03) 80%,
+      transparent 90%,
+      transparent 100%
+    );
+    animation: line-breathe 6s ease-in-out infinite;
+  }
+  .sun-line::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      transparent 15%,
+      rgba(201,169,110,0.02) 25%,
+      rgba(201,169,110,0.06) 38%,
+      rgba(201,169,110,0.15) 46%,
+      rgba(255,220,160,0.25) 50%,
+      rgba(201,169,110,0.15) 54%,
+      rgba(201,169,110,0.06) 62%,
+      rgba(201,169,110,0.02) 75%,
+      transparent 85%,
+      transparent 100%
+    );
+    filter: blur(3px);
+  }
+  .sun-line::after {
+    content: '';
+    position: absolute;
+    top: -8px; left: 0; right: 0;
+    height: 17px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      transparent 25%,
+      rgba(201,169,110,0.02) 35%,
+      rgba(201,169,110,0.05) 44%,
+      rgba(201,169,110,0.08) 50%,
+      rgba(201,169,110,0.05) 56%,
+      rgba(201,169,110,0.02) 65%,
+      transparent 75%,
+      transparent 100%
+    );
+    filter: blur(8px);
+  }
+  @keyframes line-breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
   /* ===== INTERACTIVE ORBIT ===== */
   .orbit-container {
     position: absolute;
@@ -588,6 +656,7 @@
   <div class="hero-bg"></div>
   <div class="sun-glow"></div>
   <div class="sun-glow-inner"></div>
+  <div class="sun-line" id="sunLine"></div>
 
   <!-- Interactive orbit — built by JS -->
   <div class="orbit-container" id="orbitContainer">
@@ -707,6 +776,7 @@
   const heroEl = document.querySelector('.hero');
   const sunGlow = document.querySelector('.sun-glow');
   const sunGlowInner = document.querySelector('.sun-glow-inner');
+  const sunLine = document.getElementById('sunLine');
   const dust = document.getElementById('orbitDust');
 
   // Logo center: visual center of viewport below nav
@@ -714,7 +784,7 @@
     const navH = window.innerWidth <= 768 ? 73 : 89;
     const vh = heroEl.offsetHeight;
     const cx = heroEl.offsetWidth / 2;
-    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.48 : 0.38);
+    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.25 : 0.28);
     return { x: cx, y: cy };
   }
 
@@ -757,6 +827,9 @@
     sunGlow.style.top = lc.y + 'px';
     sunGlowInner.style.left = lc.x + 'px';
     sunGlowInner.style.top = lc.y + 'px';
+
+    // Light line at logo center
+    sunLine.style.top = lc.y + 'px';
 
     // Orbit container sized to the ellipse
     container.style.width = (rx * 2) + 'px';
