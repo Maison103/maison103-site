@@ -91,24 +91,24 @@
     50% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.6; }
   }
 
-  /* Nucleus light beams — horizontal flare */
+  /* Vertical light beam — through the orbit */
   .sun-line {
     position: absolute;
-    height: 2px;
-    left: 0; right: 0;
-    transform: translateY(-50%);
+    width: 2px;
+    top: 0; bottom: 0;
+    transform: translateX(-50%);
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(90deg,
+    background: linear-gradient(180deg,
       transparent 0%,
       rgba(201,169,110,0.05) 5%,
-      rgba(201,169,110,0.15) 15%,
-      rgba(201,169,110,0.35) 30%,
-      rgba(201,169,110,0.7) 42%,
+      rgba(201,169,110,0.2) 15%,
+      rgba(201,169,110,0.5) 30%,
+      rgba(255,230,170,0.9) 45%,
       rgba(255,230,170,1) 50%,
-      rgba(201,169,110,0.7) 58%,
-      rgba(201,169,110,0.35) 70%,
-      rgba(201,169,110,0.15) 85%,
+      rgba(255,230,170,0.9) 55%,
+      rgba(201,169,110,0.5) 70%,
+      rgba(201,169,110,0.2) 85%,
       rgba(201,169,110,0.05) 95%,
       transparent 100%
     );
@@ -118,16 +118,16 @@
   .sun-line::before {
     content: '';
     position: absolute;
-    top: -6px; left: 0; right: 0;
-    height: 14px;
-    background: linear-gradient(90deg,
+    left: -6px; top: 0; bottom: 0;
+    width: 14px;
+    background: linear-gradient(180deg,
       transparent 0%,
       rgba(201,169,110,0.03) 10%,
-      rgba(201,169,110,0.1) 25%,
-      rgba(201,169,110,0.25) 40%,
+      rgba(201,169,110,0.12) 25%,
+      rgba(201,169,110,0.3) 40%,
       rgba(255,220,160,0.45) 50%,
-      rgba(201,169,110,0.25) 60%,
-      rgba(201,169,110,0.1) 75%,
+      rgba(201,169,110,0.3) 60%,
+      rgba(201,169,110,0.12) 75%,
       rgba(201,169,110,0.03) 90%,
       transparent 100%
     );
@@ -137,15 +137,15 @@
   .sun-line::after {
     content: '';
     position: absolute;
-    top: -20px; left: 0; right: 0;
-    height: 42px;
-    background: linear-gradient(90deg,
+    left: -20px; top: 0; bottom: 0;
+    width: 42px;
+    background: linear-gradient(180deg,
       transparent 0%,
       rgba(201,169,110,0.02) 10%,
       rgba(201,169,110,0.06) 25%,
-      rgba(201,169,110,0.14) 40%,
-      rgba(201,169,110,0.2) 50%,
-      rgba(201,169,110,0.14) 60%,
+      rgba(201,169,110,0.16) 40%,
+      rgba(201,169,110,0.22) 50%,
+      rgba(201,169,110,0.16) 60%,
       rgba(201,169,110,0.06) 75%,
       rgba(201,169,110,0.02) 90%,
       transparent 100%
@@ -154,7 +154,7 @@
   }
   @keyframes line-breathe {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.65; }
+    50% { opacity: 0.6; }
   }
 
   /* ===== INTERACTIVE ORBIT ===== */
@@ -782,7 +782,7 @@
     const navH = window.innerWidth <= 768 ? 73 : 89;
     const vh = heroEl.offsetHeight;
     const cx = heroEl.offsetWidth / 2;
-    const cy = navH + (window.innerWidth <= 768 ? 60 : 80);
+    const cy = navH + (window.innerWidth <= 768 ? 90 : 120);
     return { x: cx, y: cy };
   }
 
@@ -791,7 +791,7 @@
     const navH = window.innerWidth <= 768 ? 73 : 89;
     const vh = heroEl.offsetHeight;
     const cx = heroEl.offsetWidth / 2;
-    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.55 : 0.58);
+    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.45 : 0.48);
     return { x: cx, y: cy };
   }
 
@@ -825,8 +825,8 @@
     sunGlowInner.style.left = lc.x + 'px';
     sunGlowInner.style.top = lc.y + 'px';
 
-    // Light line at logo center
-    sunLine.style.top = lc.y + 'px';
+    // Vertical beam through center
+    sunLine.style.left = lc.x + 'px';
 
     // Orbit container sized to the ellipse
     container.style.width = (rx * 2) + 'px';
