@@ -786,14 +786,13 @@
     return { x: cx, y: cy };
   }
 
-  // Orbit center: below the logo
+  // Orbit center: fixed in the middle-lower area of the hero
   function getOrbitCenter() {
-    const lc = getLogoCenter();
-    const logoRect = heroCenter.getBoundingClientRect();
-    const heroRect = heroEl.getBoundingClientRect();
-    const logoBottom = logoRect.bottom - heroRect.top;
-    const orbitY = logoBottom + (window.innerWidth <= 768 ? 15 : 25);
-    return { x: lc.x, y: orbitY };
+    const navH = window.innerWidth <= 768 ? 73 : 89;
+    const vh = heroEl.offsetHeight;
+    const cx = heroEl.offsetWidth / 2;
+    const cy = navH + (vh - navH) * (window.innerWidth <= 768 ? 0.55 : 0.58);
+    return { x: cx, y: cy };
   }
 
   function getOrbitSize() {
