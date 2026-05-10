@@ -91,25 +91,20 @@
     50% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.6; }
   }
 
-  /* Vertical light beam — through the orbit */
+  /* Vertical light beam — positioned by JS */
   .sun-line {
     position: absolute;
     width: 2px;
-    top: 0; bottom: 0;
     transform: translateX(-50%);
     z-index: 2;
     pointer-events: none;
     background: linear-gradient(180deg,
       transparent 0%,
-      rgba(201,169,110,0.05) 5%,
-      rgba(201,169,110,0.2) 15%,
-      rgba(201,169,110,0.5) 30%,
-      rgba(255,230,170,0.9) 45%,
-      rgba(255,230,170,1) 50%,
-      rgba(255,230,170,0.9) 55%,
-      rgba(201,169,110,0.5) 70%,
-      rgba(201,169,110,0.2) 85%,
-      rgba(201,169,110,0.05) 95%,
+      rgba(201,169,110,0.08) 10%,
+      rgba(201,169,110,0.3) 30%,
+      rgba(255,230,170,0.8) 50%,
+      rgba(201,169,110,0.3) 70%,
+      rgba(201,169,110,0.08) 90%,
       transparent 100%
     );
     animation: line-breathe 6s ease-in-out infinite;
@@ -122,13 +117,11 @@
     width: 14px;
     background: linear-gradient(180deg,
       transparent 0%,
-      rgba(201,169,110,0.03) 10%,
-      rgba(201,169,110,0.12) 25%,
-      rgba(201,169,110,0.3) 40%,
-      rgba(255,220,160,0.45) 50%,
-      rgba(201,169,110,0.3) 60%,
-      rgba(201,169,110,0.12) 75%,
-      rgba(201,169,110,0.03) 90%,
+      rgba(201,169,110,0.05) 15%,
+      rgba(201,169,110,0.2) 35%,
+      rgba(255,220,160,0.4) 50%,
+      rgba(201,169,110,0.2) 65%,
+      rgba(201,169,110,0.05) 85%,
       transparent 100%
     );
     filter: blur(6px);
@@ -141,13 +134,11 @@
     width: 42px;
     background: linear-gradient(180deg,
       transparent 0%,
-      rgba(201,169,110,0.02) 10%,
-      rgba(201,169,110,0.06) 25%,
-      rgba(201,169,110,0.16) 40%,
-      rgba(201,169,110,0.22) 50%,
-      rgba(201,169,110,0.16) 60%,
-      rgba(201,169,110,0.06) 75%,
-      rgba(201,169,110,0.02) 90%,
+      rgba(201,169,110,0.03) 15%,
+      rgba(201,169,110,0.12) 35%,
+      rgba(201,169,110,0.2) 50%,
+      rgba(201,169,110,0.12) 65%,
+      rgba(201,169,110,0.03) 85%,
       transparent 100%
     );
     filter: blur(16px);
@@ -924,8 +915,10 @@
     sunGlowInner.style.left = lc.x + 'px';
     sunGlowInner.style.top = lc.y + 'px';
 
-    // Vertical beam through center
-    sunLine.style.left = lc.x + 'px';
+    // Vertical beam — centered on orbit, starts at logo
+    sunLine.style.left = oc.x + 'px';
+    sunLine.style.top = lc.y + 'px';
+    sunLine.style.bottom = '0';
 
     // Nucleus point — center of the orbit
     nucleus.style.left = oc.x + 'px';
