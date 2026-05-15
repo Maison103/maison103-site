@@ -700,10 +700,10 @@
     .hero-statement { font-size: 9px; letter-spacing: 2px; bottom: 24px; }
     .sun-glow { width: 200px; height: 200px; }
     .sun-glow-inner { width: 80px; height: 80px; }
-    .orbit-planet { width: 32px; height: 32px; }
+    .orbit-planet { width: 36px; height: 36px; }
     .orbit-planet::after { top: 3px; left: 4px; width: 8px; height: 5px; }
-    .orbit-node { padding: 8px; }
-    .orbit-node::before { width: 42px; height: 42px; }
+    .orbit-node { padding: 12px; min-width: 48px; min-height: 48px; justify-content: center; }
+    .orbit-node::before { width: 48px; height: 48px; }
     .orbit-code { display: none; }
     .orbit-name { font-size: 9px; }
     .orbit-hint { display: none; }
@@ -835,6 +835,7 @@
   let pointerTravel = 0;
   let idleTimer = null;
   let isIdle = true;
+  let planetTouching = false; // pause rotation during planet taps
   const friction = 0.97;
 
   // Create planet nodes
@@ -855,6 +856,30 @@
     a.addEventListener('click', (e) => {
       if (pointerTravel > 15) e.preventDefault();
     });
+    // Mobile: dedicated touch handling so container drag doesn't swallow taps
+    let nodeTouchStart = null;
+    a.addEventListener('touchstart', (e) => {
+      e.stopPropagation(); // prevent container drag from firing
+      planetTouching = true; // freeze orbit rotation
+      angularVelocity = 0;
+      const t = e.touches[0];
+      nodeTouchStart = { x: t.clientX, y: t.clientY, time: Date.now() };
+    }, { passive: true });
+    a.addEventListener('touchend', (e) => {
+      planetTouching = false;
+      if (!nodeTouchStart) return;
+      const t = e.changedTouches[0];
+      const dx = Math.abs(t.clientX - nodeTouchStart.x);
+      const dy = Math.abs(t.clientY - nodeTouchStart.y);
+      const elapsed = Date.now() - nodeTouchStart.time;
+      // Generous: under 500ms and finger didn't wander far
+      if (elapsed < 500 && dx + dy < 40) {
+        e.preventDefault();
+        window.location.href = div.href;
+      }
+      nodeTouchStart = null;
+    });
+    a.addEventListener('touchcancel', () => { planetTouching = false; nodeTouchStart = null; });
     container.appendChild(a);
     nodes.push(a);
   });
@@ -1029,7 +1054,7 @@
 
   // Animation loop
   function tick() {
-    if (!isDragging) {
+    if (!isDragging && !planetTouching) {
       if (isIdle) {
         angle += autoSpeed;
       } else {
